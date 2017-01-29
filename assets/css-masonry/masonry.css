@@ -12,7 +12,7 @@
     font-size: .85em;
 }
 
-.m-item {
+.masonry-item {
     display: inline-block;
     background: #fff;
     padding: 1.5em;
@@ -27,10 +27,18 @@
     -webkit-border-radius: 3px;
 }
 
-.m-item img, .m-item iframe {
+.masonry-item img, .masonry-item iframe {
     max-width: 100%;
     height: auto;
     display: block;
+}
+
+@media only screen and (min-width: 400px) {
+    .masonry {
+        -moz-column-count: 2;
+        -webkit-column-count: 2;
+        column-count: 2;
+    }
 }
 
 @media only screen and (min-width: 700px) {

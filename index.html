@@ -5,13 +5,22 @@
 
 	<!-- AngularJS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	
+	<!-- ngAnimate -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+	
+	<!-- ngSanitize -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.min.js"></script>
 
 	<!-- jQuery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="assets/jquery/jquery.min.js"></script>
+
+	<!-- flexibleArea.js -->
+	<script src="assets/flexibleArea.js/jquery.flexibleArea.js"></script>
 
 	<!-- Bootstrap -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
 
 	<!-- CSS Masonry -->
 	<link rel="stylesheet" href="assets/css-masonry/masonry.css">
@@ -25,9 +34,12 @@
 
 <body ng-app="notesApp" ng-controller="notesController">
 
+	<!-- Brand -->
 	<div class="brand">
 		<a href="">ng-notes</a>
 	</div>
+	<!-- /.Brand -->
+
 
 	<!-- Search -->
 	<div class="search">
@@ -36,29 +48,72 @@
 	</div>
 	<!-- /.Search -->
 
-	<!-- Notes Container -->
+
+	<!-- Note-Tiles Container -->
 	<div class="container notes-container">
 		<div class="masonry">
 
-			<div class="m-item note" ng-class="note.class" ng-repeat = "note in notes | searchFor:searchString">
-				<button class="glyphicon glyphicon-remove note-opt remove-btn" ng-click="removeNote(note);"></button>
-				<h3 class="note-title">{{ note.title }}</h3>
-				<p class="note-content">{{ note.content }}</p>
+			<div class="masonry-item note" ng-class="note.class" ng-repeat = "note in notes | searchFor:searchString">
+				<button class="glyphicon glyphicon-trash note-opt remove-btn" ng-click="removeNote(note);"></button>
+				<!-- Opens modal -->
+				<div class="note-main" data-toggle="modal" data-target="#note-modal-{{$index}}">
+					<h3 class="note-title">{{ note.title }}</h3>
+<!--				<p class="note-content">{{ note.content }}</p>		-->
+					<p class="note-content" ng-bind-html="note.content"></p>
+				</div>
 			</div>
 		
 		</div>
 	</div>
-	<!-- /.Notes Container -->
+	<!-- /.Note-Tiles Container -->
+
+
+	<!-- Note Modals -->
+	<div class="modal fade fade-pop note-modal" ng-repeat = "note in notes | searchFor:searchString" id="note-modal-{{$index}}" role="dialog">
+		<div class="modal-dialog">
+
+		<!-- Modal Content -->
+		<div class="modal-content" ng-class="note.class">
+
+			<!-- Edit Note Form -->
+			<form class="edit-note-form">	    	
+				<button type="button" class="close"  data-dismiss="modal">&times;</button>
+				<div class="modal-header">
+					<div class="form-group">
+						<label class="sr-only" for="title">Title: </label>
+						<textarea class="form-control input-title" rows="1" placeholder="Title" ng-model="note.title" maxlength="{{titleMaxLength}}"></textarea>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="form-group">
+						<label class="sr-only" for="content">Content: </label>
+						<textarea class="form-control input-content" rows="15" placeholder="Take a note..." ng-model="note.content"></textarea>
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</form>
+		
+		</div>
+
+		</div>
+
+	</div>
+	<!-- /.Note Modals -->
+
 
 	<!-- Add New Note -->
-
 	<!-- Button for addNoteModal -->
 	<button title="Add new note" class="glyphicon glyphicon-plus add-btn" data-toggle="modal" data-target="#addNoteModal"></button>
 
 	<!-- addNoteModal -->
 	<div id="addNoteModal" class="modal fade add-note-modal" role="dialog">
 		<div class="modal-dialog modal-lg">
-			<!-- Modal content-->
+			
+			<!-- Modal Content-->
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -66,10 +121,11 @@
 				</div>
 				<div class="modal-body">
 					
+					<!-- Add Note Form -->
 					<form class="add-note-form">
 						<div class="form-group">
 							<label class="sr-only" for="title">Title:</label>
-							<input type="text" class="form-control" id="newtitle" placeholder="Title" ng-model="note.title">
+							<input type="text" class="form-control" id="newtitle" placeholder="Title" ng-model="note.title" maxlength="{{titleMaxLength}}">
 						</div>
 
 						<div class="form-group">
@@ -82,9 +138,9 @@
 
 				</div>
 			</div>
+
 		</div>
 	</div>
-
 	<!-- /.Add New Note -->
 
 </body>

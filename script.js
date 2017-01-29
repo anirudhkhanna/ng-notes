@@ -1,22 +1,30 @@
 
-/* Make remove buttons visible only on hovering over the note */
-function hoverElements() {
-	/* Show the remove button when mouse pointer enters the note */
-	$('.note').mouseenter(function(){
-		var e = $(this).find('.remove-btn').fadeIn(250);
-	});
+/* Flexible resizer for textareas */
+function flexibleTextarea(selector) {
 
-	/* Hide the remove button when mouse pointer leaves the note */
-	$('.note').mouseleave(function(){
-		var e = $(this).find('.remove-btn').fadeOut(250);
-	});	
+	/* Run flexibleArea.js jQuery plugin */
+	$(function() {
+		$(selector).flexible();	// Actual call to library
+	});
 }
 
 
+/* Bind autofocus on 'shown.bs.modal' event a note-modal of given id */
+function modalTextareaAutoFocus(modalId) {
 
-$(document).ready(function() {	
-	/* Hide all remove buttons by default*/
-//	$('.remove-btn').hide();
+	$(document).on('shown.bs.modal', modalId, function () {
+		
+		// focus to adjust size:
+		$( modalId + ' textarea.input-content' ).focus();
+		$( modalId + ' textarea.input-title' ).focus();
 
-//	setInterval(hoverElements, 20);
-});
+		// then blur too:
+		$( modalId + ' textarea.input-title').blur();
+	});
+}
+
+
+/* Run flexible resizer for textareas */
+//flexibleTextarea('.note-modal textarea.input-title');
+//flexibleTextarea('.note-modal textarea.input-content');
+

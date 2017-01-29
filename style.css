@@ -1,7 +1,24 @@
 body {
 	background-color: #fff;
 	background: url('img/bg.jpg') no-repeat center top;
+	background: #f0f0f0;
 }
+  
+::-webkit-scrollbar-track {
+/*	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);	*/
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar {
+	width: 7px;
+/*	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);	*/
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
 
 .brand {
 	float: left;
@@ -30,7 +47,6 @@ body {
 	text-align: center;
 	margin: 20px auto;
 	width: 50%;
-
 }
 
 .search input {
@@ -72,19 +88,86 @@ body {
 }
 
 
+/* Brand and Search Responsive Styles */
+@media screen and (max-width: 800px) {
+
+	.brand {
+		float: none;
+		padding: 0;
+		margin-top: 20px;
+		text-align: left;
+	}
+
+	.search {
+		text-align: left;
+		margin: 20px 30px;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.search {
+		width: 70%;
+	}
+}
+
+
+
 .notes-container {
 	padding-right: 20px;
 }
 
-.m-item {
+.masonry-item {
 	background: #f9f9f9;
 	border-radius: 0;
 	word-wrap: break-word;
+	padding: 0;
 	padding-top: 0.75em;
 }
 
+.note {
+	border-radius: 2px;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+    transition: .3s !important;
+}
+
+.note .note-main {
+    padding: 0em 1.5em 1.5em 1.5em;
+}
+
+
+
+
+.note.ng-enter, 
+.note.ng-leave {
+	-webkit-transition:0.5s linear all;
+	transition:0.5s linear all;
+}
+
+.note.ng-enter, 
+.note.ng-leave.ng-leave-active {
+	opacity: 0;
+}
+
+.note.ng-leave, 
+.note.ng-enter.ng-enter-active {
+	opacity: 1;
+}
+
+
+
+.note img {
+	display: block;
+	max-width: 100%;
+	margin: 10px auto;
+}
+
 .note:hover {
-	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4), 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+	-webkit-box-shadow: rgba(0, 0, 0, .35) 0 4px 10px, 
+						inset 1px 1px 0 rgba(0,0,0,.1), inset -1px -1px 0 rgba(0,0,0,.07);
+	box-shadow: rgba(0, 0, 0, .35) 0 4px 10px, 
+				inset 1px 1px 0 rgba(0,0,0,.1), inset -1px -1px 0 rgba(0,0,0,.07);
+    transition: .3s !important;
 }
 
 .note-title {
@@ -96,16 +179,16 @@ body {
 }
 
 .note-opt {
-	display: none;
+	visibility: hidden;
 }
 
 .note:hover .note-opt {
-	display: block;
+	visibility: visible;
 }
 
 .remove-btn {
 	float: right;
-	margin: 0 -0.7em 0 0;
+	margin: 0 0.75em 0 0;
 	padding: 0;
 	background: transparent;
 	border: 0;
@@ -115,6 +198,109 @@ body {
 
 .remove-btn:hover {
 	color: #222;
+}
+
+
+/* Note mmodal */
+.note-modal {
+	word-wrap: break-word;
+	overflow-y: scroll;
+}
+
+.note-modal button.close {
+	margin-right: 7px;
+}
+
+.note-modal .modal-content {
+	border-radius: 2px;
+	border: 0;
+}
+
+.note-modal .modal-header, 
+.note-modal .modal-footer {
+	border: 0;
+}
+
+.note-modal .modal-header {
+	background: rgba(0, 0, 0, 0.1);
+	padding-left: 25px;
+}
+
+.note-modal img {
+	display: block;
+	max-width: 100%;
+	margin: 10px auto;
+}
+
+.fade-pop {
+  transform: scale(0);
+  opacity: 0;
+  -webkit-transition: all .25s linear;
+  -o-transition: all .25s linear;
+  transition: all .25s linear;
+}
+
+.fade-pop.in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.edit-note-form .form-group {
+	margin-bottom: 0;
+}
+
+.edit-note-form .form-control {
+	border-radius: 0;
+	border: 0;
+	outline: 0;
+	resize: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	color: inherit;
+	background: transparent;
+}
+
+.edit-note-form .input-title {
+	font-family: inherit;
+	min-height: 50px;
+	max-height: 150px;
+	font-weight: 500;
+	color: inherit;
+	font-size: 24px;
+	padding: 20px 0 7px;
+	transition: .2s ease-in;
+}
+
+.edit-note-form .input-content {
+	border-bottom: 1px solid transparent;
+	min-height: 200px;
+	max-height: 300px;
+	transition: .2s ease-in;
+}
+
+.edit-note-form .input-content:hover, 
+.edit-note-form .input-content:focus {
+/*	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2), 0 11px 10px 0 rgba(0, 0, 0, 0.19);	*/
+	box-shadow: 0px 5px 15px -5px rgba(0,0,0,0.65);
+}
+
+.edit-note-form .input-content:focus {
+	background: rgba(255, 255, 255, 0.4);
+	transition: .3s ease-out;
+}
+
+.edit-note-form input::-webkit-input-placeholder, .edit-note-form textarea::-webkit-input-placeholder {
+	font-weight: 300;
+	color: #444;
+}
+.edit-note-form input::-moz-placeholder, .edit-note-form textarea::-moz-placeholder {
+	font-weight: 300;
+	color: #444;
+}
+.edit-note-form input::input-placeholder, .edit-note-form textarea::input-placeholder {
+	font-weight: 300;
+	color: #444;
 }
 
 
@@ -154,6 +340,7 @@ body {
 	-moz-box-shadow: none;
 	box-shadow: none;
 	border-bottom: 2px solid #eee;
+	background: transparent;
 }
 
 .add-note-form .form-control:hover, .add-note-form .form-control:focus {

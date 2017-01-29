@@ -2,34 +2,36 @@
 var classes = [	"color1", "color2", "color3", "color4", "color5", "color6", "color7", "color8", "color9" ];
 
 
-var app = angular.module('notesApp', []);
+var app = angular.module('notesApp', ['ngAnimate', 'ngSanitize']);
 
-app.controller('notesController', function($scope) {
+app.controller('notesController', function($scope, $sce) {
+
+	$scope.titleMaxLength = 130;
 
 	$scope.notes = [
 		{
 			title: 'http://www.tutorialspoint.com/android/',
-			content: 'Android tutorials on http://www.tutorialspoint.com/android/images/android-mini-logo.jpg',
-			class: classes[Math.floor(Math.random()*classes.length)]
-		},
-		{
-			title: 'My First Note',
-			content: 'Some readme',
-			class: classes[Math.floor(Math.random()*classes.length)]
-		},
-		{
-			title: 'http://www.tutorialspoint.com/android/',
-			content: 'Android tutorials on http://www.tutorialspoint.com/android/images/android-mini-logo.jpg Android tutorials on http://www.tutorialspoint.com/android/images/android-mini-logo.jpg Android tutorials on http://www.tutorialspoint.com/android/images/android-mini-logo.jpg',
+			content: '<b>Android tutorials on http://www.tutorialspoint.com/android/images/android-mini-logo.jpg</b>',
 			class: classes[Math.floor(Math.random()*classes.length)]
 		},
 		{
 			title: 'My Second Note',
-			content: 'Some readme',
+			content: '<img src="http://wallpaper-gallery.net/images/dubai-images/dubai-images-8.jpg" />',
+			class: classes[Math.floor(Math.random()*classes.length)]
+		},
+		{
+			title: 'My First Note',
+			content: 'Some readme <br> <ul><li>Item 1</li><li>Item 2</li><li>Item 3</li></ul>',
+			class: classes[Math.floor(Math.random()*classes.length)]
+		},
+		{
+			title: 'http://www.tutorialspoint.com/android/',
+			content: '<img src="http://anirudhkhanna.github.io/images/anirudhkhanna.jpg"/> Android tutorials on http://www.tutorialspoint.com/android/images/android-mini-logo.jpg Android tutorials on http://www.tutorialspoint.com/android/images/android-mini-logo.jpg Android tutorials on http://www.tutorialspoint.com/android/images/android-mini-logo.jpg',
 			class: classes[Math.floor(Math.random()*classes.length)]
 		},
 		{
 			title: 'My First Note with really long heading',
-			content: 'Some readme',
+			content: 'Some readme <br> <ul><li>Item 1</li><li>Item 2</li><li>Item 3</li></ul>',
 			class: classes[Math.floor(Math.random()*classes.length)]
 		},
 		{
@@ -100,6 +102,22 @@ app.controller('notesController', function($scope) {
 	];
 
 
+	/* Bind autofocus on 'shown.bs.modal' event of each note-modal
+	 * The focus will adjust initial size for flexible textareas
+	 * And will force-show the placeholder texts (otherwise not shown in some browsers)
+	 */
+	for(var i = 0; i < $scope.notes.length; i++) {
+		modalTextareaAutoFocus('#note-modal-' + i);
+	}
+
+
+	/* Run flexible resizer for textareas in each note-modal
+	 */
+	for(var i = 0; i < $scope.notes.length; i++) {
+		flexibleTextarea('#note-modal-'+i+' textarea.input-title');
+		flexibleTextarea('#note-modal-'+i+' textarea.input-content');
+	}
+
 	/* Remove a note from notes */
 	$scope.removeNote = function(item) {
 		
@@ -143,6 +161,12 @@ app.controller('notesController', function($scope) {
 			content: '',
 			class: ''
 		};
+
+		// Call for flexible textarea plugin for the new note modal after 50ms
+		setTimeout(function() {
+			$('#note-modal-0 textarea.input-title').flexible();
+			$('#note-modal-0 textarea.input-content').flexible();
+		}, 50);
 
 		// Close the modal when note saved successfully
 		submitBtn.setAttribute('data-dismiss', 'modal');
