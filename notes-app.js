@@ -109,11 +109,19 @@ app.controller('notesController', function($scope) {
 
 
 	/* Add a note to notes */
-	$scope.note = {};
+	$scope.note = {
+		title: '',
+		content: '',
+		class: ''
+	};
 	$scope.addNote = function() {
 
-		// Fail if the content is empty
-		if(!$scope.note.content) {
+		// Override close functionality of the modal
+		var submitBtn = document.getElementById('submit-btn');
+		submitBtn.removeAttribute('data-dismiss');
+
+		// Fail if the note is empty
+		if(!$scope.note.content && !$scope.note.title) {
 			return;
 		}
 
@@ -130,7 +138,14 @@ app.controller('notesController', function($scope) {
 		// Reset the values back to empty
 		document.getElementById('newtitle').value='';
 		document.getElementById('newcontent').value='';
-		$scope.note = {};
+		$scope.note = {
+			title: '',
+			content: '',
+			class: ''
+		};
+
+		// Close the modal when note saved successfully
+		submitBtn.setAttribute('data-dismiss', 'modal');
 	};
 
 });

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<!-- AngularJS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 
@@ -39,7 +41,7 @@
 		<div class="masonry">
 
 			<div class="m-item note" ng-class="note.class" ng-repeat = "note in notes | searchFor:searchString">
-				<button class="glyphicon glyphicon-remove remove-btn" ng-click="removeNote(note);"></button>
+				<button class="glyphicon glyphicon-remove note-opt remove-btn" ng-click="removeNote(note);"></button>
 				<h3 class="note-title">{{ note.title }}</h3>
 				<p class="note-content">{{ note.content }}</p>
 			</div>
@@ -75,7 +77,7 @@
 							<textarea class="form-control" rows="10" id="newcontent" placeholder="Content" ng-model="note.content"></textarea>
 						</div>
 						
-						<button type="submit" class="btn btn-default" ng-click="addNote();">Submit</button>
+						<button type="submit" id="submit-btn" class="btn btn-default" ng-click="addNote();">Add Note</button>
 					</form>
 
 				</div>
