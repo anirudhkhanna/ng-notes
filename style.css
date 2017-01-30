@@ -214,6 +214,13 @@ body {
 	color: #222;
 }
 
+/* Don't show note options on mobile */
+@media screen and (max-width: 680px) {
+	.note-opt {
+		display: none;
+	}
+}
+
 
 /* Note mmodal */
 .note-modal {
