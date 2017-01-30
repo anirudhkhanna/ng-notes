@@ -60,13 +60,18 @@
 		<div class="masonry">
 
 			<div class="masonry-item note" ng-class="note.class" ng-repeat = "note in notes | searchFor:searchString">
-				<button class="glyphicon glyphicon-trash note-opt remove-btn" ng-click="removeNote(note);"></button>
-				<!-- Opens modal -->
+				<!-- Note-Main (Has Content, Opens Corresponding Note-Modal) -->
 				<div class="note-main" data-toggle="modal" data-target="#note-modal-{{$index}}">
 					<h3 class="note-title">{{ note.title }}</h3>
 <!--				<p class="note-content">{{ note.content }}</p>		-->
 					<p class="note-content" ng-bind-html="note.content"></p>
 				</div>
+				<!-- Note-Opt (Has Note Options) -->
+				<div class="note-opt">
+					<button class="glyphicon glyphicon-duplicate" ng-click="copyNote($index)"></button>
+					<button class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#note-modal-{{$index}}" ng-click="modalOpenEditMode($index)"></button>
+					<button class="glyphicon glyphicon-trash" ng-click="removeNote($index)"></button>
+				</div>	
 			</div>
 		
 		</div>

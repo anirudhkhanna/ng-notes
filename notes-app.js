@@ -109,8 +109,9 @@ app.controller('notesController', function($scope, $sce) {
 	 */
 	if(Modernizr.mq('(min-width: 680px)')) {
 
+		var isEditMode = false;
 		for(var i = 0; i < $scope.notes.length; i++) {
-			modalTextareaAutoFocus('#note-modal-' + i);
+			modalTextareaAutoFocus('#note-modal-' + i, isEditMode);
 		}
 	}
 
@@ -124,11 +125,41 @@ app.controller('notesController', function($scope, $sce) {
 	}
 
 
-	/* Remove a note from notes */
-	$scope.removeNote = function(item) {
+
+	/* Autofocus the content when modal opened in edit mode */
+	$scope.modalOpenEditMode = function($index) {
+
+		var modalId = '#note-modal-' + $index;
+		var isEditMode = true;
+		modalTextareaAutoFocus(modalId, isEditMode);
+	}
+
+
+	/* Copy a note from notes */
+	$scope.copyNote = function($index) {
 		
-		var index = $scope.notes.indexOf(item);
-		$scope.notes.splice(index, 1);
+		// Make a new note
+		var newNote = {};
+
+ 		newNote.title = $scope.notes[$index].title;
+ 		newNote.content = $scope.notes[$index].content;
+ 		newNote.class = $scope.notes[$index].class;
+
+ 		// Prepend newNote in the notes array
+		$scope.notes.unshift(newNote);
+
+		// Call for flexible textarea plugin for the new note modal after some milliseconds
+		setTimeout(function() {
+			$('#note-modal-0 textarea.input-title').flexible();
+			$('#note-modal-0 textarea.input-content').flexible();
+		}, 50);
+	}
+
+
+	/* Remove a note from notes */
+	$scope.removeNote = function($index) {
+		
+		$scope.notes.splice($index, 1);
 	}
 
 

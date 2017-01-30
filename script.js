@@ -10,17 +10,29 @@ function flexibleTextarea(selector) {
 
 
 /* Bind autofocus on 'shown.bs.modal' event a note-modal of given id */
-function modalTextareaAutoFocus(modalId) {
+function modalTextareaAutoFocus(modalId, isEditMode) {
 
+	// Bind on shown.bs.modal event
 	$(document).on('shown.bs.modal', modalId, function () {
 		
-		/* focus to adjust size: */
-		//$( modalId + ' textarea.input-content' ).focus();
-		$( modalId + ' textarea.input-title' ).focus();
+		/* focus on title to adjust size: */
+ 		$( modalId ).find(' textarea.input-title' ).focus();
 
 		/* then blur too: */
-		$( modalId + ' textarea.input-title').blur();
+		$( modalId ).find(' textarea.input-title' ).blur();
+
+		/* if isEditMode, then finally on focus content: */
+ 		if(isEditMode === true) {
+	 		$( modalId ).find(' textarea.input-content' ).focus();
+
+	 		// Re-run the function with isEditMode = false after some milliseconds, 
+	 		// to refresh the bindings and thus, not to unnecessarily focus on content 
+	 		// the next time this modal opens
+	 		isEditMode = false;
+	 		setTimeout(modalTextareaAutoFocus(modalId, isEditMode), 1500);
+	 	}
 	});
+
 }
 
 
@@ -28,3 +40,4 @@ function modalTextareaAutoFocus(modalId) {
 //flexibleTextarea('.note-modal textarea.input-title');
 //flexibleTextarea('.note-modal textarea.input-content');
 
+//$(document).ready(function (){alert($('.note-opt button').css('color'));})

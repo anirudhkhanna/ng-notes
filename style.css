@@ -122,7 +122,6 @@ body {
 	border-radius: 0;
 	word-wrap: break-word;
 	padding: 0;
-	padding-top: 0.75em;
 }
 
 .note {
@@ -132,17 +131,11 @@ body {
     transition: .3s !important;
 }
 
-.note .note-main {
-    padding: 0em 1.5em 1.5em 1.5em;
-}
-
-
-
-
+/* Note tiles animations */
 .note.ng-enter, 
 .note.ng-leave {
-	-webkit-transition:0.5s linear all;
-	transition:0.5s linear all;
+	-webkit-transition: 0.5s linear all;
+	transition: 0.5s linear all;
 }
 
 .note.ng-enter, 
@@ -155,6 +148,11 @@ body {
 	opacity: 1;
 }
 
+
+/* Note tile main */
+.note .note-main {
+    padding: 0.75em 1.5em 0.85em 1.5em;
+}
 
 
 .note img {
@@ -179,25 +177,40 @@ body {
 	white-space: pre-wrap;
 }
 
+/* Note tile options */
 .note-opt {
+	font-size: 15px;
+	padding: 0.1em 1.2em 0.75em;
+	color: #444;
+	overflow: auto;
 	visibility: hidden;
+	opacity: 0;
 }
 
 .note:hover .note-opt {
 	visibility: visible;
+	opacity: 1;
+	transition: opacity .5s;
 }
 
-.remove-btn {
-	float: right;
-	margin: 0 0.75em 0 0;
+.note-opt::after { 	/* Clearfix */
+	clear: both;
+	content: " ";
+	display: block;
+	height: 0;
+}
+
+
+.note-opt > * {
+	float: left;
+	margin-right: 1.25em;
 	padding: 0;
 	background: transparent;
 	border: 0;
 	outline: 0;
-	color: #454545;
 }
 
-.remove-btn:hover {
+.note-opt > *:hover {
 	color: #222;
 }
 
