@@ -14,11 +14,11 @@ function modalTextareaAutoFocus(modalId) {
 
 	$(document).on('shown.bs.modal', modalId, function () {
 		
-		// focus to adjust size:
-		$( modalId + ' textarea.input-content' ).focus();
+		/* focus to adjust size: */
+		//$( modalId + ' textarea.input-content' ).focus();
 		$( modalId + ' textarea.input-title' ).focus();
 
-		// then blur too:
+		/* then blur too: */
 		$( modalId + ' textarea.input-title').blur();
 	});
 }

@@ -2,6 +2,7 @@ body {
 	background-color: #fff;
 	background: url('img/bg.jpg') no-repeat center top;
 	background: #f0f0f0;
+	font-family: 'Roboto Slab', sans-serif;
 }
   
 ::-webkit-scrollbar-track {
