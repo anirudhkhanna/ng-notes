@@ -21,6 +21,9 @@
 	<!-- flexibleArea.js -->
 	<script src="assets/flexibleArea.js/jquery.flexibleArea.js"></script>
 
+	<!-- Autosize -->
+	<script src="assets/autosize/autosize.js"></script>
+
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="assets/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="assets/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -29,7 +32,7 @@
 	<link rel="stylesheet" href="assets/css-masonry/masonry.css">
 
 	<!-- Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto+Condensed" rel="stylesheet">
 
 
 
@@ -95,7 +98,7 @@
 
 </head>
 
-<body ng-app="notesApp" ng-controller="notesController">
+<body id="mynotes" ng-app="notesApp" ng-controller="notesController">
 
 	<!-- Brand -->
 	<div class="brand">
@@ -136,7 +139,7 @@
 
 
 	<!-- Note Modals -->
-	<div class="modal fade fade-pop note-modal" ng-repeat = "note in notes | searchFor:searchString" id="note-modal-{{$index}}" role="dialog">
+	<div class="modal fade fade-pop note-modal" ng-repeat = "note in notes | searchFor:searchString" id="note-modal-{{$index}}" role="dialog" modals-finish-directive>
 		<div class="modal-dialog">
 
 		<!-- Modal Content -->

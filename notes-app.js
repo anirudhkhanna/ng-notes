@@ -4,9 +4,9 @@ var classes = [	"color1", "color2", "color3", "color4", "color5", "color6", "col
 
 var app = angular.module('notesApp', ['froala', 'ngAnimate']);
 
-app.controller('notesController', function($scope, $sce) {
+app.controller('notesController', function($scope) {
 
-	$scope.titleMaxLength = 130;
+	$scope.titleMaxLength = 100;
 
 	$scope.notes = [
 		{
@@ -20,7 +20,7 @@ app.controller('notesController', function($scope, $sce) {
 			class: classes[Math.floor(Math.random()*classes.length)]
 		},
 		{
-			title: 'My First Note',
+			title: 'My First Note My First Note My First Note My First Note uyr uyi itiyryt rr utut',
 			content: 'Some readme <br> <ul><li>Item 1</li><li>Item 2</li><li>Item 3</li></ul>',
 			class: classes[Math.floor(Math.random()*classes.length)]
 		},
@@ -136,29 +136,6 @@ app.controller('notesController', function($scope, $sce) {
 			},
 */
 		};
-
-
-	/* Bind autofocus on 'shown.bs.modal' event of each note-modal
-	 * The focus will adjust initial size for flexible textareas
-	 * And will force-show the placeholder texts (otherwise not shown in some browsers)
-	 * (NOT ON MOBILE DEVICES, BECAUSE KEYBOARD COMES UP)
-	 */
-	if(Modernizr.mq('(min-width: 680px)')) {
-
-		var isEditMode = false;
-		for(var i = 0; i < $scope.notes.length; i++) {
-			modalTextareaAutoFocus('#note-modal-' + i, isEditMode);
-		}
-	}
-
-
-	/* Run flexible resizer for textareas in each note-modal
-	 */
-	for(var i = 0; i < $scope.notes.length; i++) {
-
-		flexibleTextarea('#note-modal-'+i+' textarea.input-title');
-	//	flexibleTextarea('#note-modal-'+i+' textarea.input-content');
-	}
 
 
 
@@ -277,3 +254,13 @@ app.filter('searchFor', function() {
 	};
 
 });
+
+
+app.directive('modalsFinishDirective', function() {
+	return function(scope, element, attrs) {
+		if (scope.$last){
+			autoresizer();
+		}
+	};
+})
+

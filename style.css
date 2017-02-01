@@ -34,7 +34,6 @@ body {
 	font-size: 2.75em;
 	font-weight: 900;
 	color: #444;
-	border-bottom: 3px dotted;
 	transition: .25s ease;
 }
 .brand a:hover {
@@ -111,10 +110,15 @@ body {
 	}
 }
 
-
-
 .notes-container {
 	padding-right: 20px;
+}
+
+@media screen and (max-width: 680px) {
+	.notes-container {
+		padding-left: 8px;
+		padding-right: 8px;
+	}
 }
 
 .masonry-item {
@@ -154,10 +158,11 @@ body {
     padding: 0.75em 1.5em 0.85em 1.5em;
 }
 
-
+/* Maintain images in note tiles */
 .note img {
 	display: block;
 	max-width: 100%;
+	height: auto !important;
 	margin: 10px auto;
 }
 
@@ -170,6 +175,9 @@ body {
 }
 
 .note-title {
+	font-family: 'Roboto Condensed';
+	font-size: 22px;
+	font-weight: bold;
 }
 
 .note-content {
@@ -180,7 +188,7 @@ body {
 /* Note tile options */
 .note-opt {
 	font-size: 17px;
-	padding: 0.1em 1.2em 0.6em;
+	padding: 0.1em 1.2em 0.75em;
 	color: #333;
 	overflow: auto;
 	visibility: hidden;
@@ -283,14 +291,13 @@ body {
 }
 
 .edit-note-form .input-title {
-	font-family: inherit;
 	min-height: 50px;
 	max-height: 150px;
-	font-weight: 500;
-	color: inherit;
-	font-size: 24px;
 	padding: 20px 0 7px;
-	transition: .2s ease-in;
+	font-family: 'Roboto Condensed';
+	font-size: 22px;
+	font-weight: bold;
+	color: #252525;
 }
 
 /*.edit-note-form .ta-scroll-window.form-control:hover {
