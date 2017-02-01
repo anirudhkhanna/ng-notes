@@ -3,6 +3,9 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
+	<!-- jQuery -->
+	<script src="assets/jquery/3.1.1/jquery.min.js"></script>
+
 	<!-- AngularJS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 	
@@ -12,18 +15,15 @@
 	<!-- ngSanitize -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.min.js"></script>
 
-	<!-- jQuery -->
-	<script src="assets/jquery/jquery.min.js"></script>
-
 	<!-- Modernizr -->
-	<script src="assets/Modernizr/modernizr.min.js"></script>
+	<script src="assets/Modernizr/2.8.3/modernizr.min.js"></script>
 
 	<!-- flexibleArea.js -->
 	<script src="assets/flexibleArea.js/jquery.flexibleArea.js"></script>
 
 	<!-- Bootstrap -->
-	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="assets/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="assets/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<!-- CSS Masonry -->
 	<link rel="stylesheet" href="assets/css-masonry/masonry.css">
@@ -31,11 +31,68 @@
 	<!-- Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
 
+
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+	<!-- Froala Editor styles -->
+	<link rel="stylesheet" href="assets/froala/css/froala_editor.min.css" />
+	<link rel="stylesheet" href="assets/froala/css/froala_style.min.css" />
+	<link rel="stylesheet" href="assets/froala/css/themes/gray-modified.css" />
+
+	<!-- Froala Editor Plugin styles -->
+	<link rel="stylesheet" href="assets/froala/css/plugins/char_counter.css">
+	<link rel="stylesheet" href="assets/froala/css/plugins/code_view.css">
+	<link rel="stylesheet" href="assets/froala/css/plugins/colors.css">
+	<link rel="stylesheet" href="assets/froala/css/plugins/emoticons.css">
+	<link rel="stylesheet" href="assets/froala/css/plugins/file.css">
+	<link rel="stylesheet" href="assets/froala/css/plugins/fullscreen.css">
+	<link rel="stylesheet" href="assets/froala/css/plugins/image_manager.css">
+	<link rel="stylesheet" href="assets/froala/css/plugins/image.css">
+	<link rel="stylesheet" href="assets/froala/css/plugins/line_breaker.css">
+	<link rel="stylesheet" href="assets/froala/css/plugins/table.css">
+	<link rel="stylesheet" href="assets/froala/css/plugins/video.css">
+
+	<!-- Froala Editor -->
+	<script src="assets/froala/js/froala_editor.min.js"></script>
+
+	<!-- Froala Editor Plugins -->
+	<script src="assets/froala/js/plugins/align.min.js"></script>
+	<script src="assets/froala/js/plugins/char_counter.min.js"></script>
+	<script src="assets/froala/js/plugins/code_beautifier.min.js"></script>
+	<script src="assets/froala/js/plugins/code_view.min.js"></script>
+	<script src="assets/froala/js/plugins/colors.min.js"></script>
+	<script src="assets/froala/js/plugins/emoticons.min.js"></script>
+	<script src="assets/froala/js/plugins/entities.min.js"></script>
+	<script src="assets/froala/js/plugins/file.min.js"></script>
+	<script src="assets/froala/js/plugins/font_family.min.js"></script>
+	<script src="assets/froala/js/plugins/font_size.min.js"></script>
+	<script src="assets/froala/js/plugins/fullscreen.min.js"></script>
+	<script src="assets/froala/js/plugins/image.min.js"></script>
+	<script src="assets/froala/js/plugins/image_manager.min.js"></script>
+	<script src="assets/froala/js/plugins/inline_style.min.js"></script>
+	<script src="assets/froala/js/plugins/line_breaker.min.js"></script>
+	<script src="assets/froala/js/plugins/link.min.js"></script>
+	<script src="assets/froala/js/plugins/lists.min.js"></script>
+	<script src="assets/froala/js/plugins/paragraph_format.min.js"></script>
+	<script src="assets/froala/js/plugins/paragraph_style.min.js"></script>
+	<script src="assets/froala/js/plugins/quote.min.js"></script>
+	<script src="assets/froala/js/plugins/save.min.js"></script>
+	<script src="assets/froala/js/plugins/table.min.js"></script>
+	<script src="assets/froala/js/plugins/video.min.js"></script>
+
+	<!-- Angular Floara -->
+	<script src="assets/froala/angular-froala/angular-froala.js"></script>
+
+
 	<!-- Custom CSS and JS -->
 	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="note-style.css">
 	<script src="notes-app.js"></script>
 	<script src="script.js"></script>
+
+
 </head>
 
 <body ng-app="notesApp" ng-controller="notesController">
@@ -63,8 +120,7 @@
 				<!-- Note-Main (Has Content, Opens Corresponding Note-Modal) -->
 				<div class="note-main" data-toggle="modal" data-target="#note-modal-{{$index}}">
 					<h3 class="note-title">{{ note.title }}</h3>
-<!--				<p class="note-content">{{ note.content }}</p>		-->
-					<p class="note-content" ng-bind-html="note.content"></p>
+					<p class="note-content" froala-view="note.content"></p>
 				</div>
 				<!-- Note-Opt (Has Note Options) -->
 				<div class="note-opt">
@@ -99,7 +155,8 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<label class="sr-only" for="content">Content: </label>
-						<textarea class="form-control input-content" rows="15" placeholder="Take a note..." ng-model="note.content"></textarea>
+					<!--	<textarea class="form-control input-content" rows="15" placeholder="Take a note..." ng-model="note.content"></textarea>		-->
+						<textarea froala="froalaOptions" ng-model="note.content"></textarea>
 					</div>
 				</div>
 

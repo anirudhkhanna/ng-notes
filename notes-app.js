@@ -2,7 +2,7 @@
 var classes = [	"color1", "color2", "color3", "color4", "color5", "color6", "color7", "color8", "color9" ];
 
 
-var app = angular.module('notesApp', ['ngAnimate', 'ngSanitize']);
+var app = angular.module('notesApp', ['froala', 'ngAnimate']);
 
 app.controller('notesController', function($scope, $sce) {
 
@@ -101,6 +101,41 @@ app.controller('notesController', function($scope, $sce) {
 		},
 	];
 
+	/* Options for Froala Editor */
+	$scope.froalaOptions = {
+			end_with_newline: true,
+			heightMin: 300,
+			heightMax: 375,
+			multiLine: true,
+			toolbarButtons: ['bold', 'italic', 'underline', '|', 'emoticons', '|', 'align', 'formatOL', 'formatUL', '|', 'insertLink', 'insertImage', 'html'],
+			toolbarButtonsMD: ['bold', 'italic', 'underline', '|', 'emoticons', '|', 'align', 'formatOL', 'formatUL', '|', 'insertLink', 'insertImage', 'html'],
+			toolbarButtonsSM: ['bold', 'italic', 'underline', '|', 'emoticons', '|', 'align', 'formatOL', 'formatUL', '|', 'insertLink', 'insertImage', 'html'],
+			toolbarButtonsXS: ['bold', 'italic', 'underline', '|', 'emoticons', '|', 'align', 'formatOL', 'formatUL', '|', 'insertLink', 'insertImage', 'html'],
+			toolbarInline: false,
+			zIndex: 9995,
+			tooltips: true,
+			lineBreakerOffset: 0,
+			charCounterCount: false,
+			extra_liners: "['h1']",
+			shortcutsHint: false,
+			spellcheck: true,
+			tabSpaces: 4,
+			theme: 'gray',
+			toolbarBottom: false,
+/*			events: {
+            	'froalaEditor.initialized': (e, editor) => {
+        	  		editor.toolbar.hide();
+        		},
+        		'froalaEditor.focus': (e, editor) => {
+          			editor.toolbar.show();
+        		},
+        		'froalaEditor.blur': (e, editor) => {
+          			editor.toolbar.hide();
+        		}
+			},
+*/
+		};
+
 
 	/* Bind autofocus on 'shown.bs.modal' event of each note-modal
 	 * The focus will adjust initial size for flexible textareas
@@ -121,7 +156,7 @@ app.controller('notesController', function($scope, $sce) {
 	for(var i = 0; i < $scope.notes.length; i++) {
 
 		flexibleTextarea('#note-modal-'+i+' textarea.input-title');
-		flexibleTextarea('#note-modal-'+i+' textarea.input-content');
+	//	flexibleTextarea('#note-modal-'+i+' textarea.input-content');
 	}
 
 
