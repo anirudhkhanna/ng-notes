@@ -26,7 +26,7 @@ app.controller('notesController', function($scope, $sce) {
 		},
 		{
 			title: 'http://www.tutorialspoint.com/android/',
-			content: '<img src="http://anirudhkhanna.github.io/images/anirudhkhanna.jpg"/> Android tutorials on http://www.tutorialspoint.com/android/images/android-mini-logo.jpg Android tutorials on http://www.tutorialspoint.com/android/images/android-mini-logo.jpg Android tutorials on http://www.tutorialspoint.com/android/images/android-mini-logo.jpg',
+			content: '<span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f60c.svg);">&nbsp;</span> <br> <img src="http://anirudhkhanna.github.io/images/anirudhkhanna.jpg"/> Android tutorials on http://www.tutorialspoint.com/android/images/android-mini-logo.jpg Android tutorials on http://www.tutorialspoint.com/android/images/android-mini-logo.jpg Android tutorials on http://www.tutorialspoint.com/android/images/android-mini-logo.jpg',
 			class: classes[Math.floor(Math.random()*classes.length)]
 		},
 		{
@@ -103,11 +103,12 @@ app.controller('notesController', function($scope, $sce) {
 
 	/* Options for Froala Editor */
 	$scope.froalaOptions = {
+			placeholderText: 'Take a note...',
 			end_with_newline: true,
 			heightMin: 300,
 			heightMax: 375,
 			multiLine: true,
-			toolbarButtons: ['bold', 'italic', 'underline', '|', 'emoticons', '|', 'align', 'formatOL', 'formatUL', '|', 'insertLink', 'insertImage', 'html'],
+			toolbarButtons: ['bold', 'italic', 'underline', '|', 'align', 'formatOL', 'formatUL', '|', 'color', 'emoticons', 'insertLink', 'insertImage', 'html'],
 			toolbarButtonsMD: ['bold', 'italic', 'underline', '|', 'emoticons', '|', 'align', 'formatOL', 'formatUL', '|', 'insertLink', 'insertImage', 'html'],
 			toolbarButtonsSM: ['bold', 'italic', 'underline', '|', 'emoticons', '|', 'align', 'formatOL', 'formatUL', '|', 'insertLink', 'insertImage', 'html'],
 			toolbarButtonsXS: ['bold', 'italic', 'underline', '|', 'emoticons', '|', 'align', 'formatOL', 'formatUL', '|', 'insertLink', 'insertImage', 'html'],

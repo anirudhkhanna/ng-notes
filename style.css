@@ -179,9 +179,9 @@ body {
 
 /* Note tile options */
 .note-opt {
-	font-size: 15px;
+	font-size: 18px;
 	padding: 0.1em 1.2em 0.75em;
-	color: #444;
+	color: #333;
 	overflow: auto;
 	visibility: hidden;
 	opacity: 0;
@@ -203,7 +203,7 @@ body {
 
 .note-opt > * {
 	float: left;
-	margin-right: 1.25em;
+	margin-right: 1.1em;
 	padding: 0;
 	background: transparent;
 	border: 0;
@@ -211,7 +211,7 @@ body {
 }
 
 .note-opt > *:hover {
-	color: #222;
+	color: #111;
 }
 
 /* Don't show note options on mobile */
