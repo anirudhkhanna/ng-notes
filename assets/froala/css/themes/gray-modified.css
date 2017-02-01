@@ -802,11 +802,19 @@
 .gray-theme.fr-desktop .fr-command:hover,
 .gray-theme.fr-desktop .fr-command:focus {
 /*  color: #37474f;  */
+<<<<<<< HEAD
+=======
+  color: #111;
+>>>>>>> Fontawesome problem
   background: #e6e6e6;
 }
 .gray-theme.fr-desktop .fr-command:hover::after,
 .gray-theme.fr-desktop .fr-command:focus::after {
 /*  border-top-color: #37474f !important;  */
+<<<<<<< HEAD
+=======
+  border-top-color: #111 !important;
+>>>>>>> Fontawesome problem
 }
 .gray-theme.fr-desktop .fr-command.fr-selected {
 /*  color: #37474f;  */
@@ -816,6 +824,7 @@
 .gray-theme.fr-desktop .fr-command.fr-active:hover,
 .gray-theme.fr-desktop .fr-command.fr-active:focus {
 /*  color: #0097a7;  */
+<<<<<<< HEAD
   color: #111;
 /*  background: #e6e6e6;  */
 }
@@ -823,6 +832,13 @@
 /*  color: #0097a7;  */
   color: #111;
 /*  background: #d6d6d6;  */
+=======
+  background: #e6e6e6;
+}
+.gray-theme.fr-desktop .fr-command.fr-active.fr-selected {
+/*  color: #0097a7;  */
+  background: #d6d6d6;
+>>>>>>> Fontawesome problem
 }
 .gray-theme.fr-toolbar.fr-mobile .fr-command.fr-blink,
 .gray-theme.fr-popup.fr-mobile .fr-command.fr-blink {
