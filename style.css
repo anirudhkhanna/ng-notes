@@ -179,8 +179,8 @@ body {
 
 /* Note tile options */
 .note-opt {
-	font-size: 18px;
-	padding: 0.1em 1.2em 0.75em;
+	font-size: 17px;
+	padding: 0.1em 1.2em 0.6em;
 	color: #333;
 	overflow: auto;
 	visibility: hidden;
@@ -201,16 +201,16 @@ body {
 }
 
 
-.note-opt > * {
+.note-opt > button {
 	float: left;
-	margin-right: 1.1em;
+	margin-right: 0.9em;
 	padding: 0;
 	background: transparent;
 	border: 0;
 	outline: 0;
 }
 
-.note-opt > *:hover {
+.note-opt > button:hover {
 	color: #111;
 }
 

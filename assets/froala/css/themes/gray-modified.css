@@ -691,7 +691,8 @@
   -moz-outline: 0;
   outline: 0;
   border: 0;
-  margin: 0px 2px;
+/*  margin: 0px 2px;  */
+  margin: 0px 0px;
   -webkit-transition: background 0.2s ease 0s;
   -moz-transition: background 0.2s ease 0s;
   -ms-transition: background 0.2s ease 0s;
@@ -800,25 +801,28 @@
 }
 .gray-theme.fr-desktop .fr-command:hover,
 .gray-theme.fr-desktop .fr-command:focus {
-  color: #37474f;
+/*  color: #37474f;  */
   background: #e6e6e6;
 }
 .gray-theme.fr-desktop .fr-command:hover::after,
 .gray-theme.fr-desktop .fr-command:focus::after {
-  border-top-color: #37474f !important;
+/*  border-top-color: #37474f !important;  */
 }
 .gray-theme.fr-desktop .fr-command.fr-selected {
-  color: #37474f;
+/*  color: #37474f;  */
+  color: #222;
   background: #d6d6d6;
 }
 .gray-theme.fr-desktop .fr-command.fr-active:hover,
 .gray-theme.fr-desktop .fr-command.fr-active:focus {
-  color: #0097a7;
-  background: #e6e6e6;
+/*  color: #0097a7;  */
+  color: #111;
+/*  background: #e6e6e6;  */
 }
 .gray-theme.fr-desktop .fr-command.fr-active.fr-selected {
-  color: #0097a7;
-  background: #d6d6d6;
+/*  color: #0097a7;  */
+  color: #111;
+/*  background: #d6d6d6;  */
 }
 .gray-theme.fr-toolbar.fr-mobile .fr-command.fr-blink,
 .gray-theme.fr-popup.fr-mobile .fr-command.fr-blink {
