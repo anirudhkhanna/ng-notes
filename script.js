@@ -101,10 +101,11 @@ function setPackeryLayout() {
 	});
 
 	// Add draggabilly
-	pckry[pckryIdx].getItemElements().forEach(function(itemElem) {
+/*	pckry[pckryIdx].getItemElements().forEach(function(itemElem) {
 		var draggie = new Draggabilly(itemElem);
 		pckry[pckryIdx].bindDraggabillyEvents(draggie);
 	});
+*/
 }
 
 function initLayout() {
