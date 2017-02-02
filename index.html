@@ -26,7 +26,8 @@
 	<script src="assets/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<!-- CSS Masonry -->
-	<link rel="stylesheet" href="assets/css-masonry/masonry.css">
+<!-- 	<link rel="stylesheet" href="assets/css-masonry/masonry.css">
+ -->
 
 	<!-- Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto+Condensed" rel="stylesheet">
@@ -94,6 +95,28 @@
 	<script src="script.js"></script>
 
 
+	<script src="https://npmcdn.com/draggabilly@2.1/dist/draggabilly.pkgd.min.js"></script>
+	<script src="http://mfzy.co/packery.pkgd.js"></script>
+
+	<style type="text/css">
+		.note {
+  			width: 250px;
+		}
+		.note.is-dragging,
+		.note.is-positioning-post-drag {
+  		background: #C90;
+  		z-index: 2;
+		}
+
+		.packery-drop-placeholder {
+  		outline: 3px dashed hsla(0, 0%, 0%, 0.5);
+  		outline-offset: -6px;
+  		-webkit-transition: -webkit-transform 0.2s;
+        transition: transform 0.2s;
+		}
+	</style>
+
+
 </head>
 
 <body id="mynotes" ng-app="notesApp" ng-controller="notesController">
@@ -108,7 +131,7 @@
 	<!-- Search -->
 	<div class="search">
 		<span class="glyphicon glyphicon-search"></span>
-		<input type="text" class="searchbox" placeholder="Search notes..." ng-model="searchString" autofocus />
+		<input type="text" class="searchbox" placeholder="Search notes..." ng-model="searchString" />
 	</div>
 	<!-- /.Search -->
 
@@ -117,7 +140,7 @@
 	<div class="container notes-container">
 		<div class="masonry">
 
-			<div class="masonry-item note" ng-class="note.class" ng-repeat = "note in notes | searchFor:searchString">
+		<div class="masonry-item note" ng-class="note.class" ng-repeat = "note in notes | searchFor:searchString">
 				<!-- Note-Main (Has Content, Opens Corresponding Note-Modal) -->
 				<div class="note-main" data-toggle="modal" data-target="#note-modal-{{$index}}">
 					<h3 class="note-title">{{ note.title }}</h3>

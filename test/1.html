@@ -1,0 +1,224 @@
+<!doctype html>
+<html ng-app="Demo" ng-controller="AppController">
+<head>
+	<meta charset="utf-8" />
+
+	<title>
+		Filter vs. ngHide With ngRepeat In AngularJS
+	</title>
+
+	<style type="text/css">
+
+		form, p, li, input, button {
+			font-size: 15px ;
+		}
+
+		li {
+			border: 1px dotted #FF9900 ;
+			margin: 0px 0px 7px 0px ;
+			padding: 5px 5px 5px 5px ;
+		}
+
+	</style>
+</head>
+<body>
+
+	<h1>
+		Filter vs. ngHide With ngRepeat In AngularJS
+	</h1>
+
+	<p>
+		You have {{ friends.length }} friends!
+	</p>
+
+
+	<!-- BEGIN: Search Filter. -->
+	<form>
+
+		Filter:
+
+		<input type="text" ng-model="filters.name" size="20" />
+
+		<button type="button" ng-click="clearFilter()">
+			Clear Filter
+		</button>
+
+	</form>
+	<!-- END: Search Filter. -->
+
+
+	<!-- BEGIN: List Of Friends. -->
+	<ul>
+
+		<li
+			ng-repeat="friend in friends"
+			ng-controller="FriendController"
+			ng-hide="isExcludedByFilter"
+			bn-line-item>
+
+			{{ friend.name }}
+
+		</li>
+
+	</ul>
+	<!-- END: List Of Friends. -->
+
+
+
+	<!-- Load jQuery and AngularJS from the CDN. -->
+	<script
+		type="text/javascript"
+		src="https://code.jquery.com/jquery-2.0.0.min.js">
+	</script>
+	<script
+		type="text/javascript"
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js">
+	</script>
+	<script type="text/javascript">
+
+
+		// Create an application module for our demo.
+		var app = angular.module( "Demo", [] );
+
+
+		// -------------------------------------------------- //
+		// -------------------------------------------------- //
+
+
+		// I control the root of the application.
+		app.controller(
+			"AppController",
+			function( $scope ) {
+
+				// Set up the default filters.
+				$scope.filters = {
+					name: ""
+				};
+
+				// Set up the default collection of friends.
+				$scope.friends = [
+					{
+						id: 1,
+						name: "Vin Diesel"
+					},
+					{
+						id: 2,
+						name: "Helena Bonham Carter"
+					},
+					{
+						id: 3,
+						name: "Lori Petty"
+					},
+					{
+						id: 4,
+						name: "Jason Statham"
+					}
+				];
+
+
+				// ---
+				// PUBLIC METHODS.
+				// ---
+
+
+				// I clear the search filter.
+				$scope.clearFilter = function() {
+
+					$scope.filters.name = "";
+
+				};
+
+			}
+		);
+
+
+		// -------------------------------------------------- //
+		// -------------------------------------------------- //
+
+
+		// I control the friend line-item.
+		app.controller(
+			"FriendController",
+			function( $scope ) {
+
+				// I determine if the current line item should be
+				// hidden from view due to the current search filter.
+				$scope.isExcludedByFilter = applySearchFilter();
+
+
+				// ---
+				// WATCHERS.
+				// ---
+
+
+				// Any time the search filter changes, we may have to
+				// alter the visual exlcusion of our line item.
+				$scope.$watch(
+					"filters.name",
+					function( newName, oldName ) {
+
+						if ( newName === oldName ) {
+
+							return;
+
+						}
+
+						applySearchFilter();
+
+					}
+				);
+
+
+				// ---
+				// PRIVATE METHODS.
+				// ---
+
+
+				// I apply the current search filter to the friend
+				// controlled by this line item.
+				function applySearchFilter() {
+
+					var filter = $scope.filters.name.toLowerCase();
+					var name = $scope.friend.name.toLowerCase();
+					var isSubstring = ( name.indexOf( filter ) !== -1 );
+
+					// If the filter value is not a substring of the
+					// name, we have to exclude it from view.
+					$scope.isExcludedByFilter = ! isSubstring;
+
+				}
+
+			}
+		);
+
+
+		// -------------------------------------------------- //
+		// -------------------------------------------------- //
+
+
+		// I log the linking of the line item.
+		app.directive(
+			"bnLineItem",
+			function() {
+
+				// I bind the UI events to the scope.
+				function link( $scope, element, attributes ) {
+
+					console.log( "Linked:", $scope.friend.name );
+
+				}
+
+
+				// Return the directive configuration.
+				return({
+					link: link,
+					restrict: "A"
+				});
+
+			}
+		);
+
+	</script>
+
+</body>
+</html>

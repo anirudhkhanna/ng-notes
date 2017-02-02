@@ -161,9 +161,9 @@ app.controller('notesController', function($scope) {
  		// Prepend newNote in the notes array
 		$scope.notes.unshift(newNote);
 
-		// Call for autoresizer plugin
 		setTimeout(function() {
-			autoresizer();
+			textareaAutoResizer();
+			setLayout(5);
 		}, 50);
 	}
 
@@ -172,6 +172,8 @@ app.controller('notesController', function($scope) {
 	$scope.removeNote = function($index) {
 		
 		$scope.notes.splice($index, 1);
+
+		setLayout(5);
 	}
 
 
@@ -211,14 +213,14 @@ app.controller('notesController', function($scope) {
 			class: ''
 		};
 
-		// Call for autoresizer plugin
 		setTimeout(function() {
-			autoresizer();
+			textareaAutoResizer();
+			setLayout(5);
 		}, 50);
 
 		// Close the modal when note saved successfully
 		submitBtn.setAttribute('data-dismiss', 'modal');
-	};
+	}
 
 });
 
@@ -248,6 +250,9 @@ app.filter('searchFor', function() {
 			}
 		});
 
+		// Set the layout again
+		setLayout(5);
+
 		return result;
 	};
 
@@ -257,9 +262,10 @@ app.filter('searchFor', function() {
 app.directive('modalsFinishDirective', function() {
 	return function(scope, element, attrs) {
 		if (scope.$last){
-			autoresizer();
-			modalbehaviour();
+			textareaAutoResizer();
+			setBackButtonToModalClose();
+			initLayout();
+			setLayout(10);
 		}
-	};
-})
-
+	}
+});

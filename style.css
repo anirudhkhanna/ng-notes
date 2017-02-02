@@ -128,6 +128,7 @@ body {
 	padding: 0;
 }
 
+
 .note {
 	border-radius: 2px;
 	-webkit-box-shadow: none;
@@ -189,7 +190,7 @@ body {
 .note-opt {
 	font-size: 17px;
 	padding: 0.1em 1.2em 0.75em;
-	color: #333;
+	color: #222;
 	overflow: auto;
 	visibility: hidden;
 	opacity: 0;
