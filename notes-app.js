@@ -161,10 +161,9 @@ app.controller('notesController', function($scope) {
  		// Prepend newNote in the notes array
 		$scope.notes.unshift(newNote);
 
-		// Call for flexible textarea plugin for the new note modal after some milliseconds
+		// Call for autoresizer plugin
 		setTimeout(function() {
-			$('#note-modal-0 textarea.input-title').flexible();
-			$('#note-modal-0 textarea.input-content').flexible();
+			autoresizer();
 		}, 50);
 	}
 
@@ -212,10 +211,9 @@ app.controller('notesController', function($scope) {
 			class: ''
 		};
 
-		// Call for flexible textarea plugin for the new note modal after 50ms
+		// Call for autoresizer plugin
 		setTimeout(function() {
-			$('#note-modal-0 textarea.input-title').flexible();
-			$('#note-modal-0 textarea.input-content').flexible();
+			autoresizer();
 		}, 50);
 
 		// Close the modal when note saved successfully
@@ -260,6 +258,7 @@ app.directive('modalsFinishDirective', function() {
 	return function(scope, element, attrs) {
 		if (scope.$last){
 			autoresizer();
+			modalbehaviour();
 		}
 	};
 })
