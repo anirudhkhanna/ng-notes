@@ -6,38 +6,13 @@ function textareaAutoResizer() {
 	autosize(ta);
 }
 
-/* Bind autofocus on 'shown.bs.modal' event a note-modal of given id */
-function modalTextareaAutoFocus(modalId, isEditMode) {
-
-	// Bind on shown.bs.modal event
-	$(document).on('shown.bs.modal', modalId, function () {
-		
-		/* focus on title to adjust size: */
- 		$( modalId ).find(' textarea.input-title' ).focus();
-
-		/* then blur too: */
-		$( modalId ).find(' textarea.input-title' ).blur();
-
-		/* if isEditMode, then finally on focus content: */
- 		if(isEditMode === true) {
-	 		$( modalId ).find(' textarea.input-content' ).focus();
-
-	 		// Re-run the function with isEditMode = false after some milliseconds, 
-	 		// to refresh the bindings and thus, not to unnecessarily focus on content 
-	 		// the next time this modal opens
-	 		isEditMode = false;
-	 		setTimeout(modalTextareaAutoFocus(modalId, isEditMode), 1500);
-	 	}
-	});
-}
-
 
 /* Set the back button to close any open modal */
 function setBackButtonToModalClose() {
 
 	// When any time a modal is shown
-	$(".modal").on("shown.bs.modal", function() {
-		var urlReplace = "#" + $(this).attr('id'); // make the hash the id of the modal shown
+	$('.modal').on('shown.bs.modal', function() {
+		var urlReplace = '#' + $(this).attr('id'); // make the hash the id of the modal shown
 		history.pushState(null, null, urlReplace); // push state that hash into the url
 	});
 
@@ -48,9 +23,9 @@ function setBackButtonToModalClose() {
 }
 
 
-/* Set Packery Layout Grid */
+/* Set the Packery layout grid */
 var pckry = []; // Array for Packery objects
-var pckryIdx = -1; // Index for the Packery instances array
+var pckryIdx = -1; // Index for the Packery array
 var pckryMaxInstances = 50; // Maximum Packery instances tolerable
 
 function setLayout(iterations) {
@@ -76,8 +51,16 @@ function setLayout(iterations) {
 			setTimeout(setPackeryLayout, 250);
 			setTimeout(setPackeryLayout, 500);
 		});
-
 	});
+}
+
+function initLayout() {
+
+	document.onreadystatechange = function() {
+		if(document.readyState === 'complete') {
+			setLayout(1);
+		}
+	}
 }
 
 function setPackeryLayout() {
@@ -93,26 +76,20 @@ function setPackeryLayout() {
 		pckryIdx = -1; // reset the Packery index to -1
 	}
 
-	// Set up the Packery grid
+	// Set up the Packery grid instance
 	pckryIdx++;
 	pckry[pckryIdx] = new Packery('.notes-container', {
 		itemSelector: '.note',
 		gutter: 10
 	});
 
-	// Add draggabilly
-/*	pckry[pckryIdx].getItemElements().forEach(function(itemElem) {
+/*	(ignoring for now)
+
+	// Add Draggabilly for drag functionality
+	pckry[pckryIdx].getItemElements().forEach(function(itemElem) {
 		var draggie = new Draggabilly(itemElem);
 		pckry[pckryIdx].bindDraggabillyEvents(draggie);
 	});
+
 */
-}
-
-function initLayout() {
-
-	document.onreadystatechange = function() {
-		if(document.readyState === 'complete') {
-			setLayout(1);
-		}
-	}
 }

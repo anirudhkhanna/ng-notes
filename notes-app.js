@@ -1,13 +1,18 @@
 
+/* Color classes */
 var classes = [	"color1", "color2", "color3", "color4", "color5", "color6", "color7", "color8", "color9" ];
 
 
-var app = angular.module('notesApp', ['froala', 'ngAnimate']);
+/* Notes app */
+var app = angular.module('notesApp', ['froala']);
+
 
 app.controller('notesController', function($scope) {
 
+	/* Max length of note title */
 	$scope.titleMaxLength = 100;
 
+	/* Notes data */
 	$scope.notes = [
 		{
 			title: 'http://www.tutorialspoint.com/android/',
@@ -96,59 +101,32 @@ app.controller('notesController', function($scope) {
 		},
 		{
 			title: 'My First Note',
-			content: 'Some readme',
+			content: 'Some readme final note',
 			class: classes[Math.floor(Math.random()*classes.length)]
 		},
 	];
 
 	/* Options for Froala Editor */
 	$scope.froalaOptions = {
-			placeholderText: 'Take a note...',
-			end_with_newline: true,
-			heightMin: 300,
-			heightMax: 375,
-			multiLine: true,
-			toolbarButtons: ['bold', 'italic', 'underline', '|', 'align', 'formatOL', 'formatUL', '|', 'color', 'emoticons', 'insertLink', 'insertImage', 'html'],
-			toolbarButtonsMD: ['bold', 'italic', 'underline', '|', 'emoticons', '|', 'align', 'formatOL', 'formatUL', '|', 'insertLink', 'insertImage', 'html'],
-			toolbarButtonsSM: ['bold', 'italic', 'underline', '|', 'emoticons', '|', 'align', 'formatOL', 'formatUL', '|', 'insertLink', 'insertImage', 'html'],
-			toolbarButtonsXS: ['bold', 'italic', 'underline', '|', 'emoticons', '|', 'align', 'formatOL', 'formatUL', '|', 'insertLink', 'insertImage', 'html'],
-			toolbarInline: false,
-			zIndex: 9995,
-			tooltips: true,
-			lineBreakerOffset: 0,
-			charCounterCount: false,
-			extra_liners: "['h1']",
-			shortcutsHint: false,
-			spellcheck: true,
-			tabSpaces: 4,
-			theme: 'gray',
-			toolbarBottom: false,
-/*			events: {
-            	'froalaEditor.initialized': (e, editor) => {
-        	  		editor.toolbar.hide();
-        		},
-        		'froalaEditor.focus': (e, editor) => {
-          			editor.toolbar.show();
-        		},
-        		'froalaEditor.blur': (e, editor) => {
-          			editor.toolbar.hide();
-        		}
-			},
-*/
-		};
+		heightMin: 300,
+		heightMax: 375,
+		zIndex: 9000,
+		multiLine: true,
+		placeholderText: 'Take a note...',
+		charCounterCount: false,
+		toolbarInline: false,
+		toolbarButtons: ['bold', 'italic', 'underline', '|', 'align', 'formatOL', 'formatUL', '|', 'color', 'emoticons', 'insertLink', 'insertImage', 'html'],
+		toolbarButtonsMD: ['bold', 'italic', 'underline', '|', 'align', 'formatOL', 'formatUL', '|', 'color', 'emoticons', 'insertLink', 'insertImage', 'html'],
+		toolbarButtonsSM: ['bold', 'italic', 'underline', '|', 'align', 'formatOL', 'formatUL', '|', 'color', 'emoticons', 'insertLink', 'insertImage', 'html'],
+		toolbarButtonsXS: ['bold', 'italic', 'underline', '|', 'align', 'formatOL', 'formatUL', '|', 'color', 'emoticons', 'insertLink', 'insertImage', 'html'],
+		tooltips: true,
+		spellcheck: true,
+		tabSpaces: 4,
+		theme: 'gray'
+	};
 
 
-
-	/* Autofocus the content when modal opened in edit mode */
-	$scope.modalOpenEditMode = function($index) {
-
-		var modalId = '#note-modal-' + $index;
-		var isEditMode = true;
-		modalTextareaAutoFocus(modalId, isEditMode);
-	}
-
-
-	/* Copy a note from notes */
+	/* Make copy of a note */
 	$scope.copyNote = function($index) {
 		
 		// Make a new note
@@ -163,8 +141,8 @@ app.controller('notesController', function($scope) {
 
 		setTimeout(function() {
 			textareaAutoResizer();
-			setLayout(5);
 		}, 50);
+		setLayout(5);
 	}
 
 
@@ -215,15 +193,14 @@ app.controller('notesController', function($scope) {
 
 		setTimeout(function() {
 			textareaAutoResizer();
-			setLayout(5);
 		}, 50);
+		setLayout(5);
 
 		// Close the modal when note saved successfully
 		submitBtn.setAttribute('data-dismiss', 'modal');
 	}
 
 });
-
 
 
 /* Filter for search */
@@ -255,17 +232,31 @@ app.filter('searchFor', function() {
 
 		return result;
 	};
-
 });
 
 
-app.directive('modalsFinishDirective', function() {
+/* Directive for tracking the completion of ng-repeat for edit modals */
+app.directive('editModalsLoadedDirective', function() {
+
 	return function(scope, element, attrs) {
+
 		if (scope.$last){
 			textareaAutoResizer();
 			setBackButtonToModalClose();
 			initLayout();
 			setLayout(10);
+		}
+	}
+});
+
+
+/* Directive for tracking the completion of ng-repeat for view modals */
+app.directive('viewModalsLoadedDirective', function() {
+
+	return function(scope, element, attrs) {
+
+		if (scope.$last){
+			setBackButtonToModalClose();
 		}
 	}
 });

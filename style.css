@@ -1,18 +1,15 @@
 body {
 	background-color: #fff;
-	background: url('img/bg.jpg') no-repeat center top;
 	background: #f0f0f0;
 	font-family: 'Roboto Slab', sans-serif;
 }
   
 ::-webkit-scrollbar-track {
-/*	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);	*/
 	background-color: rgba(255, 255, 255, 0.1);
 }
 
 ::-webkit-scrollbar {
 	width: 7px;
-/*	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);	*/
 	background-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -21,44 +18,54 @@ body {
 }
 
 
+.header {
+	background: #dadada;
+	padding: 20px 0;
+	margin-bottom: 25px;
+}
+
 .brand {
 	float: left;
 	padding: 0;
 }
 .brand a {
 	padding: 0;
-	line-height: 130%;
+	line-height: 120%;
 	margin-left: 50px;	
 	text-decoration: none;
 	outline: 0;
-	font-size: 2.75em;
+	font-size: 2.5em;
 	font-weight: 900;
-	color: #444;
+	font-family: 'Nunito Sans', sans-serif;
+	color: #111;
 	transition: .25s ease;
+	-webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
 }
 .brand a:hover {
 	color: #db5353;
-	border-bottom: 3px dotted;
+	color: #000;
 	transition: 0.0s;
 }
 
 .search {
 	position: relative;
 	text-align: center;
-	margin: 20px auto;
+	margin: 0 auto;
 	width: 50%;
 }
 
 .search input {
 	text-indent: 32px;
-	font-size: 1.5em;
+	font-size: 1.3em;
 	background: #fff;
 	width: 90%;
 	margin: 0 auto;
 	outline: 0;
 	border: 1px solid #fdfdfd;
 	border-radius: 1px;
-	padding: 10px;
+	padding: 8px;
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
 }
 
