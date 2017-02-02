@@ -8,31 +8,22 @@
 
 	<!-- AngularJS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-	
-	<!-- ngAnimate -->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
-	
-	<!-- ngSanitize -->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.min.js"></script>
-
-	<!-- Modernizr -->
-	<script src="assets/Modernizr/2.8.3/modernizr.min.js"></script>
 
 	<!-- Autosize -->
 	<script src="assets/autosize/autosize.js"></script>
+
+	<!-- Draggabilly -->
+	<script src="assets/draggabilly/2.1.1/draggabilly.pkgd.min.js"></script>
+
+	<!-- Packery -->
+	<script src="assets/packery/2.1.1/packery.pkgd.min.js"></script>
 
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="assets/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="assets/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-	<!-- CSS Masonry -->
-<!-- 	<link rel="stylesheet" href="assets/css-masonry/masonry.css">
- -->
-
 	<!-- Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto+Condensed" rel="stylesheet">
-
-
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto+Condensed|Nunito+Sans" rel="stylesheet">
 
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -95,9 +86,6 @@
 	<script src="script.js"></script>
 
 
-	<script src="https://npmcdn.com/draggabilly@2.1/dist/draggabilly.pkgd.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/packery/2.1.1/packery.pkgd.min.js"></script>
-
 	<style type="text/css">
 		.note {
   			width: 250px;
@@ -121,19 +109,22 @@
 
 <body id="mynotes" ng-app="notesApp" ng-controller="notesController">
 
-	<!-- Brand -->
-	<div class="brand">
-		<a href="">ng-notes</a>
-	</div>
-	<!-- /.Brand -->
+	<header class="header">
 
+		<!-- Brand -->
+		<div class="brand">
+			<a href="#"><span class="fa fa-lightbulb-o"></span> ng-notes</a>
+		</div>
+		<!-- /.Brand -->
 
-	<!-- Search -->
-	<div class="search">
-		<span class="glyphicon glyphicon-search"></span>
-		<input type="text" class="searchbox" placeholder="Search notes..." ng-model="searchString" />
-	</div>
-	<!-- /.Search -->
+		<!-- Search -->
+		<div class="search">
+			<span class="glyphicon glyphicon-search"></span>
+			<input type="text" class="searchbox" placeholder="Search notes..." ng-model="searchString" />
+		</div>
+		<!-- /.Search -->
+
+	</header>
 
 
 	<!-- Note-Tiles Container -->
@@ -142,14 +133,14 @@
 
 		<div class="masonry-item note" ng-class="note.class" ng-repeat = "note in notes | searchFor:searchString">
 				<!-- Note-Main (Has Content, Opens Corresponding Note-Modal) -->
-				<div class="note-main" data-toggle="modal" data-target="#note-modal-{{$index}}">
+				<div class="note-main" data-toggle="modal" data-target="#note-view-modal-{{$index}}">
 					<h3 class="note-title">{{ note.title }}</h3>
 					<p class="note-content" froala-view="note.content"></p>
 				</div>
 				<!-- Note-Opt (Has Note Options) -->
 				<div class="note-opt">
 					<button class="fa fa-copy" ng-click="copyNote($index)"></button>
-					<button class="fa fa-pencil" data-toggle="modal" data-target="#note-modal-{{$index}}" ng-click="modalOpenEditMode($index)"></button>
+					<button class="fa fa-pencil" data-toggle="modal" data-target="#note-edit-modal-{{$index}}" ng-click="modalOpenEditMode($index)"></button>
 					<button class="fa fa-trash-o" ng-click="removeNote($index)"></button>
 				</div>	
 			</div>
@@ -159,8 +150,8 @@
 	<!-- /.Note-Tiles Container -->
 
 
-	<!-- Note Modals -->
-	<div class="modal fade fade-pop note-modal" ng-repeat = "note in notes | searchFor:searchString" id="note-modal-{{$index}}" role="dialog" modals-finish-directive>
+	<!-- Note Edit Modals -->
+	<div class="modal fade fade-pop note-modal" ng-repeat = "note in notes | searchFor:searchString" id="note-edit-modal-{{$index}}" role="dialog" edit-modals-loaded-directive>
 		<div class="modal-dialog">
 
 		<!-- Modal Content -->
@@ -179,7 +170,6 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<label class="sr-only" for="content">Content: </label>
-					<!--	<textarea class="form-control input-content" rows="15" placeholder="Take a note..." ng-model="note.content"></textarea>		-->
 						<textarea froala="froalaOptions" ng-model="note.content"></textarea>
 					</div>
 				</div>
@@ -194,7 +184,36 @@
 		</div>
 
 	</div>
-	<!-- /.Note Modals -->
+	<!-- /.Note Edit Modals -->
+
+
+	<!-- Note View Modals -->
+	<div class="modal fade fade-pop note-modal" ng-repeat = "note in notes | searchFor:searchString" id="note-view-modal-{{$index}}" role="dialog" view-modals-loaded-directive>
+		<div class="modal-dialog">
+
+		<!-- Modal Content -->
+		<div class="modal-content" ng-class="note.class">
+
+			<div class="modal-header">
+				<button type="button" class="close"  data-dismiss="modal">&times;</button>
+				<h3 class="note-title">{{note.title}}</h3>
+			</div>
+
+			<div class="modal-body">
+				<p class="note-content" froala-view="note.content"></p>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		
+		</div>
+
+		</div>
+
+	</div>
+	<!-- /.Note View Modals -->
+
 
 
 	<!-- Add New Note -->
