@@ -93,3 +93,43 @@ function setPackeryLayout() {
 
 */
 }
+
+
+$(document).ready(function() {
+
+	var tooltipOptOptions = {
+    	theme: ['tooltipster-borderless', 'tooltipster-borderless-customized'],
+    	animation: 'grow',
+    	animationDuration: [400, 0],
+   		delay: 0,
+   		side: 'bottom',
+   		multiple: true,
+   		distance: 12,
+   		arrow: false
+    };
+
+	var tooltipColorsOptions = {
+    	theme: ['tooltipster-noir', 'tooltipster-noir-customized'],
+    	animation: 'fade',
+    	animationDuration: [400, 400],
+   		delay: [0, 100],
+   		side: 'top',
+   		multiple: true,
+   		distance: 5,
+   		arrow: false,
+   		maxWidth: 120,
+   		content: $('#colors-template'),
+   		contentCloning: false,
+   		interactive: true
+    };
+
+    $('.tooltip-opt').tooltipster(tooltipOptOptions);
+    $('.tooltip-colors').tooltipster(tooltipColorsOptions);
+
+    $('body').on('mouseenter', '.tooltip-opt:not(.tooltipstered)', function(){
+    	$(this)
+        	.tooltipster(tooltipOptOptions)
+        	.tooltipster('open');
+	});
+
+});
