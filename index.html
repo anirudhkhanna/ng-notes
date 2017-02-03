@@ -7,7 +7,9 @@
 	<script src="assets/jquery/3.1.1/jquery.min.js"></script>
 
 	<!-- AngularJS -->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+-->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.js"></script>
 
 	<!-- Autosize -->
 	<script src="assets/autosize/autosize.js"></script>
@@ -131,7 +133,7 @@
 	<div class="container notes-container">
 		<div class="masonry">
 
-		<div class="masonry-item note" ng-class="note.class" ng-repeat = "note in notes | searchFor:searchString">
+		<div class="masonry-item note" ng-class="note.class" ng-repeat = "note in (notes|ngRepeatFinish:this) | searchFor:searchString">
 				<!-- Note-Main (Has Content, Opens Corresponding Note-Modal) -->
 				<div class="note-main" data-toggle="modal" data-target="#note-view-modal-{{$index}}">
 					<h3 class="note-title">{{ note.title }}</h3>
@@ -139,9 +141,9 @@
 				</div>
 				<!-- Note-Opt (Has Note Options) -->
 				<div class="note-opt">
-					<button class="fa fa-copy" ng-click="copyNote($index)"></button>
-					<button class="fa fa-pencil" data-toggle="modal" data-target="#note-edit-modal-{{$index}}" ng-click="modalOpenEditMode($index)"></button>
-					<button class="fa fa-trash-o" ng-click="removeNote($index)"></button>
+					<button class="fa fa-copy" ng-click="copyNote(note)"></button>
+					<button class="fa fa-pencil" data-toggle="modal" data-target="#note-edit-modal-{{$index}}"></button>
+					<button class="fa fa-trash-o" ng-click="removeNote(note)"></button>
 				</div>	
 			</div>
 		

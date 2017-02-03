@@ -44,14 +44,14 @@ function setLayout(iterations) {
 		}
 
 		// Listen to changes in textareas and set the layout
-		$('.note-modal textarea').on('propertychange keyup keydown input click', setPackeryLayout);
+/*		$('.note-modal textarea').on('propertychange keyup keydown input click', setPackeryLayout);
 		$('.note-modal [contentEditable]').on('blur keydown keyup paste copy cut mouseup', function() {
 			setPackeryLayout();
 			setTimeout(setPackeryLayout, 100);
 			setTimeout(setPackeryLayout, 250);
 			setTimeout(setPackeryLayout, 500);
 		});
-	});
+*/	});
 }
 
 function initLayout() {
