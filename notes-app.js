@@ -15,6 +15,10 @@ app.controller('notesController', function($scope) {
 	/* Notes data */
 	$scope.notes = [
 		{
+			title: 'Happy Birthday',
+			content: '<span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f604.svg);">&nbsp;</span> <span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f600.svg);">&nbsp;</span>&nbsp;'
+		},
+		{
 			title: 'http://www.tutorialspoint.com/android/',
 			content: '<b>Android tutorials on http://www.tutorialspoint.com/android/images/android-mini-logo.jpg</b>',
 			class: classes[Math.floor(Math.random()*classes.length)]
@@ -127,31 +131,33 @@ app.controller('notesController', function($scope) {
 
 
 	/* Make copy of a note */
-	$scope.copyNote = function($index) {
+	$scope.copyNote = function(note) {
 		
-		// Make a new note
+		if(note === null || typeof note !== 'object')
+			return;
+
+		var index = $scope.notes.indexOf(note);
+
+		// Make a new note object as the copy
 		var newNote = {};
 
- 		newNote.title = $scope.notes[$index].title;
- 		newNote.content = $scope.notes[$index].content;
- 		newNote.class = $scope.notes[$index].class;
+ 		newNote.title = $scope.notes[index].title;
+ 		newNote.content = $scope.notes[index].content;
+ 		newNote.class = $scope.notes[index].class;
 
- 		// Prepend newNote in the notes array
+ 		// Prepend the new note in the notes array
 		$scope.notes.unshift(newNote);
-
-		setTimeout(function() {
-			textareaAutoResizer();
-		}, 50);
-		setLayout(5);
 	}
 
 
 	/* Remove a note from notes */
-	$scope.removeNote = function($index) {
+	$scope.removeNote = function(note) {
 		
-		$scope.notes.splice($index, 1);
+		if(note === null || typeof note !== 'object')
+			return;
 
-		setLayout(5);
+		var index = $scope.notes.indexOf(note);
+		$scope.notes.splice(index, 1);
 	}
 
 
@@ -200,8 +206,44 @@ app.controller('notesController', function($scope) {
 		submitBtn.setAttribute('data-dismiss', 'modal');
 	}
 
+
+	$scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+	//  alert('t');
+		console.log('run      ' + i);
+		i++;
+		textareaAutoResizer();
+		setBackButtonToModalClose();
+		setLayout(5);
+	});
+
+
 });
 
+var i = 0;
+app.filter('ngRepeatFinish', function($timeout){
+
+    return function(data, scope){
+
+        var me = scope;
+        console.log(me);
+        var flagProperty = '__finishedRendering__';
+        if(!data[flagProperty]){
+
+            Object.defineProperty(
+                data, 
+                flagProperty, 
+                {enumerable:false, configurable:true, writable: false, value:{}}
+            );
+            
+            $timeout(function(){
+                    delete data[flagProperty];
+                    me.$emit('ngRepeatFinished');
+            }, 0, false);                
+        }
+
+        return data;
+    };
+});
 
 /* Filter for search */
 app.filter('searchFor', function() {
