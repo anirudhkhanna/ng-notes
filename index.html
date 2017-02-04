@@ -30,6 +30,9 @@
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+	<!-- Fontello -->
+	<link rel="stylesheet" href="assets/fontello/css/fontello.css">
+
 	<!-- Froala Editor styles -->
 	<link rel="stylesheet" href="assets/froala/css/froala_editor.min.css" />
 	<link rel="stylesheet" href="assets/froala/css/froala_style.min.css" />
@@ -128,16 +131,6 @@
 		<div class="masonry">
 
 		<div class="masonry-item note" ng-class="note.class" ng-repeat = "note in (notes|ngRepeatFinish:this) | searchFor:searchString">
-
-	<!-- Colors Template -->
-	<div class="tooltip-template" style="display: none;">
-		<span id="colors-template">
-			<button ng-class="color" class="btn-color" ng-repeat="color in classes" ng-click="setNoteColor(note, color)"></button>
-		</span>
-	</div>
-	<!-- /.Colors Template -->
-
-			
 				<!-- Note-Main (Has Content, Opens Corresponding Note-Modal) -->
 				<div class="note-main" data-toggle="modal" data-target="#note-view-modal-{{$index}}">
 					<h3 class="note-title">{{ note.title }}</h3>
@@ -146,9 +139,30 @@
 				<!-- Note-Opt (Has Note Options) -->
 				<div class="note-opt">
 					<button title="Make a copy" class="tooltip-opt fa fa-copy" ng-click="copyNote(note)"></button>
+
 					<button title="Edit" class="tooltip-opt fa fa-pencil" data-toggle="modal" data-target="#note-edit-modal-{{$index}}"></button>
-					<button title="Change color" class="tooltip-opt tooltip-colors fa fa-circle-o"></button>
-					<button title="Delete" class="tooltip-opt fa fa-trash-o" ng-click="removeNote(note)"></button>
+ 					
+ 					<div title="Change color" class="popup fa fa-circle-o">
+            			<ul>
+		                	<li ng-class="color" class="btn-color" ng-repeat="color in classes" ng-click="setNoteColor(note, color)"></li>
+            			</ul>
+					</div>
+ 					
+ 					<button title="Delete" class="tooltip-opt fa fa-trash-o" ng-click="removeNote(note)"></button>
+
+
+
+
+
+<!-- 					<a class="icon-dots"></a>
+ --><!--				
+					<button title="Make a copy" class="tooltip-opt icon-copy" ng-click="copyNote(note)"></button>
+
+
+					<button title="Delete" class="tooltip-opt icon-trash" ng-click="removeNote(note)"></button>
+
+ 					<button title="Delete" class="tooltip-opt icon-checklist"></button>
+-->
 				</div>	
 			</div>
 		

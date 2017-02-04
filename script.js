@@ -120,7 +120,13 @@ $(document).ready(function() {
    		maxWidth: 120,
    		content: $('#colors-template'),
    		contentCloning: false,
-   		interactive: true
+   		interactive: true,
+   		functionReady: function (instance, helper) {
+   			$('.note-opt').css({'visibility':'visible', 'opacity':'1'});
+    	},
+   		functionAfter: function (instance, helper) {
+   			$('.note-opt').css({'visibility':'initial', 'opacity':''});
+    	}
     };
 
     $('.tooltip-opt').tooltipster(tooltipOptOptions);
@@ -132,4 +138,35 @@ $(document).ready(function() {
         	.tooltipster('open');
 	});
 
+
+});
+
+
+$(document).ready(function() {
+
+	$("[data-toggle=popover]").popover({
+		placement: 'top',
+    	html: true, 
+		content: function() {
+        	  		return $('#popover-content').html();
+    			}
+	});
+
+
+
+	$(".pophover").popover({ trigger: "manual" , html: true, animation:false})
+    .on("mouseenter", function () {
+        var _this = this;
+        $(this).popover("show");
+        $(".popover").on("mouseleave", function () {
+            $(_this).popover('hide');
+        });
+    }).on("mouseleave", function () {
+        var _this = this;
+        setTimeout(function () {
+            if (!$(".popover:hover").length) {
+                $(_this).popover("hide");
+            }
+        }, 300);
+	});
 });

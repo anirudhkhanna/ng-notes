@@ -1,0 +1,27 @@
+<body>
+    <br><br><br><br><br><br><br><br><br>
+    <button class="btnC">Hover me
+          <div class='dropup'>
+            <p>sihs</p>
+          </div>
+    </button>
+
+<style>
+
+.btnC {
+  position:relative; padding:10px; width:100px;
+}
+.btnC > .dropup {
+ position:absolute; bottom: 100%;
+ z-index: 999999;
+}
+.btnC:hover > .dropup {
+ display:block;
+ z-index: 999999;
+}
+.btnC > .dropup{ margin:0px; padding:0px; display:none; }
+
+
+
+</style>
+</body>
