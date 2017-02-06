@@ -25,7 +25,7 @@
 	<script src="assets/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<!-- Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto+Condensed|Nunito+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto+Condensed|Noto+Sans" rel="stylesheet">
 
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -94,7 +94,15 @@
 	<style type="text/css">
 		.note {
   			width: 250px;
+  			width: 21.5%;
 		}
+
+		@media screen and (max-width: 680px) {
+			.note {
+				width: 40%;
+			}
+		}
+
 	</style>
 
 
@@ -138,18 +146,26 @@
 				</div>
 				<!-- Note-Opt (Has Note Options) -->
 				<div class="note-opt">
-					<button title="Make a copy" class="tooltip-opt fa fa-copy" ng-click="copyNote(note)"></button>
-
-					<button title="Edit" class="tooltip-opt fa fa-pencil" data-toggle="modal" data-target="#note-edit-modal-{{$index}}"></button>
+<!-- 					<a title="Make a copy" class="tooltip-opt fa fa-clone" ng-click="copyNote(note)"></a>
+ -->
+					<a title="Edit" class="tooltip-opt opt-icon opt-icon-pencil" data-toggle="modal" data-target="#note-edit-modal-{{$index}}"></a>
  					
- 					<div title="Change color" class="popup fa fa-circle-o">
+ 					<a title="Change color" class="tooltip-opt popup opt-icon opt-icon-palette">
             			<ul>
 		                	<li ng-class="color" class="btn-color" ng-repeat="color in classes" ng-click="setNoteColor(note, color)"></li>
             			</ul>
-					</div>
+					</a>
  					
- 					<button title="Delete" class="tooltip-opt fa fa-trash-o" ng-click="removeNote(note)"></button>
+<!--  					<a title="Delete" class="tooltip-opt fa fa-trash-o" ng-click="removeNote(note)"></a
+ -->					
+ 					<a title="Archive" class="tooltip-opt opt-icon opt-icon-archive" ng-click="removeNote(note)"></a>
 
+					<a class="popup2 opt-icon opt-icon-dots">
+            			<ul>
+		                	<li ng-click="copyNote(note)"><!-- <span class="fa fa-clone"></span> --> Make a copy</li>
+		                	<li ng-click="removeNote(note)"><!-- <span class="fa fa-trash-o"></span> --> Delete note</li>
+            			</ul>
+					</a>
 
 
 
@@ -172,7 +188,7 @@
 
 
 	<!-- Note Edit Modals -->
-	<div class="modal fade fade-pop note-modal" ng-repeat = "note in notes | searchFor:searchString" id="note-edit-modal-{{$index}}" role="dialog" edit-modals-loaded-directive>
+	<div class="modal fade fade-pop note-modal note-edit-modal" ng-repeat = "note in notes | searchFor:searchString" id="note-edit-modal-{{$index}}" role="dialog" edit-modals-loaded-directive>
 		<div class="modal-dialog">
 
 		<!-- Modal Content -->
@@ -196,7 +212,21 @@
 				</div>
 
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<div class="note-modal-opt">
+ 					
+		 				<a title="Speech input" class="tooltip-opt speech-input opt-icon-lg opt-icon-mic" ng-click="speechInput()"></a>
+
+		 				<a title="Read note" class="tooltip-opt opt-icon-lg opt-icon-speaker" ng-click="speechOutput()"></a>
+
+	 					<a title="Change color" class="tooltip-opt popup opt-icon-lg opt-icon-palette">
+            			<ul>
+		                	<li ng-class="color" class="btn-color" ng-repeat="color in classes" ng-click="setNoteColor(note, color)"></li>
+            			</ul>
+						</a>
+ 						
+		 				<a title="Archive" class="tooltip-opt opt-icon-lg opt-icon-archive" ng-click="removeNoteViaModal(note, $index)" data-dismiss="modal"></a>
+		 				<a title="Delete" class="tooltip-opt opt-icon-lg opt-icon-trash" ng-click="removeNoteViaModal(note, $index)" data-dismiss="modal"></a>
+					</div>
 				</div>
 			</form>
 		
@@ -209,7 +239,7 @@
 
 
 	<!-- Note View Modals -->
-	<div class="modal fade fade-pop note-modal" ng-repeat = "note in notes | searchFor:searchString" id="note-view-modal-{{$index}}" role="dialog" view-modals-loaded-directive>
+	<div class="modal fade fade-pop note-modal note-view-modal" ng-repeat = "note in notes | searchFor:searchString" id="note-view-modal-{{$index}}" role="dialog" view-modals-loaded-directive>
 		<div class="modal-dialog">
 
 		<!-- Modal Content -->
@@ -225,7 +255,19 @@
 			</div>
 
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<div class="note-modal-opt">
+					<a title="Edit" class="tooltip-opt opt-icon-lg opt-icon-pencil" data-toggle="modal" ng-click="openEditModalViaViewModal($index)"></a> 					
+ 					<a title="Change color" class="tooltip-opt popup opt-icon-lg opt-icon-palette">
+           			<ul>
+	                	<li ng-class="color" class="btn-color" ng-repeat="color in classes" ng-click="setNoteColor(note, color)"></li>
+            		</ul>
+					</a>
+ 				
+	 				<a title="Archive" class="tooltip-opt opt-icon-lg opt-icon-archive" ng-click="removeNoteViaModal(note, $index)" data-dismiss="modal"></a>
+		 			<a title="Delete" class="tooltip-opt opt-icon-lg opt-icon-trash" ng-click="removeNoteViaModal(note, $index)" data-dismiss="modal"></a>
+				</div>
+
+<!-- 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
 			</div>
 		
 		</div>

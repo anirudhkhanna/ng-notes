@@ -1,5 +1,5 @@
 .color1 {
-	background: #e2664d !important;
+	background: #f36a4e !important;
 }
 
 .color2 {
@@ -7,29 +7,36 @@
 }
 
 .color3 {
-	background: #caa04a !important;
+	background: #d6aa50 !important;
 }
 
 .color4 {
-	background: #f17827 !important;
+	background: #f38337 !important;
 }
 
 .color5 {
-	background: #d68686 !important;
+/*	background: #d68686 !important;	*/
+	background: #e29292 !important;
 }
 
 .color6 {
-	background: #ffb433 !important;
+/*	background: #ffb433 !important;	*/
+	background: #ffc13d !important;
 }
 
 .color7 {
-	background: #a186b6 !important;
+	background: #ac8ec4 !important;
 }
 
 .color8 {
-	background: #fdfdfd !important;
+/*	background: #a4bd5b !important;	*/
+	background: #abc955 !important;
 }
 
 .color9 {
-	background: #a4bd5b !important;
+	background: #fdfdfd !important;
+}
+
+.color10 {
+	background: #b1b1b1 !important;
 }

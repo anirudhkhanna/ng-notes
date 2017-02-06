@@ -19,9 +19,10 @@ body {
 
 
 .header {
-	background: #dadada;
-	padding: 20px 0;
-	margin-bottom: 25px;
+	width: 100%;
+	background: #ffb83d;
+	padding: 10px 0 11px;
+	margin-bottom: 40px;
 }
 
 .brand {
@@ -30,13 +31,12 @@ body {
 }
 .brand a {
 	padding: 0;
-	line-height: 120%;
 	margin-left: 50px;	
 	text-decoration: none;
 	outline: 0;
-	font-size: 2.5em;
+	font-size: 2.1em;
 	font-weight: 900;
-	font-family: 'Nunito Sans', sans-serif;
+	font-family: 'Noto Sans', 'Roboto Slab', sans-serif;
 	color: #111;
 	transition: .25s ease;
 	-webkit-background-clip: text;
@@ -56,42 +56,54 @@ body {
 	width: 50%;
 }
 
-.search input {
+
+
+.search input{
 	text-indent: 32px;
 	font-size: 1.3em;
-	background: #fff;
 	width: 90%;
 	margin: 0 auto;
 	outline: 0;
-	border: 1px solid #fdfdfd;
-	border-radius: 1px;
 	padding: 8px;
-	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
+
+background: rgba(0,0,0,0.04);
+border: 1px solid rgba(0,0,0,0);
+-webkit-border-radius: 4px;
+border-radius: 4px;
+max-width: 720px;
+position: relative;
+-webkit-transition: background 100ms ease-in,width 100ms ease-out;
+transition: background 100ms ease-in,width 100ms ease-out;
 }
 
-.search input:hover, .search input:focus {
+
+.search input:focus {
 	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+	background: #fff;
 }
 
 .search .glyphicon-search { 
   left: 30px;
   top: -1px;
-  color: #777;
+  color: #5a5a5a;
 }
 
 .search input::-webkit-input-placeholder {
 	font-weight: 300;
 	color: #e2e2e2;
+	color: #5a5a5a;
 }
 
 .search input::-moz-placeholder {
 	font-weight: 300;
 	color: #e2e2e2;
+	color: #5a5a5a;
 }
 
 .search input::input-placeholder {
 	font-weight: 300;
 	color: #e2e2e2;
+	color: #5a5a5a;
 }
 
 
@@ -143,23 +155,6 @@ body {
     transition: .3s !important;
 }
 
-/* Note tiles animations */
-.note.ng-enter, 
-.note.ng-leave {
-	-webkit-transition: 0.5s linear all;
-	transition: 0.5s linear all;
-}
-
-.note.ng-enter, 
-.note.ng-leave.ng-leave-active {
-	opacity: 0;
-}
-
-.note.ng-leave, 
-.note.ng-enter.ng-enter-active {
-	opacity: 1;
-}
-
 
 /* Note tile main */
 .note .note-main {
@@ -195,9 +190,8 @@ body {
 
 /* Note tile options */
 .note-opt {
-	font-size: 17px;
-	padding: 0.1em 1.2em 0.75em 0.8em;
-	color: #222;
+	text-align: right;
+	padding: 0 0.8em 0.2em 1.2em;
 	visibility: hidden;
 	opacity: 0;
 }
@@ -216,25 +210,20 @@ body {
 }
 
 
-.note-opt > button {
-	float: left;
-	margin-right: 0.2em;
-	padding: 0.2em 0.35em 0.2em 0.35em;
-	background: transparent;
+.note-opt a.opt-icon {
+	display: inline-block;
+	text-decoration: none;
+	margin: 0;
+	margin-left: 0.5em;
+	padding: 0.2em 0.35em 0 0.35em;
 	border: 0;
 	outline: 0;
+	color: #2c2c2c;
 }
 
-.note-opt > div {
-	float: left;
-	margin-right: 0.2em;
-	padding: 0.2em 0.35em 0.2em 0.35em;
-	background: transparent;
-	border: 0;
-	outline: 0;
-}
-
-.note-opt > button:hover {
+.note-opt a.opt-icon:hover {
+	text-decoration: none;
+	cursor: pointer;
 	color: #050505;
 }
 
@@ -252,9 +241,42 @@ body {
 	word-wrap: break-word;
 	overflow-y: scroll;
 }
+.note-modal-opt {
+	text-align: right;
+	display: inline-block;
+}
+.note-modal-opt::after { 	/* Clearfix */
+	clear: both;
+	content: " ";
+	display: block;
+	height: 0;
+}
 
-.note-modal button.close {
-	margin-right: 7px;
+.note-modal-opt a.opt-icon-lg {
+	display: inline-block;
+	text-decoration: none;
+	margin: 0;
+	margin-left: 0.7em;
+	padding: 0.2em 0.35em 0 0.35em;
+	border: 0;
+	outline: 0;
+}
+.note-modal-opt a.opt-icon-lg:hover {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.note-modal-opt a.opt-icon-lg-disabled:hover {
+	cursor: default;
+	opacity: .7;
+}
+
+
+
+.note-edit-modal button.close {
+	margin-right: 10px;
+	margin-top: 5px;
+	margin-bottom: 3px;
 }
 
 .note-modal .modal-content {
@@ -278,7 +300,13 @@ body {
 	margin: 10px auto;
 }
 
+.note-view-modal .note-content {
+	min-height: 300px;
+}
+
 .fade-pop {
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
   transform: scale(0);
   opacity: 0;
   -webkit-transition: all .25s linear;
@@ -288,6 +316,8 @@ body {
 
 .fade-pop.in {
   opacity: 1;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
   transform: scale(1);
 }
 
@@ -310,7 +340,8 @@ body {
 .edit-note-form .input-title {
 	min-height: 50px;
 	max-height: 150px;
-	padding: 20px 0 7px;
+	margin-top: 13px;
+	padding: 7px 0 7px;
 	font-family: 'Roboto Condensed';
 	font-size: 22px;
 	font-weight: bold;
@@ -440,81 +471,152 @@ body {
 
 
 
-.note-opt {
-	overflow: visible;
-}
-.btnC {
-  position:relative;
-}
-.btnC .dropup {
- position:absolute; 
- z-index: 99999999;
- top: -20%;
- left: 10%;
-/* display:none;*/
- padding: 5px;
-}
 
-.btnC:hover .dropup {
-/* display:block;*/
-visibility: visible;
-opacity: 1;
-transition: opacity .5s;
-}
-.btnC:hover * {
-}
 
-.dropup {
+.popup { list-style-type:none; position:relative;}
+.popup ul{ position:absolute; bottom: 110%; left: -50px; margin:0px; padding:0px; visibility:hidden; opacity: 0; transition: .2s; background: #fff; width: 120px;
 	box-sizing: border-box;
-	width: 100px;
-	background: #fff;
 -webkit-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5);
 -moz-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5);
 box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.5);
 border-radius: 2px;
+padding:2px 2px 4px 7px;
+text-align: center;
+    transition: 1s;
+    z-index: 99999;
 }
-
-.dropup:hover {
-	display: block !important;
-	visibility: visible !important;
-	opacity: 1 !important;
-}
-
-.dropup:before,
-.dropup:after {
-    content: "";
-    display: table;
-}
-
-.dropup:after {
-    clear: both;
-}
-.dropup * {
-	display: inline-block;
-    position: static !important;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.popup { list-style-type:none; position:relative;}
-.popup ul{ position:absolute; bottom: 100%; margin:0px; padding:0px; display:none; background: #fff; width: 100px;}
 .popup:hover > ul {
     display:block;
+    visibility: visible;
+    opacity: 1;
+    transition: .6s;
 }
 .popup ul li{ list-style-type:none; margin: 5px 5px 0 0; display: inline-block;}
 .popup ul li:hover{
 cursor: pointer;
+}
+
+
+.opt-icon-dots {
+	fill: red;
+}
+
+.popup2 { list-style-type:none; position:relative;
+opacity: 1 !important;}
+.popup2 ul{ position:absolute; top: 110%; left: -80px; margin:0px; padding:0px; visibility:hidden; opacity: 0; background: #fff; width: 120px;
+	box-sizing: border-box;
+-webkit-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5);
+-moz-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5);
+box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.5);
+border-radius: 2px;
+padding:2px 2px 4px 7px;
+text-align: left;
+    transition: .5s;
+
+
+  -webkit-transform: translateY(-1em);
+  -moz-transform: translateY(-1em);
+  transform: translateY(-1em);
+  transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;	
+  z-index: 99999;
+}
+.popup2:hover ul {
+    display:block;
+    visibility: visible;
+    opacity: 1;
+ z-index: 99999;
+      visibility: visible; /* shows sub-menu */
+  opacity: 1;
+  -webkit-transform: translateY(0%);
+  -moz-transform: translateY(0%);
+  transform: translateY(0%);
+  -webkit-transition-delay: .3s, 0s, 0.3s; /* this removes the transition delay so the menu will be visible while the other styles transition */
+  -moz-transition-delay: .3s, 0s, 0.3s; /* this removes the transition delay so the menu will be visible while the other styles transition */
+  transition-delay: .3s, 0s, 0.3s; /* this removes the transition delay so the menu will be visible while the other styles transition */
+
+}
+
+.popup2 ul li{ list-style-type:none; margin: 0; padding: 5px 0 0 0; display: inline-block;}
+.popup2 ul li:hover{
+cursor: pointer;
+background: #fafafa;
+}
+
+.popup2 ul li span {
+	display: inline-block;
+	margin-right: 2px;
+	min-width: 15px;
+}
+
+
+
+
+
+
+
+.opt-icon {
+	background-position: center;
+	background-repeat: no-repeat;
+	-webkit-background-size: 18px 18px;
+	background-size: 18px 18px;
+	border: 1px solid transparent;
+	height: 24px;
+	width: 24px;
+	opacity: .7;
+	transition: .2s;
+}
+
+.opt-icon:hover {
+	opacity: 1;
+}
+
+.opt-icon-lg {
+	background-position: center;
+	background-repeat: no-repeat;
+	-webkit-background-size: 22px 22px;
+	background-size: 22px 22px;
+	border: 1px solid transparent;
+	height: 28px;
+	width: 28px;
+	opacity: .7;
+	transition: .2s;
+}
+.opt-icon-lg:hover {
+	opacity: 1;
+}
+
+.opt-icon-archive {
+	background-image: url('archive.svg');
+}
+
+.opt-icon-trash {
+	background-image: url('trash.svg');
+}
+
+.opt-icon-palette {
+	background-image: url('palette.svg');
+}
+
+.opt-icon-pencil {
+	background-image: url('pencil.svg');
+}
+
+.opt-icon-mic {
+	background-image: url('mic.svg');
+}
+
+.opt-icon-mic-active {
+	background-image: url('mic-active.svg');
+}
+
+.opt-icon-mic-slash {
+	background-image: url('mic-slash.svg');
+}
+
+.opt-icon-speaker {
+	background-image: url('speaker.svg');
+}
+
+.opt-icon-dots {
+	background-image: url('dots.svg');
 }
