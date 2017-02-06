@@ -1,5 +1,5 @@
 /* Color classes */
-var classes = [	"color1", "color2", "color3", "color4", "color5", "color6", "color7", "color8", "color9" ];
+var classes = [	"color1", "color2", "color3", "color4", "color5", "color6", "color7", "color8", "color9", "color10" ];
 
 
 /* Notes app */
@@ -9,7 +9,7 @@ var app = angular.module('notesApp', ['froala']);
 app.controller('notesController', function($scope) {
 
 	/* Color classes */
-	$scope.classes = [	"color1", "color3", "color4", "color5", "color6", "color7", "color8", "color9" ];
+	$scope.classes = [	"color1", "color2", "color3", "color4", "color5", "color6", "color7", "color8", "color9", "color10" ];
 	
 	/* Max length of note title */
 	$scope.titleMaxLength = 100;
@@ -18,7 +18,8 @@ app.controller('notesController', function($scope) {
 	$scope.notes = [
 		{
 			title: 'Happy Birthday',
-			content: '<span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f604.svg);">&nbsp;</span> <span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f600.svg);">&nbsp;</span>&nbsp;'
+			content: '<span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f604.svg);">&nbsp;</span> <span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f600.svg);">&nbsp;</span>&nbsp;',
+			class: classes[Math.floor(Math.random()*classes.length)]
 		},
 		{
 			title: 'http://www.tutorialspoint.com/android/',
@@ -128,7 +129,8 @@ app.controller('notesController', function($scope) {
 		tooltips: true,
 		spellcheck: true,
 		tabSpaces: 4,
-		theme: 'gray'
+		theme: 'gray',
+		immediateAngularModelUpdate: true,
 	};
 
 
@@ -154,12 +156,26 @@ app.controller('notesController', function($scope) {
 
 	/* Remove a note from notes */
 	$scope.removeNote = function(note) {
-		
+
 		if(note === null || typeof note !== 'object')
 			return;
 
 		var index = $scope.notes.indexOf(note);
 		$scope.notes.splice(index, 1);
+	}
+
+	/* Remove a note via a modal - after the modal has closed */
+	$scope.removeNoteViaModal = function(note, $index) {
+		
+		$('#note-view-modal-' + $index).on('hidden.bs.modal', function () {
+			$scope.removeNote(note);
+			$scope.$apply();
+    	});
+
+		$('#note-edit-modal-' + $index).on('hidden.bs.modal', function () {
+			$scope.removeNote(note);
+			$scope.$apply();
+    	});
 	}
 
 
@@ -202,7 +218,7 @@ app.controller('notesController', function($scope) {
 		setTimeout(function() {
 			textareaAutoResizer();
 		}, 50);
-		setLayout(5);
+		//setLayout(5);
 
 		// Close the modal when note saved successfully
 		submitBtn.setAttribute('data-dismiss', 'modal');
@@ -219,6 +235,25 @@ app.controller('notesController', function($scope) {
 		$scope.notes[index].class = classname;
 	}
 
+
+	/* Open a note's edit modal via its view modal */
+	$scope.openEditModalViaViewModal = function($index) {
+
+		$('#note-view-modal-' + $index).removeClass('fade');		
+		$('#note-view-modal-' + $index).modal('hide');
+
+		$('#note-edit-modal-' + $index).modal('show');
+		$('#note-view-modal-' + $index).addClass('fade');
+	}
+
+	/* Take speech input for note */
+	$scope.speechInput = function($index) {
+
+		var modalId = '#note-edit-modal-' + $index;
+		var editorSelector = modalId + ' [contenteditable=true]';
+
+		startDictation(event, editorSelector);
+	}
 
 
 
@@ -285,7 +320,7 @@ app.filter('searchFor', function() {
 		});
 
 		// Set the layout again
-		setLayout(5);
+		//setLayout(5);
 
 		return result;
 	};
@@ -301,7 +336,7 @@ app.directive('editModalsLoadedDirective', function() {
 			textareaAutoResizer();
 			setBackButtonToModalClose();
 			initLayout();
-			setLayout(10);
+		//	setLayout(10);
 		}
 	}
 });

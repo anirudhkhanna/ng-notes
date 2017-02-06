@@ -84,7 +84,6 @@ function setPackeryLayout() {
 	});
 
 /*	(ignoring for now)
-
 	// Add Draggabilly for drag functionality
 	pckry[pckryIdx].getItemElements().forEach(function(itemElem) {
 		var draggie = new Draggabilly(itemElem);
@@ -95,9 +94,8 @@ function setPackeryLayout() {
 }
 
 
-$(document).ready(function() {
-
-	var tooltipOptOptions = {
+/* Set tooltips */
+var tooltipOptOptions = {
     	theme: ['tooltipster-borderless', 'tooltipster-borderless-customized'],
     	animation: 'grow',
     	animationDuration: [400, 0],
@@ -106,43 +104,205 @@ $(document).ready(function() {
    		multiple: true,
    		distance: 12,
    		arrow: false
-    };
+};
 
-	var tooltipColorsOptions = {
-    	theme: ['tooltipster-noir', 'tooltipster-noir-customized'],
-    	animation: 'fade',
-    	animationDuration: [400, 400],
-   		delay: [0, 100],
-   		side: 'top',
-   		multiple: true,
-   		distance: 5,
-   		arrow: false,
-   		maxWidth: 120,
-   		content: $('#colors-template'),
-   		contentCloning: false,
-   		interactive: true,
-   		functionReady: function (instance, helper) {
-   			$('.note-opt').css({'visibility':'visible', 'opacity':'1'});
-    	},
-   		functionAfter: function (instance, helper) {
-   			$('.note-opt').css({'visibility':'initial', 'opacity':''});
-    	}
-    };
+$(document).ready(function() {
 
     $('.tooltip-opt').tooltipster(tooltipOptOptions);
-    $('.tooltip-colors').tooltipster(tooltipColorsOptions);
 
     $('body').on('mouseenter', '.tooltip-opt:not(.tooltipstered)', function(){
     	$(this)
         	.tooltipster(tooltipOptOptions)
         	.tooltipster('open');
 	});
-
-
 });
 
 
-$(document).ready(function() {
+
+
+
+
+/* Set speech-related functions */
+var resbox;
+var final_transcript = '';
+var recognizing = false;
+var ignore_onend;
+var start_timestamp;
+
+
+if (!('webkitSpeechRecognition' in window)) {
+
+ 	$(document).ready(function(){
+	
+	  $('.modal .speech-input').removeClass('opt-icon-mic');
+	  $('.modal .speech-input').addClass('opt-icon-mic-slash');
+	  $('.modal .speech-input').addClass('opt-icon-lg-disabled');
+	  $('.modal .speech-input').attr('title', 'Speech input is not supported in your browser.');
+      $('.modal .speech-input').tooltipster('destroy');
+	  $('.modal .speech-input').tooltipster(tooltipOptOptions);
+
+	});
+} 
+else {
+  var recognition = new webkitSpeechRecognition();
+  recognition.continuous = true;
+  recognition.interimResults = true;
+  
+  recognition.onstart = function() {
+      recognizing = true;
+	  $('.modal .speech-input').removeClass('opt-icon-mic');
+	  $('.modal .speech-input').addClass('opt-icon-mic-active');
+  };
+  
+  recognition.onerror = function(event) {
+    if (event.error == 'no-speech') {
+	  $('.modal .speech-input').removeClass('opt-icon-mic-active');
+	  $('.modal .speech-input').addClass('opt-icon-mic');
+  //    showInfo('info_no_speech');
+      ignore_onend = true;
+    }
+    if (event.error == 'audio-capture') {
+	  $('.modal .speech-input').removeClass('opt-icon-mic-active');
+	  $('.modal .speech-input').addClass('opt-icon-mic');
+//      showInfo('info_no_microphone');
+      ignore_onend = true;
+    }
+    if (event.error == 'not-allowed') {
+      if (event.timeStamp - start_timestamp < 100) {
+  //      showInfo('info_blocked');
+      } else {
+  //     showInfo('info_denied');
+      }
+      ignore_onend = true;
+    }
+  };
+  
+  recognition.onend = function() {
+    recognizing = false;
+    if (ignore_onend) {
+      return;
+    }
+	
+	  $('.modal .speech-input').removeClass('opt-icon-mic-active');
+	  $('.modal .speech-input').addClass('opt-icon-mic');
+    
+    if (!final_transcript) {
+     // showInfo('info_start');
+	  $(resbox).append(' ONE ');
+      return;
+    }
+    //showInfo('');
+    if (window.getSelection) {
+      window.getSelection().removeAllRanges();
+      var range = document.createRange();
+      range.selectNode(document.getElementById('final_span'));
+      window.getSelection().addRange(range);
+    }
+  };
+  
+  recognition.onresult = function(event) {
+    var interim_transcript = '';
+
+	final_transcript = '';
+	
+	console.log(event.results.length);
+	console.log(event.results);
+    for (var i = event.resultIndex; i < event.results.length; ++i) {
+      if (event.results[i].isFinal) {
+        final_transcript += event.results[i][0].transcript;
+      } else {
+        interim_transcript += event.results[i][0].transcript;
+      }
+    }
+    //final_transcript = capitalize(final_transcript);
+    //final_span.innerHTML = linebreak(final_transcript);
+
+    $(resbox).append(final_transcript);
+	setEndOfContenteditable(resbox);
+
+    setTimeout(function() {
+    	$(resbox).focus();
+	}, 0);
+	//$('.sample [contenteditable=true]').append(interim_transcript);
+
+
+
+
+    //interim_span.innerHTML = linebreak(interim_transcript);
+     // if (final_transcript || interim_transcript) {
+     // showButtons('inline-block');
+     //}
+  };
+}
+// else over
+
+
+
+function startDictation(event, editbox) {
+
+	alert('ss');
+//	resbox = editbox;
+	$(editbox).append('HERE');
+/*    setTimeout(function() {
+    	$(resbox).focus();
+	}, 0);
+
+*/    
+
+	//setEndOfContenteditable(editbox);
+
+
+	//resbox.css('display', 'none');
+
+  if (recognizing) {
+    recognition.stop();
+    return;
+  }
+  final_transcript = '';
+//  recognition.lang = select_dialect.value;
+  recognition.start();
+  ignore_onend = false;
+//  final_span.innerHTML = '';
+//  interim_span.innerHTML = '';
+	$('.modal .speech-input').removeClass('opt-icon-mic');
+	$('.modal .speech-input').addClass('opt-icon-mic-slash');
+//  showInfo('info_allow');
+//  showButtons('none');
+  start_timestamp = event.timeStamp;
+}
+
+
+
+
+function setEndOfContenteditable(editbox)
+{
+	resbox = editbox;
+	$(resbox).attr('id', 'resbox');
+	contentEditableElement = document.getElementById('resbox');
+
+
+    var range,selection;
+    if(document.createRange)//Firefox, Chrome, Opera, Safari, IE 9+
+    {
+        range = document.createRange();//Create a range (a range is a like the selection but invisible)
+        range.selectNodeContents(contentEditableElement);//Select the entire contents of the element with the range
+        range.collapse(false);//collapse the range to the end point. false means collapse to end rather than the start
+        selection = window.getSelection();//get the selection object (allows you to change selection)
+        selection.removeAllRanges();//remove any selections already made
+        selection.addRange(range);//make the range you have just created the visible selection
+    }
+    else if(document.selection)//IE 8 and lower
+    { 
+        range = document.body.createTextRange();//Create a range (a range is a like the selection but invisible)
+        range.moveToElementText(contentEditableElement);//Select the entire contents of the element with the range
+        range.collapse(false);//collapse the range to the end point. false means collapse to end rather than the start
+        range.select();//Select the range (make it the visible selection
+    }
+}
+
+
+
+/*$(document).ready(function() {
 
 	$("[data-toggle=popover]").popover({
 		placement: 'top',
@@ -169,4 +329,6 @@ $(document).ready(function() {
             }
         }, 300);
 	});
-});
+});*/
+
+
