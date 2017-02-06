@@ -3,7 +3,14 @@ body {
 	background: #f0f0f0;
 	font-family: 'Roboto Slab', sans-serif;
 }
-  
+
+/* Bootstrap modal bugfix */
+body.modal-open {
+	overflow-y: auto !important;
+	padding-right: 0 !important;
+}
+
+/* Scrollbar style */
 ::-webkit-scrollbar-track {
 	background-color: rgba(255, 255, 255, 0.1);
 }
@@ -21,9 +28,16 @@ body {
 .header {
 	width: 100%;
 	background: #ffb83d;
-	padding: 10px 0 11px;
-	margin-bottom: 40px;
+	padding: 10px 0;
+	position: fixed;
+	top: 0;
+	z-index: 999;
+	transition: .5s;
 }
+.header-scrolled {
+	box-shadow: 0px 3px 15px -4px rgba(0,0,0, 0.75);
+}
+
 
 .brand {
 	float: left;
@@ -34,15 +48,17 @@ body {
 	margin-left: 50px;	
 	text-decoration: none;
 	outline: 0;
-	font-size: 2.1em;
+	font-size: 2.05em;
+	line-height: 140%;
 	font-weight: 900;
 	font-family: 'Noto Sans', 'Roboto Slab', sans-serif;
 	color: #111;
-	transition: .25s ease;
 	-webkit-background-clip: text;
     -moz-background-clip: text;
     background-clip: text;
+	transition: .3s;
 }
+
 .brand a:hover {
 	color: #db5353;
 	color: #000;
@@ -131,6 +147,7 @@ transition: background 100ms ease-in,width 100ms ease-out;
 
 .notes-container {
 	padding-right: 20px;
+	margin-top: 100px;
 }
 
 @media screen and (max-width: 680px) {

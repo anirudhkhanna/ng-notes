@@ -140,7 +140,6 @@ if (!('webkitSpeechRecognition' in window)) {
 	  $('.modal .speech-input').attr('title', 'Speech input is not supported in your browser.');
       $('.modal .speech-input').tooltipster('destroy');
 	  $('.modal .speech-input').tooltipster(tooltipOptOptions);
-
 	});
 } 
 else {
@@ -151,17 +150,22 @@ else {
   recognition.onstart = function() {
       recognizing = true;
 	  $('.modal .speech-input').removeClass('opt-icon-mic');
+	  $('.modal .speech-input').removeClass('opt-icon-mic-slash');
 	  $('.modal .speech-input').addClass('opt-icon-mic-active');
   };
   
   recognition.onerror = function(event) {
     if (event.error == 'no-speech') {
+	  $('.modal .speech-input').removeClass('opt-icon-mic-slash');
 	  $('.modal .speech-input').removeClass('opt-icon-mic-active');
 	  $('.modal .speech-input').addClass('opt-icon-mic');
+
+	  alert('No speech was detected');
   //    showInfo('info_no_speech');
       ignore_onend = true;
     }
     if (event.error == 'audio-capture') {
+	  $('.modal .speech-input').removeClass('opt-icon-mic-slash');
 	  $('.modal .speech-input').removeClass('opt-icon-mic-active');
 	  $('.modal .speech-input').addClass('opt-icon-mic');
 //      showInfo('info_no_microphone');
@@ -169,6 +173,7 @@ else {
     }
     if (event.error == 'not-allowed') {
       if (event.timeStamp - start_timestamp < 100) {
+      	alert('Mic is blocked');
   //      showInfo('info_blocked');
       } else {
   //     showInfo('info_denied');
@@ -188,8 +193,7 @@ else {
     
     if (!final_transcript) {
      // showInfo('info_start');
-	  $(resbox).append(' ONE ');
-      return;
+	    return;
     }
     //showInfo('');
     if (window.getSelection) {
@@ -210,20 +214,21 @@ else {
     for (var i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal) {
         final_transcript += event.results[i][0].transcript;
-      } else {
+      }/* else {
         interim_transcript += event.results[i][0].transcript;
-      }
+      }*/
     }
+    
     //final_transcript = capitalize(final_transcript);
     //final_span.innerHTML = linebreak(final_transcript);
 
     $(resbox).append(final_transcript);
-	setEndOfContenteditable(resbox);
+//	setEndOfContenteditable(resbox);
 
-    setTimeout(function() {
+/*    setTimeout(function() {
     	$(resbox).focus();
 	}, 0);
-	//$('.sample [contenteditable=true]').append(interim_transcript);
+*/
 
 
 
@@ -237,20 +242,17 @@ else {
 // else over
 
 
-
 function startDictation(event, editbox) {
 
-	alert('ss');
-//	resbox = editbox;
-	$(editbox).append('HERE');
+	resbox = editbox;
+//	$(resbox).append('HERE');
 /*    setTimeout(function() {
     	$(resbox).focus();
 	}, 0);
 
 */    
 
-	//setEndOfContenteditable(editbox);
-
+	setEndOfContenteditable(resbox);
 
 	//resbox.css('display', 'none');
 
@@ -258,6 +260,7 @@ function startDictation(event, editbox) {
     recognition.stop();
     return;
   }
+
   final_transcript = '';
 //  recognition.lang = select_dialect.value;
   recognition.start();
@@ -276,8 +279,7 @@ function startDictation(event, editbox) {
 
 function setEndOfContenteditable(editbox)
 {
-	resbox = editbox;
-	$(resbox).attr('id', 'resbox');
+	$(editbox).attr('id', 'resbox');
 	contentEditableElement = document.getElementById('resbox');
 
 
@@ -301,6 +303,18 @@ function setEndOfContenteditable(editbox)
 }
 
 
+
+/* Header on-scroll effects */
+$(window).scroll(function() {
+    if ($(this).scrollTop() == 0) {
+        $('.header').removeClass('header-scrolled');
+        $('.brand a').removeClass('brand-scrolled');
+    }
+    else {
+        $('.header').addClass('header-scrolled');
+        $('.brand a').addClass('brand-scrolled');
+    }
+});
 
 /*$(document).ready(function() {
 
