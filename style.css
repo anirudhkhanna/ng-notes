@@ -1,4 +1,5 @@
 body {
+	overflow-x: hidden;
 	background-color: #fff;
 	background: #f0f0f0;
 	font-family: 'Roboto Slab', sans-serif;
@@ -28,6 +29,7 @@ body.modal-open {
 .header {
 	width: 100%;
 	background: #ffb83d;
+	background: #ffb924;
 	padding: 10px 0;
 	position: fixed;
 	top: 0;
@@ -147,7 +149,7 @@ transition: background 100ms ease-in,width 100ms ease-out;
 
 .notes-container {
 	padding-right: 20px;
-	margin-top: 100px;
+	padding-top: 100px;
 }
 
 @media screen and (max-width: 680px) {
@@ -259,6 +261,7 @@ transition: background 100ms ease-in,width 100ms ease-out;
 	overflow-y: scroll;
 }
 .note-modal-opt {
+	margin-right: 15px;
 	text-align: right;
 	display: inline-block;
 }
@@ -322,20 +325,16 @@ transition: background 100ms ease-in,width 100ms ease-out;
 }
 
 .fade-pop {
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  transform: scale(0);
+
   opacity: 0;
-  -webkit-transition: all .25s linear;
-  -o-transition: all .25s linear;
-  transition: all .25s linear;
+-webkit-transition: opacity .3s linear;
+-o-transition: opacity .3s linear;
+transition: opacity .3s linear;
+
 }
 
 .fade-pop.in {
   opacity: 1;
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  transform: scale(1);
 }
 
 .edit-note-form .form-group {
@@ -358,7 +357,7 @@ transition: background 100ms ease-in,width 100ms ease-out;
 	min-height: 50px;
 	max-height: 150px;
 	margin-top: 13px;
-	padding: 7px 0 7px;
+	padding: 7px 0 0px;
 	font-family: 'Roboto Condensed';
 	font-size: 22px;
 	font-weight: bold;
@@ -520,13 +519,13 @@ cursor: pointer;
 
 .popup2 { list-style-type:none; position:relative;
 opacity: 1 !important;}
-.popup2 ul{ position:absolute; top: 110%; left: -80px; margin:0px; padding:0px; visibility:hidden; opacity: 0; background: #fff; width: 120px;
+.popup2 ul{ position:absolute; top: 110%; left: -80px; margin:0px; padding:0px; 
+	visibility:hidden; opacity: 0; background: #fff; width: 120px;
 	box-sizing: border-box;
 -webkit-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5);
 -moz-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5);
 box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.5);
 border-radius: 2px;
-padding:2px 2px 4px 7px;
 text-align: left;
     transition: .5s;
 
@@ -536,6 +535,7 @@ text-align: left;
   transform: translateY(-1em);
   transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;	
   z-index: 99999;
+  display: block;
 }
 .popup2:hover ul {
     display:block;
@@ -550,19 +550,13 @@ text-align: left;
   -webkit-transition-delay: .3s, 0s, 0.3s; /* this removes the transition delay so the menu will be visible while the other styles transition */
   -moz-transition-delay: .3s, 0s, 0.3s; /* this removes the transition delay so the menu will be visible while the other styles transition */
   transition-delay: .3s, 0s, 0.3s; /* this removes the transition delay so the menu will be visible while the other styles transition */
-
 }
 
-.popup2 ul li{ list-style-type:none; margin: 0; padding: 5px 0 0 0; display: inline-block;}
+.popup2 ul li{ list-style-type:none; margin: 0; padding: 5px 5px 5px 10px; display: block; width: 100%; font-family: 'Arial', sans-serif;}
 .popup2 ul li:hover{
 cursor: pointer;
 background: #fafafa;
-}
-
-.popup2 ul li span {
-	display: inline-block;
-	margin-right: 2px;
-	min-width: 15px;
+border-radius: 2px;
 }
 
 
@@ -634,6 +628,150 @@ background: #fafafa;
 	background-image: url('speaker.svg');
 }
 
+.opt-icon-check {
+	background-image: url('check.svg');
+}
+
 .opt-icon-dots {
 	background-image: url('dots.svg');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.notes-container {
+    padding-top: 100px;
+    padding-left: 200px;
+    left: 100px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    height: 100%;
+}
+
+
+.notes-container.toggled {
+    margin-left: auto !important;
+/*   padding-left: 200px;*/
+	left: 0;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    width: 0px;
+    height: 100%;
+    overflow-y: auto;
+    background: #000;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+
+
+
+overflow-y: auto;
+background: transparent;
+-webkit-transition: all 0.5s ease;
+-moz-transition: all 0.5s ease;
+-o-transition: all 0.5s ease;
+ transition: all 0.5s ease;
+ bottom: 0;
+height: -webkit-calc(100vh - 100%);
+ height: calc(100vh - 100%);
+ overflow-y: hidden;
+ overflow-x: hidden;
+position: absolute;
+top: 100%;
+z-index: 990;
+will-change: visibility;
+/* visibility: hidden; */
+/* display: -webkit-flex; */
+display: flex;
+-webkit-flex-direction: column;
+flex-direction: column;
+margin-top:1px;
+width: 275px;
+left: 0px;
+}
+
+#sidebar-wrapper:hover {
+    overflow-y: auto;
+}
+
+
+.sidebar-toggled {
+/*    width: 0px !important;
+*/    left: -275px !important;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #fff;
+    background: none;
 }
