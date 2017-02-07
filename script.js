@@ -80,7 +80,7 @@ function setPackeryLayout() {
 	pckryIdx++;
 	pckry[pckryIdx] = new Packery('.notes-container', {
 		itemSelector: '.note',
-		gutter: 10
+		gutter: 12
 	});
 
 /*	(ignoring for now)

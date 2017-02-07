@@ -239,12 +239,10 @@ app.controller('notesController', function($scope) {
 	/* Open a note's edit modal via its view modal */
 	$scope.openEditModalViaViewModal = function($index) {
 
-		$('#note-view-modal-' + $index).removeClass('fade');		
 		$('#note-view-modal-' + $index).modal('hide');
-
 		$('#note-edit-modal-' + $index).modal('show');
-		$('#note-view-modal-' + $index).addClass('fade');
 	}
+
 
 	/* Take speech input for note */
 	$scope.speechInput = function($index) {
