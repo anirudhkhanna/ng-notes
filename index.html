@@ -8,9 +8,8 @@
 
 	<!-- AngularJS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.js"></script>-->
 
-<!--	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.js"></script>
--->
 	<!-- Autosize -->
 	<script src="assets/autosize/autosize.js"></script>
 
@@ -25,13 +24,10 @@
 	<script src="assets/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<!-- Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto+Condensed|Noto+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab|Roboto+Condensed|Noto+Sans" rel="stylesheet">
 
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	<!-- Fontello -->
-	<link rel="stylesheet" href="assets/fontello/css/fontello.css">
 
 	<!-- Froala Editor styles -->
 	<link rel="stylesheet" href="assets/froala/css/froala_editor.min.css" />
@@ -39,12 +35,11 @@
 	<link rel="stylesheet" href="assets/froala/css/themes/gray-modified.css" />
 
 	<!-- Froala Editor Plugin styles -->
-
 <!--<link rel="stylesheet" href="assets/froala/css/plugins/char_counter.css">-->
 	<link rel="stylesheet" href="assets/froala/css/plugins/code_view.css">
 	<link rel="stylesheet" href="assets/froala/css/plugins/colors.css">
 	<link rel="stylesheet" href="assets/froala/css/plugins/emoticons.css">
-<!--<link rel="stylesheet" href="assets/froala/css/plugins/file.css">-->
+	<link rel="stylesheet" href="assets/froala/css/plugins/file.css">
 <!--<link rel="stylesheet" href="assets/froala/css/plugins/fullscreen.css">-->
 	<link rel="stylesheet" href="assets/froala/css/plugins/image_manager.css">
 	<link rel="stylesheet" href="assets/froala/css/plugins/image.css">
@@ -63,7 +58,7 @@
 	<script src="assets/froala/js/plugins/colors.min.js"></script>
 	<script src="assets/froala/js/plugins/emoticons.min.js"></script>
 	<script src="assets/froala/js/plugins/entities.min.js"></script>
-<!--<script src="assets/froala/js/plugins/file.min.js"></script>-->
+	<script src="assets/froala/js/plugins/file.min.js"></script>
 <!--<script src="assets/froala/js/plugins/font_family.min.js"></script>-->
 <!--<script src="assets/froala/js/plugins/font_size.min.js"></script>-->
 <!--<script src="assets/froala/js/plugins/fullscreen.min.js"></script>-->
@@ -83,10 +78,14 @@
 	<!-- Angular Floara -->
 	<script src="assets/froala/angular-froala/angular-froala.js"></script>
 
+	<!-- Tooltipster -->
+	<link rel="stylesheet" type="text/css" href="assets/tooltipster/css/tooltipster.bundle.min.css" />
+	<link rel="stylesheet" type="text/css" href="assets/tooltipster/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-borderless.min.css" />
+	<script type="text/javascript" src="assets/tooltipster/js/tooltipster.bundle.min.js"></script>
 
 	<!-- Custom CSS and JS -->
-	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="note-style.css">
+	<link rel="stylesheet" href="style.css">
 	<script src="notes-app.js"></script>
 	<script src="script.js"></script>
 
@@ -105,190 +104,128 @@
 
 	</style>
 
-
-<!-- TT -->
-<link rel="stylesheet" type="text/css" href="assets/tooltipster/css/tooltipster.bundle.min.css" />
-<link rel="stylesheet" type="text/css" href="assets/tooltipster/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-borderless.min.css" />
-<link rel="stylesheet" type="text/css" href="assets/tooltipster/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-noir.min.css" />
-<script type="text/javascript" src="assets/tooltipster/js/tooltipster.bundle.min.js"></script>
-
 </head>
 
 <body id="mynotes" ng-app="notesApp" ng-controller="notesController">
 
+	<!-- Header containing top bar and sidebar menu -->
 	<header class="header">
 
-
-		<a href="#menu-toggle" class="btn btn-default" id="menu-toggle" style="float:left;">E</a>
+		<a href="#menu-toggle" class="menu-toggle" id="menu-toggle" style="float:left;">
+			<span class="menu-toggle-icon"></span>
+		</a>
 
 		<!-- Brand -->
 		<div class="brand">
-			<a href="#"><span class="fa fa-lightbulb-o"></span> ng-notes</a>
+			<a href="#"><span class="fa fa-paperclip"></span> ng-notes</a>
 		</div>
 		<!-- /.Brand -->
 
-		<!-- Search -->
+		<!-- Search bar -->
 		<div class="search">
 			<span class="glyphicon glyphicon-search"></span>
 			<input type="text" class="searchbox" placeholder="Search notes..." ng-model="searchString" />
 		</div>
-		<!-- /.Search -->
+		<!-- /.Search bar -->
 
+		<!-- Sidebar -->
+		<div class="sidebar-container">
+			<ul class="sidebar-nav">
+				<li>
+					<a href="#">Notes</a>
+				</li>
+				<li>
+					<a href="#">Archived</a>
+				</li>
+				<li>
+					<a href="#">Trash</a>
+				</li>
+			</ul>
 
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="#">
-                        Start Bootstrap
-                    </a>
-                </li>
-                <li>
-                    <a href="#">Dashboard</a>
-                </li>
-                <li>
-                    <a href="#">Shortcuts</a>
-                </li>
-                <li>
-                    <a href="#">Overview</a>
-                </li>
-                <li>
-                    <a href="#">Events</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Services</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-
-
-
-
+			<ul class="sidebar-nav">
+				<li>
+					<a href="#">Events 2</a>
+				</li>
+				<li>
+					<a href="#">Events 2</a>
+				</li>
+				<li>
+					<a href="#">Events 2</a>
+				</li>
+				<li>
+					<a href="#">Events 2</a>
+				</li>
+				<li>
+					<a href="#">Events 2</a>
+				</li>
+				<li>
+					<a href="#">Events 2</a>
+				</li>
+				<li>
+					<a href="#">Events 2</a>
+				</li>
+				<li>
+					<a href="#">Events 2</a>
+				</li>
+				<li>
+					<a href="#">Events 2</a>
+				</li>
+				<li>
+					<a href="#">About 2222</a>
+				</li>
+			</ul>
+		</div>
+		<!-- /.Sidebar -->
 
 	</header>
+	<!-- /.Header containing top bar and sidebar menu -->
 
 
-	<!-- Note-Tiles Container -->
-	<div class="container notes-container">
-		<div class="masonry">
+	<!-- Note tiles container -->
+	<div class="container notes-container" ng-cloak>
 
-		<div class="masonry-item note" ng-class="note.class" ng-repeat = "note in (notes|ngRepeatFinish:this) | searchFor:searchString">
-				<!-- Note-Main (Has Content, Opens Corresponding Note-Modal) -->
-				<div class="note-main" data-toggle="modal" data-target="#note-view-modal-{{$index}}">
-					<h3 class="note-title">{{ note.title }}</h3>
-					<p class="note-content" froala-view="note.content"></p>
-				</div>
-				<!-- Note-Opt (Has Note Options) -->
-				<div class="note-opt">
-<!-- 					<a title="Make a copy" class="tooltip-opt fa fa-clone" ng-click="copyNote(note)"></a>
- -->
-					<a title="Edit" class="tooltip-opt opt-icon opt-icon-pencil" data-toggle="modal" data-target="#note-edit-modal-{{$index}}"></a>
- 					
- 					<a title="Change color" class="tooltip-opt popup opt-icon opt-icon-palette">
-            			<ul>
-		                	<li ng-class="color" class="btn-color" ng-repeat="color in classes" ng-click="setNoteColor(note, color)"></li>
-            			</ul>
-					</a>
- 					
-<!--  					<a title="Delete" class="tooltip-opt fa fa-trash-o" ng-click="removeNote(note)"></a
- -->					
- 					<a title="Archive" class="tooltip-opt opt-icon opt-icon-archive" ng-click="removeNote(note)"></a>
+		<!-- Note tile -->
+		<div class="masonry-item note" ng-class="note.colorClass" 
+		ng-repeat = "note in (notes | ngRepeatFinish:this) | filter:{isArchived:false} | filter:{isTrashed:false} | searchFor:searchString">
 
-					<a class="popup2 opt-icon opt-icon-dots">
-            			<ul>
-		                	<li ng-click="copyNote(note)">Make a copy</li>
-		                	<li ng-click="removeNote(note)">Delete note</li>
-            			</ul>
-					</a>
-
-
-
-
-<!-- 					<a class="icon-dots"></a>
- --><!--				
-					<button title="Make a copy" class="tooltip-opt icon-copy" ng-click="copyNote(note)"></button>
-
-
-					<button title="Delete" class="tooltip-opt icon-trash" ng-click="removeNote(note)"></button>
-
- 					<button title="Delete" class="tooltip-opt icon-checklist"></button>
--->
-				</div>	
+			<!-- Note-main (has note title and content, opens the corresponding note-view-modals) -->
+			<div class="note-main" data-toggle="modal" data-target="#note-view-modal-{{$index}}">
+				<h3 class="note-title">{{ note.title }}</h3>
+				<p class="note-content" froala-view="note.content"></p>
 			</div>
-		
-		</div>
+
+			<!-- Note-opt (has note options) -->
+			<div class="note-opt">
+				<a title="Edit" class="opt-tooltip opt-icon opt-icon-pencil" data-toggle="modal" data-target="#note-edit-modal-{{$index}}"></a>
+
+				<a title="Change color" class="opt-tooltip opt-icon opt-icon-palette popup">
+					<ul>
+						<li class="btn-color" ng-class="colorClass" ng-repeat="colorClass in colorClasses" ng-click="setNoteColor(note, colorClass)"></li>
+					</ul>
+				</a>
+
+				<a title="Archive" class="opt-tooltip opt-icon opt-icon-archive" ng-click="archiveNote(note)"></a>
+
+				<a class="opt-icon opt-icon-dots popup2">
+					<ul>
+						<li ng-click="copyNote(note)">Make a copy</li>
+						<li ng-click="removeNote(note)">Delete note</li>
+					</ul>
+				</a>
+			</div>
+		</div>		
+		<!-- Note tile -->
+
 	</div>
-	<!-- /.Note-Tiles Container -->
+	<!-- /.Note tiles container -->
 
 
-	<!-- Note Edit Modals -->
+	<!-- Note edit modals -->
 	<div class="modal fade-pop note-modal note-edit-modal" ng-repeat = "note in notes | searchFor:searchString" id="note-edit-modal-{{$index}}" role="dialog" edit-modals-loaded-directive>
 		<div class="modal-dialog">
 
 		<!-- Modal Content -->
-		<div class="modal-content" ng-class="note.class">
+		<div class="modal-content" ng-class="note.colorClass">
 
 			<!-- Edit Note Form -->
 			<form class="edit-note-form">	    	
@@ -314,7 +251,7 @@
 
 	 					<a title="Change color" class="tooltip-opt popup opt-icon-lg opt-icon-palette">
             			<ul>
-		                	<li ng-class="color" class="btn-color" ng-repeat="color in classes" ng-click="setNoteColor(note, color)"></li>
+		                	<li ng-class="colorClass" class="btn-color" ng-repeat="colorClass in colorClasses" ng-click="setNoteColor(note, colorClass)"></li>
             			</ul>
 						</a>
  						
@@ -339,7 +276,7 @@
 		<div class="modal-dialog">
 
 		<!-- Modal Content -->
-		<div class="modal-content" ng-class="note.class">
+		<div class="modal-content" ng-class="note.colorClass">
 
 			<div class="modal-header">
 				<button type="button" class="close"  data-dismiss="modal">&times;</button>
@@ -355,12 +292,14 @@
 					<a title="Edit" class="tooltip-opt opt-icon-lg opt-icon-pencil" data-toggle="modal" ng-click="openEditModalViaViewModal($index)"></a> 					
  					<a title="Change color" class="tooltip-opt popup opt-icon-lg opt-icon-palette">
            			<ul>
-	                	<li ng-class="color" class="btn-color" ng-repeat="color in classes" ng-click="setNoteColor(note, color)"></li>
+	                	<li ng-class="colorClass" class="btn-color" ng-repeat="colorClass in colorClasses" ng-click="setNoteColor(note, colorClass)"></li>
             		</ul>
 					</a>
  				
 	 				<a title="Archive" class="tooltip-opt opt-icon-lg opt-icon-archive" ng-click="removeNoteViaModal(note, $index)" data-dismiss="modal"></a>
 		 			<a title="Delete" class="tooltip-opt opt-icon-lg opt-icon-trash" ng-click="removeNoteViaModal(note, $index)" data-dismiss="modal"></a>
+
+					<a title="All done" class="tooltip-opt opt-icon-lg opt-icon-check" data-dismiss="modal"></a>
 				</div>
 
 <!-- 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
@@ -413,16 +352,6 @@
 	</div>
 	<!-- /.Add New Note -->
 
-
-		    <!-- Menu Toggle Script -->
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $(".notes-container").toggleClass("toggled");
-        $("#sidebar-wrapper").toggleClass("sidebar-toggled");
-
-    });
-    </script>
 
 </body>
 </html>
