@@ -237,9 +237,9 @@ else {
 		*/
 		}
 
-		final_transcript = capitalize(final_transcript);
+/*		final_transcript = capitalize(final_transcript);
 		final_transcript = linebreak(final_transcript);
-
+*/
 		$(targetbox).append(final_transcript);
 	};
 
