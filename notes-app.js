@@ -272,7 +272,7 @@ app.filter('searchFor', function() {
 		// Using the forEach helper method to loop through the array
 		angular.forEach(arr, function(item) {
 			if(item.title.toLowerCase().indexOf(searchString) !== -1 || 
-			   item.content.toLowerCase().indexOf(searchString) !== -1) {
+				item.content.toLowerCase().indexOf(searchString) !== -1) {
 				result.push(item);
 			}
 		});
