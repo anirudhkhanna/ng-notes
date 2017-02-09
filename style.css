@@ -1,34 +1,38 @@
 body {
-	overflow-x: hidden;
-	background-color: #fff;
+/*	overflow-x: hidden;	*/
 	background: #f0f0f0;
 	font-family: 'Roboto Slab', sans-serif;
 }
 
-/* Bootstrap modal bugfix */
+
+/* Bootstrap modal scrollbar bugfix */
 body.modal-open {
 	overflow-y: auto !important;
 	padding-right: 0 !important;
 }
 
-/* Scrollbar style */
-::-webkit-scrollbar-track {
-	background-color: rgba(255, 255, 255, 0.1);
-}
 
+/* Scrollbar styles */
 ::-webkit-scrollbar {
 	width: 7px;
 	background-color: rgba(255, 255, 255, 0.1);
 }
 
+::-webkit-scrollbar-track {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
 ::-webkit-scrollbar-thumb {
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.65);
 }
 
 
+/* Header, brand, search etc. styles */
+
+/* Header */
 .header {
 	width: 100%;
-	background: #ffb83d;
+/*	background: #ffb83d;	*/
 	background: #ffb924;
 	padding: 10px 0;
 	position: fixed;
@@ -36,176 +40,327 @@ body.modal-open {
 	z-index: 999;
 	transition: .5s;
 }
+
 .header-scrolled {
-	box-shadow: 0px 3px 15px -4px rgba(0,0,0, 0.75);
+	box-shadow: 0px 3px 15px -4px rgba(0, 0, 0, 0.75);
 }
 
-
-.brand {
-	float: left;
-	padding: 0;
-	margin-left: 35px;	
-}
-.brand a {
-	padding: 0;
-	text-decoration: none;
-	outline: 0;
-	font-size: 1.9em;
-	line-height: 165%;
-	font-weight: 900;
-	font-family: 'Noto Sans', 'Roboto Slab', sans-serif;
-	color: #111;
-	-webkit-background-clip: text;
-    -moz-background-clip: text;
-    background-clip: text;
-	transition: .3s;
-}
-
-.brand a:hover {
-	color: #db5353;
-	color: #000;
-	transition: 0.0s;
-}
-
+/* Menu toggle button */
 .menu-toggle {
+	display: inline-block;
+	float: left;
 	height: 44px;
 	width: 44px;
-	padding: 0;
-	margin: 0 0 0 15px;
-	display: inline-block;
-	-webkit-border-radius: 50%;
-	border-radius: 50%;
-	display: inline-block;
 	padding: 11px;
+	margin: 0 0 0 15px;
+	border-radius: 50%;
 	overflow: hidden;
 	vertical-align: middle;
 	cursor: pointer;
-	-webkit-user-select: none;
+	user-select: none;
 }
 
 .menu-toggle-icon {
 	display: block;
-	vertical-align: middle;
 	height: 22px;
 	width: 22px;
-	background: url('nav.svg');
-		background-position: center;
+	background: url('icons/nav.svg');
+	background-position: center;
 	background-repeat: no-repeat;
 	border: 1px solid transparent;
+	vertical-align: middle;
 	opacity: .5;
-	transition: .2s;
 }
 
 .menu-toggle:active {
 	background: rgba(0, 0, 0, 0.1);
 }
 
+/* Brand logo */
+.brand {
+	float: left;
+	padding: 0;
+	margin-left: 35px;
+	line-height: 165%;
+	font-size: 1.9em;
+	font-weight: bold;
+	font-family: 'Noto Sans', 'Roboto', sans-serif;
+	color: #111;
+}
+
+.brand a {
+	text-decoration: none;
+	outline: 0;
+	color: #111;
+	transition: .3s;
+}
+
+/* Search bar */
 .search {
 	position: relative;
-	text-align: center;
 	margin: 0 auto;
+	text-align: center;
 	width: 50%;
 }
 
+.search .search-icon {
+	left: 30px;
+	top: 1px;
+	color: #5a5a5a;
+}
 
-
-.search input{
+.search input {
 	text-indent: 32px;
 	font-size: 1em;
 	width: 90%;
 	margin: 0 auto;
-	outline: 0;
 	padding: 12px;
-
-background: rgba(0,0,0,0.04);
-border: 1px solid rgba(0,0,0,0);
--webkit-border-radius: 4px;
-border-radius: 4px;
-max-width: 720px;
-position: relative;
--webkit-transition: background 100ms ease-in,width 100ms ease-out;
-transition: background 100ms ease-in,width 100ms ease-out;
+	background: rgba(0, 0, 0, 0.04);
+	border: 1px solid rgba(0, 0, 0, 0);
+	border-radius: 4px;
+	position: relative;
+	transition: background 100ms ease-in, width 100ms ease-out;
 }
-
 
 .search input:focus {
-	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 	background: #fff;
-}
-
-.search .glyphicon-search { 
-  left: 30px;
-  top: 1px;
-  color: #5a5a5a;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 .search input::-webkit-input-placeholder {
-	font-weight: 300;
-	color: #e2e2e2;
 	color: #5a5a5a;
 }
 
 .search input::-moz-placeholder {
-	font-weight: 300;
-	color: #e2e2e2;
 	color: #5a5a5a;
 }
 
 .search input::input-placeholder {
-	font-weight: 300;
-	color: #e2e2e2;
 	color: #5a5a5a;
 }
 
-
-/* Brand and Search Responsive Styles */
-@media screen and (max-width: 800px) {
+/* Header, brand, search etc. responsive styles */
+@media screen and (max-width: 900px) {
 
 	.brand {
-		float: none;
-		padding: 0;
-		margin-top: 20px;
-		text-align: left;
+		margin-left: 10px;
 	}
 
 	.search {
-		text-align: left;
-		margin: 20px 30px;
+		float: right;
 	}
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 450px) {
+
+	.brand {
+		font-size: 1.8em;
+		margin-left: 25px;
+	}
+
 	.search {
-		width: 70%;
+		width: 100%;
+		text-align: center;
+		margin-top: 5px;
 	}
-}
 
-.notes-container {
-	padding-right: 20px;
-	padding-top: 100px;
-}
+	.search-icon {
+		display: none;
+	}
 
-@media screen and (max-width: 680px) {
+	.search input {
+		text-indent: 0;
+		font-size: .9em;
+		padding: 7px;
+	}
+
+	/* Notes container must be padded downwards some more, 
+	because the header height doubles when search bar gains 100% width */
 	.notes-container {
-		padding-left: 8px;
-		padding-right: 8px;
+		padding-top: 125px !important;
 	}
 }
 
-.masonry-item {
-	background: #f9f9f9;
-	border-radius: 0;
-	word-wrap: break-word;
-	padding: 0;
+@media screen and (max-width: 250px) {
+
+	.brand {
+		font-size: 1.1em;
+		margin-top: 10px;
+	}
 }
 
 
+/* Sidebar layout (sidebar is inside the header element) */
+.sidebar-container {
+	position: absolute;
+	left: 0px;
+	top: 100%;
+	bottom: 0;
+	height: -webkit-calc(100vh - 100%);
+	height: calc(100vh - 100%);
+	overflow-x: hidden;
+	overflow-y: hidden;
+	z-index: 999;
+	width: 275px;
+	margin-top: 1px;
+	background: transparent;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+
+.sidebar-container:hover {
+	overflow-y: auto;
+}
+
+/* Used on menu toggle */
+.sidebar-container.sidebar-toggled {
+	left: -275px !important;	/* hide the sidebar to the left */
+}
+
+/* Sidebar nav styles */
+.sidebar-nav {
+	display: block;
+	padding: 0;
+	list-style: none;
+	padding: 8px 0;
+}
+
+.sidebar-nav:not(:last-child) {
+	border-bottom: 1px solid #ddd;
+}
+
+.sidebar-nav li {
+	display: block;
+	font-family: 'Roboto', sans-serif;
+	font-size: 0.9em;
+	line-height: 40px;
+}
+
+.sidebar-nav li a {
+	display: block;
+	text-decoration: none;
+	padding: 5px 10px 5px 20px;
+	color: #666;
+}
+
+.sidebar-nav li a:hover, .sidebar-nav li a:active {
+	background: rgba(0, 0, 0, 0.05);
+}
+
+.side-icon {
+	background-position: center;
+	background-repeat: no-repeat;
+	-webkit-background-size: 24px 24px;
+	background-size: 24px 24px;
+	border: 1px solid transparent;
+	height: 24px;
+	width: 24px;
+	opacity: .6;
+	transition: .2s;
+	float: left;
+	vertical-align: middle;
+	margin: 8px 35px 0 2px;
+}
+
+
+/* Notes container, note tiles styles */
+.notes-container {
+	display: block;
+	padding-top: 100px;
+	padding-left: 200px;	/* To center the notes, because note-tiles are left floated in the Packery layout */
+	padding-right: 0;
+	left: 100px;	/* Shift away notes-container from left when sidebar is being shown */
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+
+/* Used on menu toggle */
+.notes-container.notes-toggled {
+	margin-left: auto !important;
+	margin-right: auto !important;
+	left: 0;	/* Remove the distance from left to move notes-container to its usual position when when sidebar is not being shown */
+}
+
+/* Sidebar + notes container combined responsive styles */
+@media screen and (max-width: 800px) {
+
+	.sidebar-container {
+		background: #fdfdfd;
+		box-shadow: 0px 10px 15px -4px rgba(0, 0, 0, 0.75);
+		margin-top: 0;
+		left: -275px;	/* by default, hide the sidebar to the left on small devices */
+	}
+
+	.sidebar-container.sidebar-toggled {
+		left: 0px !important;	/* make the sidebar become visible */
+	}
+
+	.notes-container {
+		left: 0 !important;	/* notes-container is not shifted away from left on small devices */
+	}
+
+	.notes-container.notes-toggled {
+		left: 0 !important;	/* don't bring any changes to notes-container position on menu toggle */
+	}
+}
+
+
+/* Note tiles */
 .note {
+	padding: 0;
+	background: #fdfdfd;	/* default note color */
 	border-radius: 2px;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.12);
-    transition: .3s !important;
+	word-wrap: break-word;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 
+				0 3px 1px -2px rgba(0, 0, 0, 0.2), 
+				0 1px 5px 0 rgba(0, 0, 0, 0.12);
+	transition: .3s !important;
+	width: 21.5%;
+}
+
+/* Note tiles + notes container combined responsive styles */
+@media screen and (max-width: 1080px) {
+
+	.notes-container {
+		padding-left: 17%;
+	}
+
+	.note {
+		width: 30%;
+	}
+}
+
+@media screen and (max-width: 850px) {
+
+	.notes-container {
+		padding-left: 20%;
+	}
+}
+
+@media screen and (max-width: 800px) {
+
+	.notes-container {
+		padding-left: 10%;
+	}
+
+	.note {
+		width: 40%;
+	}
+}
+
+@media screen and (max-width: 450px) {
+
+	.notes-container {
+		padding-left: 2%;
+	}
+
+	.note {
+		width: 45%;
+	}
 }
 
 
@@ -602,7 +757,6 @@ border-radius: 2px;
 	opacity: .7;
 	transition: .2s;
 }
-
 .opt-icon:hover {
 	opacity: 1;
 }
@@ -622,43 +776,51 @@ border-radius: 2px;
 	opacity: 1;
 }
 
-.opt-icon-archive {
+
+
+
+
+.icon-archive {
 	background-image: url('archive.svg');
 }
 
-.opt-icon-trash {
+.icon-trash {
 	background-image: url('trash.svg');
 }
 
-.opt-icon-palette {
+.icon-palette {
 	background-image: url('palette.svg');
 }
 
-.opt-icon-pencil {
+.icon-pencil {
 	background-image: url('pencil.svg');
 }
 
-.opt-icon-mic {
+.icon-mic {
 	background-image: url('mic.svg');
 }
 
-.opt-icon-mic-active {
+.icon-mic-active {
 	background-image: url('mic-active.svg');
 }
 
-.opt-icon-mic-slash {
+.icon-mic-slash {
 	background-image: url('mic-slash.svg');
 }
 
-.opt-icon-speaker {
+.icon-speaker {
 	background-image: url('speaker.svg');
 }
 
-.opt-icon-check {
+.icon-check {
 	background-image: url('check.svg');
 }
 
-.opt-icon-dots {
+.icon-paperclip {
+	background-image: url('paperclip.svg');
+}
+
+.icon-dots {
 	background-image: url('dots.svg');
 }
 
@@ -676,98 +838,3 @@ border-radius: 2px;
 
 
 
-.notes-container {
-    padding-top: 100px;
-    padding-left: 200px;
-    left: 100px;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-    height: 100%;
-}
-
-
-.notes-container.notes-toggled {
-    margin-left: auto !important;
-/*   padding-left: 200px;*/
-	left: 0;
-}
-
-.sidebar-container {
-    z-index: 1000;
-    position: fixed;
-    height: 100%;
-    background: #000;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-
-
-
-background: transparent;
--webkit-transition: all 0.5s ease;
--moz-transition: all 0.5s ease;
--o-transition: all 0.5s ease;
- transition: all 0.5s ease;
- bottom: 0;
-height: -webkit-calc(100vh - 100%);
- height: calc(100vh - 100%);
- overflow-y: hidden;
- overflow-x: hidden;
-position: absolute;
-top: 100%;
-z-index: 990;
-will-change: visibility;
-width: 275px;
-left: 0px;
-margin-top: 1px;
-padding-top: 10px;
-}
-
-.sidebar-container:hover {
-    overflow-y: auto;
-}
-
-
-.sidebar-toggled {
-/*    width: 0px !important;
-*/    left: -275px !important;
-}
-
-
-/* Sidebar Styles */
-
-.sidebar-nav {
-	display: block;
-    padding: 0;
-    list-style: none;
-}
-
-.sidebar-nav:not(:last-child) {
-	border-bottom: 1px solid #ddd;
-}
-
-.sidebar-nav li {
-	display: block;
-    line-height: 40px;
-}
-
-.sidebar-nav li a {
-    display: block;
-    padding: 8px 10px 8px 30px;
-    text-decoration: none;
-    color: #999999;
-}
-
-.sidebar-nav li a:hover {
-    text-decoration: none;
-    color: ;
-    background: rgba(0, 0, 0, 0.05);
-}
-
-.sidebar-nav li a:active,
-.sidebar-nav li a:focus {
-    text-decoration: none;
-}

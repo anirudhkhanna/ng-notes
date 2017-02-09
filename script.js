@@ -37,8 +37,13 @@ function setBackButtonToModalClose() {
 
 	// When any time a modal is shown
 	$('.modal').on('shown.bs.modal', function() {
-		var urlReplace = '#' + $(this).attr('id'); // make the hash the id of the modal shown
+
+	/*	var urlReplace = '#' + $(this).attr('id'); // make the hash the id of the modal shown
 		history.pushState(null, null, urlReplace); // push state that hash into the url
+
+		// (this is not working with UI-Router because it changes the url)
+	*/
+		history.pushState(null, null, ''); // push state a blank
 	});
 
 	// If a pushState has previously happened and the back button is clicked, hide any open modals

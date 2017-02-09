@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
+
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- jQuery -->
@@ -89,21 +90,6 @@
 	<script src="notes-app.js"></script>
 	<script src="script.js"></script>
 
-
-	<style type="text/css">
-		.note {
-  			width: 250px;
-  			width: 21.5%;
-		}
-
-		@media screen and (max-width: 680px) {
-			.note {
-				width: 40%;
-			}
-		}
-
-	</style>
-
 </head>
 
 <body id="mynotes" ng-app="notesApp" ng-controller="notesController">
@@ -111,7 +97,7 @@
 	<!-- Header containing top bar and sidebar menu -->
 	<header class="header">
 
-		<a href="#menu-toggle" class="menu-toggle" id="menu-toggle" style="float:left;">
+		<a href="#menu-toggle" class="menu-toggle" id="menu-toggle">
 			<span class="menu-toggle-icon"></span>
 		</a>
 
@@ -123,8 +109,8 @@
 
 		<!-- Search bar -->
 		<div class="search">
-			<span class="glyphicon glyphicon-search"></span>
-			<input type="text" class="searchbox" placeholder="Search notes..." ng-model="searchString" />
+			<span class="search-icon glyphicon glyphicon-search"></span>
+			<input type="text" placeholder="Search notes..." ng-model="searchString" />
 		</div>
 		<!-- /.Search bar -->
 
@@ -132,13 +118,13 @@
 		<div class="sidebar-container">
 			<ul class="sidebar-nav">
 				<li>
-					<a href="#">Notes</a>
+					<a href="#"><span class="side-icon icon-paperclip"></span> Notes</a>
 				</li>
 				<li>
-					<a href="#">Archived</a>
+					<a href="#"><span class="side-icon icon-archive"></span> Archive</a>
 				</li>
 				<li>
-					<a href="#">Trash</a>
+					<a href="#"><span class="side-icon icon-trash"></span> Trash</a>
 				</li>
 			</ul>
 
@@ -178,7 +164,7 @@
 		<!-- /.Sidebar -->
 
 	</header>
-	<!-- /.Header containing top bar and sidebar menu -->
+	<!-- /.Header -->
 
 
 	<!-- Note tiles container -->
@@ -186,7 +172,7 @@
 
 		<!-- Note tile -->
 		<div class="masonry-item note" ng-class="note.colorClass" 
-		ng-repeat = "note in (notes | ngRepeatFinish:this) | filter:{isArchived:false} | filter:{isTrashed:false} | searchFor:searchString">
+		ng-repeat="note in (notes | ngRepeatFinish:this) | filter:{isArchived:false} | filter:{isTrashed:false} | searchFor:searchString">
 
 			<!-- Note-main (has note title and content, opens the corresponding note-view-modals) -->
 			<div class="note-main" data-toggle="modal" data-target="#note-view-modal-{{$index}}">
@@ -196,17 +182,17 @@
 
 			<!-- Note-opt (has note options) -->
 			<div class="note-opt">
-				<a title="Edit" class="opt-tooltip opt-icon opt-icon-pencil" data-toggle="modal" data-target="#note-edit-modal-{{$index}}"></a>
+				<a title="Edit" class="opt-tooltip opt-icon icon-pencil" data-toggle="modal" data-target="#note-edit-modal-{{$index}}"></a>
 
-				<a title="Change color" class="opt-tooltip opt-icon opt-icon-palette popup">
+				<a title="Change color" class="opt-tooltip opt-icon icon-palette popup">
 					<ul>
 						<li class="btn-color" ng-class="colorClass" ng-repeat="colorClass in colorClasses" ng-click="setNoteColor(note, colorClass)"></li>
 					</ul>
 				</a>
 
-				<a title="Archive" class="opt-tooltip opt-icon opt-icon-archive" ng-click="archiveNote(note)"></a>
+				<a title="Archive" class="opt-tooltip opt-icon icon-archive" ng-click="archiveNote(note)"></a>
 
-				<a class="opt-icon opt-icon-dots popup2">
+				<a class="opt-icon icon-dots popup2">
 					<ul>
 						<li ng-click="copyNote(note)">Make a copy</li>
 						<li ng-click="removeNote(note)">Delete note</li>
@@ -214,22 +200,26 @@
 				</a>
 			</div>
 		</div>		
-		<!-- Note tile -->
+		<!-- /.Note tile -->
 
 	</div>
 	<!-- /.Note tiles container -->
 
 
 	<!-- Note edit modals -->
-	<div class="modal fade-pop note-modal note-edit-modal" ng-repeat = "note in notes | searchFor:searchString" id="note-edit-modal-{{$index}}" role="dialog" edit-modals-loaded-directive>
+	<div class="modal fade-pop note-modal note-edit-modal" 
+	ng-repeat="note in notes | filter:{isArchived:false} | filter:{isTrashed:false} | searchFor:searchString" id="note-edit-modal-{{$index}}" role="dialog" edit-modals-loaded-directive>
+
 		<div class="modal-dialog">
 
-		<!-- Modal Content -->
+		<!-- Modal content -->
 		<div class="modal-content" ng-class="note.colorClass">
 
 			<!-- Edit Note Form -->
-			<form class="edit-note-form">	    	
-				<button type="button" class="close"  data-dismiss="modal">&times;</button>
+			<form class="edit-note-form">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+				<!-- Modal header -->
 				<div class="modal-header">
 					<div class="form-group">
 						<label class="sr-only" for="title">Title: </label>
@@ -237,6 +227,7 @@
 					</div>
 				</div>
 
+				<!-- Modal body -->
 				<div class="modal-body">
 					<div class="form-group">
 						<label class="sr-only" for="content">Content: </label>
@@ -244,74 +235,80 @@
 					</div>
 				</div>
 
+				<!-- Modal footer -->
 				<div class="modal-footer">
 					<div class="note-modal-opt">
- 					
-		 				<a title="Speech input" class="tooltip-opt speech-input opt-icon-lg opt-icon-mic" ng-click="speechInput($index)"></a>
+						<a title="Speech input" class="opt-tooltip opt-icon-lg icon-mic speech-input" ng-click="speechInput($index)"></a>
 
-	 					<a title="Change color" class="tooltip-opt popup opt-icon-lg opt-icon-palette">
-            			<ul>
-		                	<li ng-class="colorClass" class="btn-color" ng-repeat="colorClass in colorClasses" ng-click="setNoteColor(note, colorClass)"></li>
-            			</ul>
+						<a title="Change color" class="opt-tooltip opt-icon-lg icon-palette popup">
+							<ul>
+								<li ng-class="colorClass" class="btn-color" ng-repeat="colorClass in colorClasses" ng-click="setNoteColor(note, colorClass)"></li>
+							</ul>
 						</a>
- 						
-		 				<a title="Archive" class="tooltip-opt opt-icon-lg opt-icon-archive" ng-click="removeNoteViaModal(note, $index)" data-dismiss="modal"></a>
-		 				<a title="Delete" class="tooltip-opt opt-icon-lg opt-icon-trash" ng-click="removeNoteViaModal(note, $index)" data-dismiss="modal"></a>
 
-						<a title="All done" class="tooltip-opt opt-icon-lg opt-icon-check" data-dismiss="modal"></a>
+						<a title="Archive" class="opt-tooltip opt-icon-lg icon-archive" ng-click="archiveNoteViaModal(note, $index)" data-dismiss="modal"></a>
+
+						<a title="Delete" class="opt-tooltip opt-icon-lg icon-trash" ng-click="removeNoteViaModal(note, $index)" data-dismiss="modal"></a>
+
+						<a title="All done" class="opt-tooltip opt-icon-lg icon-check" data-dismiss="modal"></a>
 					</div>
 				</div>
-			</form>
-		
-		</div>
+			</form> <!-- /.Edit Note Form -->
+
+		</div> <!-- /.Modal content -->
 
 		</div>
 
 	</div>
-	<!-- /.Note Edit Modals -->
+	<!-- /.Note edit modals -->
 
 
-	<!-- Note View Modals -->
-	<div class="modal fade-pop note-modal note-view-modal" ng-repeat = "note in notes | searchFor:searchString" id="note-view-modal-{{$index}}" role="dialog" view-modals-loaded-directive>
+	<!-- Note view modals -->
+	<div class="modal fade-pop note-modal note-view-modal" 
+	ng-repeat="note in notes | filter:{isArchived:false} | filter:{isTrashed:false} | searchFor:searchString" id="note-view-modal-{{$index}}" role="dialog" view-modals-loaded-directive>
+
 		<div class="modal-dialog">
 
-		<!-- Modal Content -->
+		<!-- Modal content -->
 		<div class="modal-content" ng-class="note.colorClass">
 
+			<!-- Modal header -->
 			<div class="modal-header">
-				<button type="button" class="close"  data-dismiss="modal">&times;</button>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<h3 class="note-title">{{note.title}}</h3>
 			</div>
 
+			<!-- Modal body -->
 			<div class="modal-body">
 				<p class="note-content" froala-view="note.content"></p>
 			</div>
 
+			<!-- Modal footer -->
 			<div class="modal-footer">
 				<div class="note-modal-opt">
-					<a title="Edit" class="tooltip-opt opt-icon-lg opt-icon-pencil" data-toggle="modal" ng-click="openEditModalViaViewModal($index)"></a> 					
- 					<a title="Change color" class="tooltip-opt popup opt-icon-lg opt-icon-palette">
-           			<ul>
-	                	<li ng-class="colorClass" class="btn-color" ng-repeat="colorClass in colorClasses" ng-click="setNoteColor(note, colorClass)"></li>
-            		</ul>
-					</a>
- 				
-	 				<a title="Archive" class="tooltip-opt opt-icon-lg opt-icon-archive" ng-click="removeNoteViaModal(note, $index)" data-dismiss="modal"></a>
-		 			<a title="Delete" class="tooltip-opt opt-icon-lg opt-icon-trash" ng-click="removeNoteViaModal(note, $index)" data-dismiss="modal"></a>
+					<a title="Edit" class="opt-tooltip opt-icon-lg icon-pencil" data-toggle="modal" ng-click="openEditModalViaViewModal($index)"></a>
 
-					<a title="All done" class="tooltip-opt opt-icon-lg opt-icon-check" data-dismiss="modal"></a>
+					<a title="Change color" class="opt-tooltip opt-icon-lg icon-palette popup">
+						<ul>
+							<li ng-class="colorClass" class="btn-color" ng-repeat="colorClass in colorClasses" ng-click="setNoteColor(note, colorClass)"></li>
+						</ul>
+					</a>
+
+					<a title="Archive" class="opt-tooltip opt-icon-lg icon-archive" ng-click="archiveNoteViaModal(note, $index)" data-dismiss="modal"></a>
+
+					<a title="Delete" class="opt-tooltip opt-icon-lg icon-trash" ng-click="removeNoteViaModal(note, $index)" data-dismiss="modal"></a>
+
+					<a title="All done" class="opt-tooltip opt-icon-lg icon-check" data-dismiss="modal"></a>
 				</div>
 
-<!-- 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
 			</div>
 		
-		</div>
+		</div> <!-- /.Modal content -->
 
 		</div>
 
 	</div>
-	<!-- /.Note View Modals -->
-
+	<!-- /.Note view modals -->
 
 
 	<!-- Add New Note -->
@@ -351,7 +348,6 @@
 		</div>
 	</div>
 	<!-- /.Add New Note -->
-
 
 </body>
 </html>
