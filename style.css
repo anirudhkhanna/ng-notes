@@ -1,5 +1,5 @@
 body {
-/*	overflow-x: hidden;	*/
+	overflow-x: hidden;
 	background: #f0f0f0;
 	font-family: 'Roboto Slab', sans-serif;
 }
@@ -216,7 +216,7 @@ body.modal-open {
 
 /* Used on menu toggle */
 .sidebar-container.sidebar-toggled {
-	left: -275px !important;	/* hide the sidebar to the left */
+	left: -275px !important;	/* hide the sidebar to the left on menu toggle */
 }
 
 /* Sidebar nav styles */
