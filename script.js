@@ -151,8 +151,8 @@ var start_timestamp;
 if(!('webkitSpeechRecognition' in window)) {
 
 	$(document).ready(function() {
-		$('.modal .speech-input').removeClass('opt-icon-mic');
-		$('.modal .speech-input').addClass('opt-icon-mic-slash');
+		$('.modal .speech-input').removeClass('icon-mic');
+		$('.modal .speech-input').addClass('icon-mic-slash');
 		$('.modal .speech-input').addClass('opt-icon-lg-disabled');
 		$('.modal .speech-input').attr('title', 'Speech input is not supported in your browser.');
 		$('.modal .speech-input').tooltipster('destroy');
@@ -168,24 +168,24 @@ else {
 
 	recognition.onstart = function() {
 		recognizing = true;
-		$('.modal .speech-input').removeClass('opt-icon-mic');
-		$('.modal .speech-input').removeClass('opt-icon-mic-slash');
-		$('.modal .speech-input').addClass('opt-icon-mic-active');
+		$('.modal .speech-input').removeClass('icon-mic');
+		$('.modal .speech-input').removeClass('icon-mic-slash');
+		$('.modal .speech-input').addClass('icon-mic-active');
 	};
 
 	recognition.onerror = function(event) {
 		if(event.error == 'no-speech') {
-			$('.modal .speech-input').removeClass('opt-icon-mic-slash');
-			$('.modal .speech-input').removeClass('opt-icon-mic-active');
-			$('.modal .speech-input').addClass('opt-icon-mic');
+			$('.modal .speech-input').removeClass('icon-mic-slash');
+			$('.modal .speech-input').removeClass('icon-mic-active');
+			$('.modal .speech-input').addClass('icon-mic');
 
 			alert('No speech was detected. You may need to adjust your microphone settings.');
 			ignore_onend = true;
 		}
 		if(event.error == 'audio-capture') {
-			$('.modal .speech-input').removeClass('opt-icon-mic-slash');
-			$('.modal .speech-input').removeClass('opt-icon-mic-active');
-			$('.modal .speech-input').addClass('opt-icon-mic');
+			$('.modal .speech-input').removeClass('icon-mic-slash');
+			$('.modal .speech-input').removeClass('icon-mic-active');
+			$('.modal .speech-input').addClass('icon-mic');
 
 			alert('No microphone was found. Ensure that a microphone is installed and the microphone settings are configured correctly.');
 			ignore_onend = true;
@@ -208,19 +208,21 @@ else {
 			return;
 		}
 
-		$('.modal .speech-input').removeClass('opt-icon-mic-active');
-		$('.modal .speech-input').addClass('opt-icon-mic');
+		$('.modal .speech-input').removeClass('icon-mic-active');
+		$('.modal .speech-input').addClass('icon-mic');
 
 		if(!final_transcript) {
 			return;
 		}
 
+	/*	
 		if(window.getSelection) {
 			window.getSelection().removeAllRanges();
 			var range = document.createRange();
 			range.selectNode(document.getElementById('final_span'));
 			window.getSelection().addRange(range);
 		}
+	*/
 	};
 
 	recognition.onresult = function(event) {
@@ -260,8 +262,8 @@ function startDictation(event, editbox) {
 	recognition.start();
 	ignore_onend = false;
 
-	$('.modal .speech-input').removeClass('opt-icon-mic');
-	$('.modal .speech-input').addClass('opt-icon-mic-slash');
+	$('.modal .speech-input').removeClass('icon-mic');
+	$('.modal .speech-input').addClass('icon-mic-slash');
 
 	start_timestamp = event.timeStamp;
 }
