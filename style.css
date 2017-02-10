@@ -27,6 +27,17 @@ body.modal-open {
 }
 
 
+/* Tooltip customization */
+.tooltipster-sidetip.tooltipster-borderless.tooltipster-borderless-customized .tooltipster-box {
+}
+
+.tooltipster-sidetip.tooltipster-borderless.tooltipster-borderless-customized .tooltipster-content {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 5px 8px;
+}
+
+
 /* Header, brand, search etc. styles */
 
 /* Header */
@@ -322,6 +333,18 @@ body.modal-open {
 	width: 21.5%;
 }
 
+.note:hover {
+	-webkit-box-shadow: rgba(0, 0, 0, .35) 0 4px 10px, 
+						inset 1px 1px 0 rgba(0, 0, 0, .1), 
+						inset -1px -1px 0 rgba(0, 0, 0, .07);
+	-moz-box-shadow: rgba(0, 0, 0, .35) 0 4px 10px, 
+						inset 1px 1px 0 rgba(0, 0, 0, .1), 
+						inset -1px -1px 0 rgba(0, 0, 0, .07);
+	box-shadow: rgba(0, 0, 0, .35) 0 4px 10px, 
+				inset 1px 1px 0 rgba(0, 0, 0, .1), 
+				inset -1px -1px 0 rgba(0, 0, 0, .07);
+}
+
 /* Note tiles + notes container combined responsive styles */
 @media screen and (max-width: 1080px) {
 
@@ -355,21 +378,16 @@ body.modal-open {
 @media screen and (max-width: 450px) {
 
 	.notes-container {
-		padding-left: 2%;
+		padding-left: 5%;
 	}
 
 	.note {
-		width: 45%;
+		width: 90%;
 	}
 }
 
 
-/* Note tile main */
-.note .note-main {
-    padding: 0.75em 1.5em 0.85em 1.5em;
-}
-
-/* Maintain images in note tiles */
+/* To maintain images in note tiles */
 .note img {
 	display: block;
 	max-width: 100%;
@@ -377,46 +395,44 @@ body.modal-open {
 	margin: 10px auto;
 }
 
-.note:hover {
-	-webkit-box-shadow: rgba(0, 0, 0, .35) 0 4px 10px, 
-						inset 1px 1px 0 rgba(0,0,0,.1), inset -1px -1px 0 rgba(0,0,0,.07);
-	box-shadow: rgba(0, 0, 0, .35) 0 4px 10px, 
-				inset 1px 1px 0 rgba(0,0,0,.1), inset -1px -1px 0 rgba(0,0,0,.07);
-    transition: .3s !important;
+/* Note tile main section (has note title and note content) */
+.note .note-main {
+	padding: 0.75em 1.5em 0.85em 1.5em;
 }
 
 .note-title {
-	font-family: 'Roboto Condensed';
+	font-family: 'Roboto Condensed', sans-serif;
 	font-size: 22px;
 	font-weight: bold;
 }
 
 .note-content {
-	white-space: pre;
+	font-family: 'Roboto Slab', sans-serif;
+	font-size: 14px;
 	white-space: pre-wrap;
+	overflow-x: hidden;
 }
 
-/* Note tile options */
-.note-opt {
+/* Note tile options section */
+.note .note-opt {
 	text-align: right;
 	padding: 0 0.8em 0.2em 1.2em;
-	visibility: hidden;
+	visibility: hidden;	/* Not visible initially */
 	opacity: 0;
 }
 
 .note:hover .note-opt {
-	visibility: visible;
+	visibility: visible;	/* Make note options become visible when a note is hovered */
 	opacity: 1;
 	transition: opacity .5s;
 }
 
-.note-opt::after { 	/* Clearfix */
+.note-opt::after {	/* Clearfix */
 	clear: both;
 	content: " ";
 	display: block;
 	height: 0;
 }
-
 
 .note-opt a.opt-icon {
 	display: inline-block;
@@ -435,26 +451,66 @@ body.modal-open {
 	color: #050505;
 }
 
-/* Don't show note options on mobile */
-@media screen and (max-width: 680px) {
-	.note-opt {
-		display: none;
-		display: inherit;
+.opt-icon {
+	background-position: center;
+	background-repeat: no-repeat;
+	-webkit-background-size: 18px 18px;
+	background-size: 18px 18px;
+	border: 1px solid transparent;
+	height: 24px;
+	width: 24px;
+	opacity: .7;
+	transition: .2s;
+}
+
+.opt-icon:hover {
+	opacity: 1;
+}
+
+/* Don't hide note options in note tiles on small devices (always visible) */
+@media screen and (max-width: 650px) {
+
+	.note .note-opt {
+		visibility: visible;
+		opacity: 1;
 	}
 }
 
 
-/* Note mmodal */
+/* Note modals (view mode and edit mode) */
 .note-modal {
 	word-wrap: break-word;
 	overflow-y: scroll;
 }
-.note-modal-opt {
-	margin-right: 15px;
-	text-align: right;
-	display: inline-block;
+
+/* Modal animation effect */
+.fade-pop {
+	opacity: 0;
+	-webkit-transition: opacity .3s linear;
+	-moz-transition: opacity .3s linear;
+	-o-transition: opacity .3s linear;
+	transition: opacity .3s linear;
 }
-.note-modal-opt::after { 	/* Clearfix */
+
+.fade-pop.in {
+	opacity: 1;
+}
+
+/* To maintain images in note modals */
+.note-modal img {
+	display: block;
+	max-width: 100%;
+	margin: 10px auto;
+}
+
+/* Note modal options section */
+.note-modal-opt {
+	display: inline-block;
+	text-align: right;
+	margin-right: 15px;
+}
+
+.note-modal-opt::after {	/* Clearfix */
 	clear: both;
 	content: " ";
 	display: block;
@@ -469,18 +525,39 @@ body.modal-open {
 	padding: 0.2em 0.35em 0 0.35em;
 	border: 0;
 	outline: 0;
+	color: #2c2c2c;
 }
+
 .note-modal-opt a.opt-icon-lg:hover {
 	text-decoration: none;
 	cursor: pointer;
+	color: #050505;
 }
 
 .note-modal-opt a.opt-icon-lg-disabled:hover {
-	cursor: default;
+	cursor: default !important;
+	opacity: .7 !important;
+}
+
+.opt-icon-lg {
+	background-position: center;
+	background-repeat: no-repeat;
+	-webkit-background-size: 24px 24px;
+	background-size: 24px 24px;
+	border: 1px solid transparent;
+	height: 28px;
+	width: 28px;
 	opacity: .7;
+	transition: .2s;
+}
+
+.opt-icon-lg:hover {
+	opacity: 1;
 }
 
 
+
+/**/
 
 .note-edit-modal button.close {
 	margin-right: 10px;
@@ -503,28 +580,11 @@ body.modal-open {
 	padding-left: 25px;
 }
 
-.note-modal img {
-	display: block;
-	max-width: 100%;
-	margin: 10px auto;
-}
 
 .note-view-modal .note-content {
 	min-height: 300px;
 }
 
-.fade-pop {
-
-  opacity: 0;
--webkit-transition: opacity .3s linear;
--o-transition: opacity .3s linear;
-transition: opacity .3s linear;
-
-}
-
-.fade-pop.in {
-  opacity: 1;
-}
 
 .edit-note-form .form-group {
 	margin-bottom: 0;
@@ -552,13 +612,6 @@ transition: opacity .3s linear;
 	font-weight: bold;
 	color: #252525;
 }
-
-/*.edit-note-form .ta-scroll-window.form-control:hover {
-	box-shadow: 0px 5px 15px -5px rgba(0,0,0,0.65);
-}
-*/
-
-
 
 
 .edit-note-form .input-content {
@@ -648,13 +701,7 @@ transition: opacity .3s linear;
 
 
 
-.tooltipster-sidetip.tooltipster-borderless.tooltipster-borderless-customized .tooltipster-box {
-}
-.tooltipster-sidetip.tooltipster-borderless.tooltipster-borderless-customized .tooltipster-content {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	padding: 5px 8px;
-}
+
 
 
 .btn-color {
@@ -667,10 +714,6 @@ transition: opacity .3s linear;
 	-webkit-box-shadow: inset 1px 1px 0 rgba(0,0,0,.1), inset -1px -1px 0 rgba(0,0,0,.07);
 	box-shadow: inset 1px 1px 0 rgba(0,0,0,.1), inset -1px -1px 0 rgba(0,0,0,.1);
 }
-
-
-
-
 
 .popup { list-style-type:none; position:relative;}
 .popup ul{ position:absolute; bottom: 110%; left: -50px; margin:0px; padding:0px; visibility:hidden; opacity: 0; transition: .2s; background: #fff; width: 120px;
@@ -731,12 +774,14 @@ text-align: left;
   -webkit-transition-delay: .3s, 0s, 0.3s; /* this removes the transition delay so the menu will be visible while the other styles transition */
   -moz-transition-delay: .3s, 0s, 0.3s; /* this removes the transition delay so the menu will be visible while the other styles transition */
   transition-delay: .3s, 0s, 0.3s; /* this removes the transition delay so the menu will be visible while the other styles transition */
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .popup2 ul li{ list-style-type:none; margin: 0; padding: 5px 5px 5px 10px; display: block; width: 100%; font-family: 'Arial', sans-serif;}
 .popup2 ul li:hover{
 cursor: pointer;
-background: #fafafa;
+background: #f5f5f5;
 border-radius: 2px;
 }
 
@@ -746,95 +791,51 @@ border-radius: 2px;
 
 
 
-.opt-icon {
-	background-position: center;
-	background-repeat: no-repeat;
-	-webkit-background-size: 18px 18px;
-	background-size: 18px 18px;
-	border: 1px solid transparent;
-	height: 24px;
-	width: 24px;
-	opacity: .7;
-	transition: .2s;
-}
-.opt-icon:hover {
-	opacity: 1;
-}
-
-.opt-icon-lg {
-	background-position: center;
-	background-repeat: no-repeat;
-	-webkit-background-size: 24px 24px;
-	background-size: 24px 24px;
-	border: 1px solid transparent;
-	height: 28px;
-	width: 28px;
-	opacity: .7;
-	transition: .2s;
-}
-.opt-icon-lg:hover {
-	opacity: 1;
-}
 
 
 
 
-
+/* Icons */
 .icon-archive {
-	background-image: url('archive.svg');
+	background-image: url('icons/archive.svg');
 }
 
 .icon-trash {
-	background-image: url('trash.svg');
+	background-image: url('icons/trash.svg');
 }
 
 .icon-palette {
-	background-image: url('palette.svg');
+	background-image: url('icons/palette.svg');
 }
 
 .icon-pencil {
-	background-image: url('pencil.svg');
+	background-image: url('icons/pencil.svg');
 }
 
 .icon-mic {
-	background-image: url('mic.svg');
+	background-image: url('icons/mic.svg');
 }
 
 .icon-mic-active {
-	background-image: url('mic-active.svg');
+	background-image: url('icons/mic-active.svg');
 }
 
 .icon-mic-slash {
-	background-image: url('mic-slash.svg');
+	background-image: url('icons/mic-slash.svg');
 }
 
 .icon-speaker {
-	background-image: url('speaker.svg');
+	background-image: url('icons/speaker.svg');
 }
 
 .icon-check {
-	background-image: url('check.svg');
+	background-image: url('icons/check.svg');
 }
 
 .icon-paperclip {
-	background-image: url('paperclip.svg');
+	background-image: url('icons/paperclip.svg');
 }
 
 .icon-dots {
-	background-image: url('dots.svg');
+	background-image: url('icons/dots.svg');
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
