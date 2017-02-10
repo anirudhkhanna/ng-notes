@@ -14,10 +14,10 @@ $(window).scroll(function() {
 /* Menu toggle script */
 /* ****************** */
 $(document).ready(function() {
-	$("#menu-toggle").click(function(e) {
+	$('#menu-toggle').click(function(e) {
 		e.preventDefault();
-		$(".notes-container").toggleClass("notes-toggled");
-		$(".sidebar-container").toggleClass("sidebar-toggled");
+		$('.notes-container').toggleClass('notes-toggled');
+		$('.sidebar-container').toggleClass('sidebar-toggled');
 	});
 });
 
@@ -25,6 +25,29 @@ $(document).ready(function() {
 /* Swipe to close the sidebar on small devices */
 /* ******************************************* */
 $(document).ready(function() {
+
+	var isMobile = window.matchMedia("only screen and (max-width: 800px)");
+
+	if(isMobile.matches) {
+
+		$("body").swipe({
+			swipeStatus: function(event, phase, direction, distance, duration, fingers) {
+				// swipe right
+				if(phase == "move" && direction == "right") {
+					$(".sidebar-container").addClass("sidebar-toggled");
+					return false;
+				}
+				// swipe left
+				if(phase == "move" && direction == "left") {
+					$(".sidebar-container").removeClass("sidebar-toggled");
+					return false;
+				}
+			}
+		});
+	}
+});
+
+/*$(document).ready(function() {
 
 	var isMobile = window.matchMedia("only screen and (max-width: 800px)");
 
@@ -46,6 +69,7 @@ $(document).ready(function() {
 		});
 	}
 });
+*/
 
 
 /* Auto resizer for note title textareas */
