@@ -22,6 +22,30 @@ $(document).ready(function() {
 });
 
 
+/* Swipe to close the sidebar on small devices */
+/* ******************************************* */
+$(document).ready(function() {
+
+	var isMobile = window.matchMedia("only screen and (max-width: 800px)");
+
+	if(isMobile.matches) {
+
+		$(".sidebar-container").swipe({
+			swipeStatus: function(event, phase, direction, distance, duration, fingers) {
+				if(phase == "move" && direction == "right") {
+					$(".sidebar-container").addClass("sidebar-toggled");
+					return false;
+				}
+				if(phase == "move" && direction == "left") {
+					$(".sidebar-container").removeClass("sidebar-toggled");
+					return false;
+				}
+			}
+		});
+	}
+});
+
+
 /* Auto resizer for note title textareas */
 /* ************************************* */
 function textareaAutoResizer() {
