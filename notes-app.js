@@ -172,6 +172,57 @@ app.controller('notesController', function($scope) {
 	}
 
 
+	/* Archive a note */
+	$scope.archiveNote = function(note) {
+
+		if(note === null || typeof note !== 'object')
+			return;
+
+		var index = $scope.notes.indexOf(note);
+		$scope.notes[index].isArchived = true;
+	}
+
+
+	/* Archive a note via a modal - only after the modal has closed */
+	$scope.archiveNoteViaModal = function(note, $index) {
+
+		$('#note-view-modal-' + $index).on('hidden.bs.modal', function() {
+			$scope.archiveNote(note);
+			$scope.$apply();
+		});
+
+		$('#note-edit-modal-' + $index).on('hidden.bs.modal', function() {
+			$scope.archiveNote(note);
+			$scope.$apply();
+		});
+	}
+
+	/* Unarchive a note */
+	$scope.unarchiveNote = function(note) {
+
+		if(note === null || typeof note !== 'object')
+			return;
+
+		var index = $scope.notes.indexOf(note);
+		$scope.notes[index].isArchived = false;
+	}
+
+
+	/* Unarchive a note via a modal - only after the modal has closed */
+	$scope.unarchiveNoteViaModal = function(note, $index) {
+
+		$('#note-view-modal-' + $index).on('hidden.bs.modal', function() {
+			$scope.unarchiveNote(note);
+			$scope.$apply();
+		});
+
+		$('#note-edit-modal-' + $index).on('hidden.bs.modal', function() {
+			$scope.unarchiveNote(note);
+			$scope.$apply();
+		});
+	}
+
+
 	/* Add a note to notes */
 	$scope.addNote = function() {
 
