@@ -34,10 +34,12 @@ $(document).ready(function() {
 			swipeStatus: function(event, phase, direction, distance, duration, fingers) {
 				if(phase == "move" && direction == "right") {
 					$(".sidebar-container").addClass("sidebar-toggled");
+					$(".sidebar-container *").addClass("sidebar-toggled");
 					return false;
 				}
-				if(phase == "move" && direction == "left") {
+				if(phase == "end" && direction == "left") {
 					$(".sidebar-container").removeClass("sidebar-toggled");
+					$(".sidebar-container *").removeClass("sidebar-toggled");
 					return false;
 				}
 			}
