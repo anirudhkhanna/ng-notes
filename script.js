@@ -32,14 +32,14 @@ $(document).ready(function() {
 
 		$(".sidebar-container").swipe({
 			swipeStatus: function(event, phase, direction, distance, duration, fingers) {
+				// swipe right
 				if(phase == "move" && direction == "right") {
 					$(".sidebar-container").addClass("sidebar-toggled");
-					$(".sidebar-container *").addClass("sidebar-toggled");
 					return false;
 				}
-				if(phase == "end" && direction == "left") {
+				// swipe left
+				if(phase == "move" && direction == "left") {
 					$(".sidebar-container").removeClass("sidebar-toggled");
-					$(".sidebar-container *").removeClass("sidebar-toggled");
 					return false;
 				}
 			}
