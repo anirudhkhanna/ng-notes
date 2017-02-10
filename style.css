@@ -303,14 +303,11 @@ body.modal-open {
 		background: #fdfdfd;
 		box-shadow: 0px 10px 15px -4px rgba(0, 0, 0, 0.75);
 		margin-top: 0;
-		box-sizing: content-box;
-		border-right: 5px solid #111;
 		left: -275px;	/* by default, hide the sidebar to the left on small devices */
 	}
 
 	.sidebar-container.sidebar-toggled {
 		left: 0px !important;	/* make the sidebar become visible */
-		border: 0px !important;
 	}
 
 	.notes-container {
