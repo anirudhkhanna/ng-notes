@@ -330,7 +330,7 @@ body.modal-open {
 		position: fixed;
 		top: 0;
 		left: 0;
-		height: 100%;
+		height: 100vh;
 		width: 7%;
 		z-index: 9;
 		background: transparent;
@@ -339,12 +339,13 @@ body.modal-open {
 		-o-transition: left 0.5s ease;
 		transition: left 0.5s ease;
 		background: transparent;
+		border: 1px solid;
 	}
 
 	.swipe-listener.swipe-toggled {
 		left: 275px !important;
 		width: 100% !important;
-	/*	background: rgba(0, 0, 0, .25) !important;	*/
+		background: rgba(0, 0, 0, .25) !important;
 	}
 }
 
