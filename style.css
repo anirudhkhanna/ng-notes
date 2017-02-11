@@ -40,7 +40,7 @@ body.modal-open {
 
 /* Swipe listener */
 .swipe-listener {
-	display: none;	/* not shown normally, only on small devices */
+	display: none;	/* not shown normally, only available on small devices */
 }
 
 
@@ -334,20 +334,17 @@ body.modal-open {
 		width: 7%;
 		z-index: 9;
 		background: transparent;
-		border: 1px solid;
 		-webkit-transition: left 0.5s ease;
 		-moz-transition: left 0.5s ease;
 		-o-transition: left 0.5s ease;
 		transition: left 0.5s ease;
-	}
-
-	.swipe-listener:hover {
-		background: blue;
+		background: transparent;
 	}
 
 	.swipe-listener.swipe-toggled {
 		left: 275px !important;
-		width: 10% !important;
+		width: 100% !important;
+		background: rgba(0, 0, 0, .25) !important;
 	}
 }
 
