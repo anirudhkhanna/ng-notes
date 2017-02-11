@@ -1033,8 +1033,20 @@ body.modal-open {
 	background-image: url('icons/archive.svg');
 }
 
+.icon-unarchive {
+	background-image: url('icons/unarchive.svg');
+}
+
 .icon-trash {
 	background-image: url('icons/trash.svg');
+}
+
+.icon-delete-x {
+	background-image: url('delete.svg');
+}
+
+.icon-restore {
+	background-image: url('restore.svg');
 }
 
 .icon-palette {
