@@ -27,69 +27,113 @@ $(document).ready(function() {
 /* ******************************************* */
 $(document).ready(function() {
 
-	var isMobile = window.matchMedia("only screen and (max-width: 800px)");
+	var isMobile = window.matchMedia('only screen and (max-width: 800px)');
 
 	if(isMobile.matches) {
 
-		$(".swipe-listener").swipe({
+		// add swipe on swipe-listener
+		$('.swipe-listener').swipe({
 			swipeStatus: function(event, phase, direction, distance, duration, fingers) {
 				// swipe right
-				if(phase == "move" && direction == "right") {
-					$(".sidebar-container").addClass("sidebar-toggled");
-					$(".swipe-listener").addClass("swipe-toggled");
+				if(phase == 'move' && direction == 'right') {
+					$('.sidebar-container').addClass('sidebar-toggled');
+					$('.swipe-listener').addClass('swipe-toggled');
 					return false;
 				}
 				// swipe left
-				if(phase == "move" && direction == "left") {
-					$(".sidebar-container").removeClass("sidebar-toggled");
-					$(".swipe-listener").removeClass("swipe-toggled");
+				if(phase == 'move' && direction == 'left') {
+					$('.sidebar-container').removeClass('sidebar-toggled');
+					$('.swipe-listener').removeClass('swipe-toggled');
 					return false;
 				}
 			}
 		});
 
-		$(".sidebar-container").swipe({
+		// add swipe on sidebar-container
+		$('.sidebar-container').swipe({
 			swipeStatus: function(event, phase, direction, distance, duration, fingers) {
 				// swipe right
-				if(phase == "move" && direction == "right") {
-					$(".sidebar-container").addClass("sidebar-toggled");
-					$(".swipe-listener").addClass("swipe-toggled");
+				if(phase == 'move' && direction == 'right') {
+					$('.sidebar-container').addClass('sidebar-toggled');
+					$('.swipe-listener').addClass('swipe-toggled');
 					return false;
 				}
 				// swipe left
-				if(phase == "move" && direction == "left") {
-					$(".sidebar-container").removeClass("sidebar-toggled");
-					$(".swipe-listener").removeClass("swipe-toggled");
+				if(phase == 'move' && direction == 'left') {
+					$('.sidebar-container').removeClass('sidebar-toggled');
+					$('.swipe-listener').removeClass('swipe-toggled');
 					return false;
 				}
 			}
 		});
-	}
+	} // if over
 });
 
-/*$(document).ready(function() {
 
-	var isMobile = window.matchMedia("only screen and (max-width: 800px)");
+/* Ripple effects */
+/* ************** */
+$(document).ready(function() {
 
-	if(isMobile.matches) {
+	var parent, elem, d, x, y;
 
-		$(".sidebar-container").swipe({
-			swipeStatus: function(event, phase, direction, distance, duration, fingers) {
-				// swipe right
-				if(phase == "move" && direction == "right") {
-					$(".sidebar-container").addClass("sidebar-toggled");
-					return false;
-				}
-				// swipe left
-				if(phase == "move" && direction == "left") {
-					$(".sidebar-container").removeClass("sidebar-toggled");
-					return false;
-				}
-			}
-		});
-	}
+	/* Ripple (normal) */
+	$('.ripple').click(function(e) {
+
+		parent = $(this).parent();
+		// create the .ripple-effect element if it does not exist
+		if(parent.find('.ripple-effect').length == 0)
+			parent.prepend('<span class="ripple-effect"></span>');
+
+		elem = parent.find('.ripple-effect');
+		// in case of quick double clicks, stop the previous animation
+		elem.removeClass('animate');
+
+		// set the size of .ripple-effect
+		if(!elem.height() && !elem.width()) {
+			// use the parent's width or height, whichever is larger, for the diameter 
+			// to make a circle which can cover the entire element
+			d = Math.max(parent.outerWidth(), parent.outerHeight());
+			elem.css({height: d, width: d});
+		}
+
+		// get the click coordinates
+		// (expression: click coordinates relative to page - parent's position relative to page - half of self height/width to make it controllable from the center)
+		x = e.pageX - parent.offset().left - elem.width()/2;
+		y = e.pageY - parent.offset().top - elem.height()/2;
+
+		// set the position and add the .animate class
+		elem.css({top: y + 'px', left: x + 'px'}).addClass('animate');
+	});
+
+	/* Ripple (light) */
+	$('.ripple-light').click(function(e) {
+
+		parent = $(this).parent();
+		// create the .ripple-effect-light element if it does not exist
+		if(parent.find('.ripple-effect-light').length == 0)
+			parent.prepend('<span class="ripple-effect-light"></span>');
+
+		elem = parent.find('.ripple-effect-light');
+		// in case of quick double clicks, stop the previous animation
+		elem.removeClass('animate');
+
+		// set the size of .ripple-effect-light
+		if(!elem.height() && !elem.width()) {
+			// use the parent's width or height, whichever is larger, for the diameter 
+			// to make a circle which can cover the entire element
+			d = Math.max(parent.outerWidth(), parent.outerHeight());
+			elem.css({height: d, width: d});
+		}
+
+		// get the click coordinates
+		// (expression: click coordinates relative to page - parent's position relative to page - half of self height/width to make it controllable from the center)
+		x = e.pageX - parent.offset().left - elem.width()/2;
+		y = e.pageY - parent.offset().top - elem.height()/2;
+
+		// set the position and add the .animate class
+		elem.css({top: y + 'px', left: x + 'px'}).addClass('animate');
+	});
 });
-*/
 
 
 /* Auto resizer for note title textareas */
@@ -118,7 +162,7 @@ function setBackButtonToModalClose() {
 
 	// If a pushState has previously happened and the back button is clicked, hide any open modals
 	$(window).on('popstate', function() {
-		$(".modal").modal('hide');
+		$('.modal').modal('hide');
 	});
 }
 
