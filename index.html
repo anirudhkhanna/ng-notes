@@ -128,46 +128,45 @@
 		<div class="sidebar-container">
 			<ul class="sidebar-nav">
 				<li>
-					<a href="#"><span class="side-icon icon-paperclip"></span> Notes</a>
+					<a href="#" class="ripple"><span class="side-icon icon-paperclip"></span> Notes</a>
 				</li>
 				<li>
-					<a href="#"><span class="side-icon icon-archive"></span> Archive</a>
+					<a href="#" class="ripple"><span class="side-icon icon-archive"></span> Archive</a>
 				</li>
 				<li>
-					<a href="#"><span class="side-icon icon-trash"></span> Trash</a>
+					<a href="#" class="ripple"><span class="side-icon icon-trash"></span> Trash</a>
 				</li>
 			</ul>
 
 			<ul class="sidebar-nav">
 				<li>
-					<a href="#">Events 2</a>
+					<a href="#" class="ripple">Events 2</a>
 				</li>
 				<li>
-					<a href="#">Events 2</a>
+					<a href="#" class="ripple">Events 2</a>
 				</li>
 				<li>
-					<a href="#">Events 2</a>
+					<a href="#" class="ripple">Events 2</a>
 				</li>
 				<li>
-					<a href="#">Events 2</a>
+					<a href="#" class="ripple">Events 2</a>
 				</li>
 				<li>
-					<a href="#">Events 2</a>
+					<a href="#" class="ripple">Events 2</a>
 				</li>
 				<li>
-					<a href="#">Events 2</a>
+					<a href="#" class="ripple">Events 2</a>
 				</li>
 				<li>
-					<a href="#">Events 2</a>
+					<a href="#" class="ripple">Events 2</a>
+				</li>
+			</ul>
+			<ul class="sidebar-nav">
+				<li>
+					<a href="#" class="ripple">Settings</a>
 				</li>
 				<li>
-					<a href="#">Events 2</a>
-				</li>
-				<li>
-					<a href="#">Events 2</a>
-				</li>
-				<li>
-					<a href="#">About 2222</a>
+					<a href="#" class="ripple">About ng-notes</a>
 				</li>
 			</ul>
 		</div>
@@ -194,15 +193,15 @@
 			<div class="note-opt">
 				<a title="Edit" class="opt-tooltip opt-icon icon-pencil" data-toggle="modal" data-target="#note-edit-modal-{{$index}}"></a>
 
-				<a title="Change color" class="opt-tooltip opt-icon icon-palette popup">
+				<a title="Change color" class="opt-tooltip opt-icon icon-palette colors-popup">
 					<ul>
-						<li class="btn-color" ng-class="colorClass" ng-repeat="colorClass in colorClasses" ng-click="setNoteColor(note, colorClass)"></li>
+						<li class="color-btn" ng-class="colorClass" ng-repeat="colorClass in colorClasses" ng-click="setNoteColor(note, colorClass)"></li>
 					</ul>
 				</a>
 
 				<a title="Archive" class="opt-tooltip opt-icon icon-archive" ng-click="archiveNote(note)"></a>
 
-				<a class="opt-icon icon-dots popup2">
+				<a class="opt-icon icon-dots menu-popup">
 					<ul>
 						<li ng-click="copyNote(note)">Make a copy</li>
 						<li ng-click="removeNote(note)">Delete note</li>
@@ -250,9 +249,9 @@
 					<div class="note-modal-opt">
 						<a title="Speech input" class="opt-tooltip opt-icon-lg icon-mic speech-input" ng-click="speechInput($index)"></a>
 
-						<a title="Change color" class="opt-tooltip opt-icon-lg icon-palette popup">
+						<a title="Change color" class="opt-tooltip opt-icon-lg icon-palette colors-popup">
 							<ul>
-								<li ng-class="colorClass" class="btn-color" ng-repeat="colorClass in colorClasses" ng-click="setNoteColor(note, colorClass)"></li>
+								<li ng-class="colorClass" class="color-btn" ng-repeat="colorClass in colorClasses" ng-click="setNoteColor(note, colorClass)"></li>
 							</ul>
 						</a>
 
@@ -298,9 +297,9 @@
 				<div class="note-modal-opt">
 					<a title="Edit" class="opt-tooltip opt-icon-lg icon-pencil" data-toggle="modal" ng-click="openEditModalViaViewModal($index)"></a>
 
-					<a title="Change color" class="opt-tooltip opt-icon-lg icon-palette popup">
+					<a title="Change color" class="opt-tooltip opt-icon-lg icon-palette colors-popup">
 						<ul>
-							<li ng-class="colorClass" class="btn-color" ng-repeat="colorClass in colorClasses" ng-click="setNoteColor(note, colorClass)"></li>
+							<li ng-class="colorClass" class="color-btn" ng-repeat="colorClass in colorClasses" ng-click="setNoteColor(note, colorClass)"></li>
 						</ul>
 					</a>
 
@@ -323,7 +322,41 @@
 
 	<!-- Add New Note -->
 	<!-- Button for addNoteModal -->
-	<button title="Add new note" class="add-btn" data-toggle="modal" data-target="#addNoteModal">+</button>
+<!-- 	<div title="Add new note" class="add-div"><button class="add-btn" data-toggle="modal" data-target="#addNoteModal">+</button></div> -->
+	<div title="Add new note" class="add-div"><button class="add-btn ripple" data-toggle="modal" data-target="#addNoteModal">+</button></div>
+	<script type="text/javascript">
+	//jQuery time
+var parent, ink, d, x, y;
+
+$(".ripple").click(function(e){
+	parent = $(this).parent();
+	//create .ink element if it doesn't exist
+	if(parent.find(".ripple-effect").length == 0)
+		parent.prepend("<span class='ripple-effect'></span>");
+		
+	ink = parent.find(".ripple-effect");
+	//incase of quick double clicks stop the previous animation
+	ink.removeClass("animate");
+	
+	//set size of .ink
+	if(!ink.height() && !ink.width())
+	{
+		//use parent's width or height whichever is larger for the diameter to make a circle which can cover the entire element.
+		d = Math.max(parent.outerWidth(), parent.outerHeight());
+		ink.css({height: d, width: d});
+	}
+	
+	//get click coordinates
+	//logic = click coordinates relative to page - parent's position relative to page - half of self height/width to make it controllable from the center;
+	x = e.pageX - parent.offset().left - ink.width()/2;
+	y = e.pageY - parent.offset().top - ink.height()/2;
+	
+	//set the position and add class .animate
+	ink.css({top: y+'px', left: x+'px'}).addClass("animate");
+})
+
+
+	</script>
 
 	<!-- addNoteModal -->
 	<div id="addNoteModal" class="modal fade add-note-modal" role="dialog">
