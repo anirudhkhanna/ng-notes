@@ -38,6 +38,12 @@ body.modal-open {
 }
 
 
+/* Swipe listener */
+.swipe-listener {
+	display: none;	/* not shown normally, only on small devices */
+}
+
+
 /* Header, brand, search etc. styles */
 
 /* Header */
@@ -317,6 +323,23 @@ body.modal-open {
 
 	.notes-container.notes-toggled {
 		left: 0 !important;	/* don't bring any changes to notes-container position on menu toggle */
+	}
+
+	.swipe-listener {
+		display: block;
+		position: fixed;
+		top: 0;
+		border: 0;
+		height: 100%;
+		width: 7%;
+		float: left;
+		z-index: 9;
+		background: transparent;
+		border: 1px solid;
+	}
+	
+	.swipe-listener:hover {
+		background: blue;
 	}
 }
 
