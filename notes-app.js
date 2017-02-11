@@ -1,6 +1,6 @@
 
 /* Notes app */
-var app = angular.module('notesApp', ['froala']);
+var app = angular.module('notesApp', ['froala', 'ui.router']);
 
 /* Notes conrtroller */
 app.controller('notesController', function($scope) {
@@ -101,7 +101,9 @@ app.controller('notesController', function($scope) {
 	$scope.note = {
 		title: '',
 		content: '',
-		colorClass: ''
+		colorClass: '',
+		isArchived: false,
+		isTrashed: false
 	};
 
 
@@ -146,32 +148,6 @@ app.controller('notesController', function($scope) {
 	}
 
 
-	/* Remove a note from notes */
-	$scope.removeNote = function(note) {
-
-		if(note === null || typeof note !== 'object')
-			return;
-
-		var index = $scope.notes.indexOf(note);
-		$scope.notes.splice(index, 1);
-	}
-
-
-	/* Remove a note via a modal - only after the modal has closed */
-	$scope.removeNoteViaModal = function(note, $index) {
-		
-		$('#note-view-modal-' + $index).on('hidden.bs.modal', function() {
-			$scope.removeNote(note);
-			$scope.$apply();
-		});
-
-		$('#note-edit-modal-' + $index).on('hidden.bs.modal', function() {
-			$scope.removeNote(note);
-			$scope.$apply();
-		});
-	}
-
-
 	/* Archive a note */
 	$scope.archiveNote = function(note) {
 
@@ -181,7 +157,6 @@ app.controller('notesController', function($scope) {
 		var index = $scope.notes.indexOf(note);
 		$scope.notes[index].isArchived = true;
 	}
-
 
 	/* Archive a note via a modal - only after the modal has closed */
 	$scope.archiveNoteViaModal = function(note, $index) {
@@ -207,7 +182,6 @@ app.controller('notesController', function($scope) {
 		$scope.notes[index].isArchived = false;
 	}
 
-
 	/* Unarchive a note via a modal - only after the modal has closed */
 	$scope.unarchiveNoteViaModal = function(note, $index) {
 
@@ -218,6 +192,80 @@ app.controller('notesController', function($scope) {
 
 		$('#note-edit-modal-' + $index).on('hidden.bs.modal', function() {
 			$scope.unarchiveNote(note);
+			$scope.$apply();
+		});
+	}
+
+
+	/* Trash a note */
+	$scope.trashNote = function(note) {
+
+		if(note === null || typeof note !== 'object')
+			return;
+
+		var index = $scope.notes.indexOf(note);
+		$scope.notes[index].isTrashed = true;
+	}
+
+	/* Trash a note via a modal - only after the modal has closed */
+	$scope.trashNoteViaModal = function(note, $index) {
+
+		$('#note-view-modal-' + $index).on('hidden.bs.modal', function() {
+			$scope.trashNote(note);
+			$scope.$apply();
+		});
+
+		$('#note-edit-modal-' + $index).on('hidden.bs.modal', function() {
+			$scope.trashNote(note);
+			$scope.$apply();
+		});
+	}
+
+	/* Untrash a note */
+	$scope.untrashNote = function(note) {
+
+		if(note === null || typeof note !== 'object')
+			return;
+
+		var index = $scope.notes.indexOf(note);
+		$scope.notes[index].isTrashed = false;
+	}
+
+	/* Untrash a note via a modal - only after the modal has closed */
+	$scope.untrashNoteViaModal = function(note, $index) {
+
+		$('#note-view-modal-' + $index).on('hidden.bs.modal', function() {
+			$scope.untrashNote(note);
+			$scope.$apply();
+		});
+
+		$('#note-edit-modal-' + $index).on('hidden.bs.modal', function() {
+			$scope.untrashNote(note);
+			$scope.$apply();
+		});
+	}
+
+
+	/* Permanently remove a note from notes */
+	$scope.permanentlyRemoveNote = function(note) {
+
+		if(note === null || typeof note !== 'object')
+			return;
+
+		var index = $scope.notes.indexOf(note);
+		$scope.notes.splice(index, 1);
+	}
+
+	/* Permanently remove a note via a modal - only after the modal has closed */
+	$scope.permanentlyRemoveNoteViaModal = function(note, $index) {
+		
+		$('#note-view-modal-' + $index).on('hidden.bs.modal', function() {
+			$scope.permanentlyRemoveNote(note);
+			$scope.$apply();
+		});
+
+		$('#note-edit-modal-' + $index).on('hidden.bs.modal', function() {
+			$scope.permanentlyRemoveNote(note);
 			$scope.$apply();
 		});
 	}
@@ -383,4 +431,28 @@ app.directive('viewModalsLoadedDirective', function() {
 			setBackButtonToModalClose();
 		}
 	}
+});
+
+
+/* Configuration for UI-Router routes */
+app.config(function($stateProvider, $urlRouterProvider) {
+
+	$urlRouterProvider.otherwise('/notes');
+
+	$stateProvider
+
+		.state('state-notes', {
+			url: '/notes',
+			templateUrl: 'pages/notes.html'
+		})
+
+		.state('state-archive', {
+			url: '/archive',
+			templateUrl: 'pages/archive.html'
+		})
+
+		.state('state-trash', {
+			url: '/trash',
+			templateUrl: 'pages/trash.html'
+		})
 });
