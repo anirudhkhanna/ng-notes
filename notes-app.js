@@ -18,6 +18,13 @@ app.controller('notesController', function($scope) {
 	/* Notes data */
 	$scope.notes = [
 		{
+			title: 'My new note!',
+			content: '<p>Event binding:</p><pre><code>setTimeout(function() {</code><code>&nbsp; &nbsp; textareaAutoResizer();</code><code>}, 50);&nbsp;</code></pre>',
+			colorClass: $scope.colorClasses[8],
+			isArchived: false,
+			isTrashed: true
+		},
+		{
 			title: 'Happy Birthday!',
 			content: '<span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f604.svg);">&nbsp;</span> <span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f600.svg);">&nbsp;</span><p>Happy birthday, Anirudh Khanna.</p>',
 			colorClass: $scope.colorClasses[0],
@@ -142,6 +149,8 @@ app.controller('notesController', function($scope) {
 		newNote.title = $scope.notes[index].title;
 		newNote.content = $scope.notes[index].content;
 		newNote.colorClass = $scope.notes[index].colorClass;
+		newNote.isArchived = $scope.notes[index].isArchived;
+		newNote.isTrashed = $scope.notes[index].isTrashed;
 
 		// Prepend the new note in the notes array
 		$scope.notes.unshift(newNote);
@@ -271,7 +280,28 @@ app.controller('notesController', function($scope) {
 	}
 
 
-	/* Add a note to notes */
+	/* Create a new note and add to notes */
+	$scope.createNote = function() {
+
+		// Make a new note
+		var newNote = {};
+
+		newNote.title = 'My new note';
+		newNote.content = '';
+		newNote.colorClass = $scope.colorClasses[8];
+		newNote.isArchived = false;
+		newNote.isTrashed = false;
+
+		// Prepend newNote in the notes array
+		$scope.notes.unshift(newNote);
+
+		// Open the edit modal for the new note
+		setTimeout(function() {
+			$('#note-edit-modal-0').modal('show');
+		}, 500);
+	}
+
+/*
 	$scope.addNote = function() {
 
 		// Override close functionality of the modal
@@ -308,6 +338,7 @@ app.controller('notesController', function($scope) {
 		// Close the modal when note saved successfully
 		submitBtn.setAttribute('data-dismiss', 'modal');
 	}
+*/
 
 
 	/* Set the color of a note */

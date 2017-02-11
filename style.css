@@ -1041,12 +1041,12 @@ body.modal-open {
 	background-image: url('icons/trash.svg');
 }
 
-.icon-delete-x {
-	background-image: url('delete.svg');
+.icon-delete {
+	background-image: url('icons/delete.svg');
 }
 
 .icon-restore {
-	background-image: url('restore.svg');
+	background-image: url('icons/restore.svg');
 }
 
 .icon-palette {
