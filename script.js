@@ -18,6 +18,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		$('.notes-container').toggleClass('notes-toggled');
 		$('.sidebar-container').toggleClass('sidebar-toggled');
+		$('.swipe-listener').toggleClass('swipe-toggled');
 	});
 });
 
@@ -35,11 +36,13 @@ $(document).ready(function() {
 				// swipe right
 				if(phase == "move" && direction == "right") {
 					$(".sidebar-container").addClass("sidebar-toggled");
+					$(".swipe-listener").addClass("swipe-toggled");
 					return false;
 				}
 				// swipe left
 				if(phase == "move" && direction == "left") {
 					$(".sidebar-container").removeClass("sidebar-toggled");
+					$(".swipe-listener").removeClass("swipe-toggled");
 					return false;
 				}
 			}
@@ -50,11 +53,13 @@ $(document).ready(function() {
 				// swipe right
 				if(phase == "move" && direction == "right") {
 					$(".sidebar-container").addClass("sidebar-toggled");
+					$(".swipe-listener").addClass("swipe-toggled");
 					return false;
 				}
 				// swipe left
 				if(phase == "move" && direction == "left") {
 					$(".sidebar-container").removeClass("sidebar-toggled");
+					$(".swipe-listener").removeClass("swipe-toggled");
 					return false;
 				}
 			}

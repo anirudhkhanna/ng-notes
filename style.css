@@ -329,17 +329,24 @@ body.modal-open {
 		display: block;
 		position: fixed;
 		top: 0;
-		border: 0;
+		left: 0;
 		height: 100%;
 		width: 7%;
-		float: left;
 		z-index: 9;
 		background: transparent;
 		border: 1px solid;
+		-webkit-transition: left 0.5s ease;
+		-moz-transition: left 0.5s ease;
+		-o-transition: left 0.5s ease;
+		transition: left 0.5s ease;
 	}
-	
+
 	.swipe-listener:hover {
 		background: blue;
+	}
+
+	.swipe-listener.swipe-toggled {
+		left: 275px;
 	}
 }
 
