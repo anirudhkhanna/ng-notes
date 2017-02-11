@@ -346,7 +346,8 @@ body.modal-open {
 	}
 
 	.swipe-listener.swipe-toggled {
-		left: 275px;
+		left: 275px !important;
+		width: 10% !important;
 	}
 }
 
