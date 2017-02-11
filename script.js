@@ -18,8 +18,6 @@ $(document).ready(function() {
 		e.preventDefault();
 		$('.notes-container').toggleClass('notes-toggled');
 		$('.sidebar-container').toggleClass('sidebar-toggled');
-		$('.sidebar-container').trigger('mousedown');
-		$('.sidebar-container').find('li a')[0].focus();
 	});
 });
 
