@@ -30,7 +30,22 @@ $(document).ready(function() {
 
 	if(isMobile.matches) {
 
-		$("body").swipe({
+		$(".swipe-listener").swipe({
+			swipeStatus: function(event, phase, direction, distance, duration, fingers) {
+				// swipe right
+				if(phase == "move" && direction == "right") {
+					$(".sidebar-container").addClass("sidebar-toggled");
+					return false;
+				}
+				// swipe left
+				if(phase == "move" && direction == "left") {
+					$(".sidebar-container").removeClass("sidebar-toggled");
+					return false;
+				}
+			}
+		});
+
+		$(".sidebar-container").swipe({
 			swipeStatus: function(event, phase, direction, distance, duration, fingers) {
 				// swipe right
 				if(phase == "move" && direction == "right") {
