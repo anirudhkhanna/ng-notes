@@ -330,7 +330,7 @@ body.modal-open {
 		position: fixed;
 		top: 0;
 		left: 0;
-		height: 100%;
+		height: 100vh;
 		width: 7%;
 		z-index: 9;
 		background: transparent;
