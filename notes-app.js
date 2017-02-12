@@ -7,19 +7,32 @@ app.controller('notesController', function($scope) {
 
 	/* Color classes for notes */
 	$scope.colorClasses = [
-		"color1", "color2", "color3", "color4", "color5", "color6", "color7", "color8", "color9", "color10"
+		'color1', 'color2', 'color3', 'color4', 'color5', 'color6', 'color7', 'color8', 'color9', 'color10'
 	];
 
+	/* Labels for notes */
+	$scope.labels = [
+		'Inspiration', 'Work'
+	];
 
 	/* Max length of note title */
 	$scope.titleMaxLength = 100;
 
-
 	/* Notes data */
 	$scope.notes = [
+	/*	{
+			title: '',
+			content: '<p>हिंदी में भी नोट लिखें।</p> <p>- सारंग</p>',
+			dateCreated: 'Feb 12, 2017',
+			colorClass: $scope.colorClasses[8],
+			isArchived: false,
+			isTrashed: false
+		},
+	*/
 		{
 			title: 'My new note!',
 			content: '<p>Event binding:</p><pre><code>setTimeout(function() {</code><code>&nbsp; &nbsp; textareaAutoResizer();</code><code>}, 50);&nbsp;</code></pre>',
+			dateCreated: 'Feb 11, 2017',
 			colorClass: $scope.colorClasses[8],
 			isArchived: false,
 			isTrashed: true
@@ -27,6 +40,7 @@ app.controller('notesController', function($scope) {
 		{
 			title: 'Happy Birthday!',
 			content: '<span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f604.svg);">&nbsp;</span> <span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f600.svg);">&nbsp;</span><p>Happy birthday, Anirudh Khanna.</p>',
+			dateCreated: 'Feb 3, 2017',
 			colorClass: $scope.colorClasses[0],
 			isArchived: false,
 			isTrashed: false
@@ -34,6 +48,7 @@ app.controller('notesController', function($scope) {
 		{
 			title: 'Some useful Git commands',
 			content: '<p>Quick reference:</p> <ul> <li><em>git checkout master</em></li> <li><em>git add -A</em></li> <li><em>git commit -m &#39;Awesome new commit!&#39;</em></li> <li><em>git push origin master</em></li> <li><em>git checkout gh-pages</em></li> <li><em>git merge master</em></li> <li><em>git push origin gh-pages</em></li> </ul>',
+			dateCreated: 'Feb 3, 2017',
 			colorClass: $scope.colorClasses[1],
 			isArchived: false,
 			isTrashed: false
@@ -41,13 +56,23 @@ app.controller('notesController', function($scope) {
 		{
 			title: '',
 			content: '<p>&quot;ng-notes&quot; is made in AngularJS.</p><p>See the AngularJS tutorial on <a href="https://docs.angularjs.org/tutorial" target="_blank">https://docs.angularjs.org/tutorial</p>',
+			dateCreated: 'Jan 31, 2017',
 			colorClass: $scope.colorClasses[8],
 			isArchived: false,
 			isTrashed: false
 		},
 		{
+			title: 'The problems of being too intelligent',
+			content: '<p>1. You can&#39;t stand normal people talking. You feel like 90% of their communication is obvious, banal and time-wasting. And things that interest you like science, philosophy and other stuff are boring for other people.</p><p><br><span>2. You have a pressure to speak only when you got something brilliant, so mostly you say nothing.</span></p><p><br>3. You strive for everything that is new and unknown. So your job after a while becomes not-good enough, because you know it all.</p><p><br><span>4. You spend too much time thinking about something rather than doing it.</span></p><p><br>5. You waste your life on accumulating useless knowledge, just for fun.</p><p><br><span>6. It&#39;s hard to be spontaneous.</span></p>',
+			dateCreated: 'Dec 29, 2016',
+			colorClass: $scope.colorClasses[5],
+			isArchived: false,
+			isTrashed: false
+		},
+		{
 			title: 'A Note With a Really Long Title Because We Like Long Titles. They Are Fun!',
-			content: 'Some other things to like: <br> <ol><li><strong>Chocolates</strong></li><li><strong>ng-notes</strong></li><li><strong>Linux</strong></li></ol>',
+			content: '<p>Some other things we like:</p><ol><li><strong>Chocolates</strong></li><li><strong>ng-notes</strong></li><li><strong>Linux</strong></li><li><strong>Git</strong></li><li><strong>GitHub</strong></li><li><strong>OpenSource</strong></li><li><strong>C</strong></li><li><strong>Java</strong></li><li><strong>HTML, CSS, JS</strong></li><li><strong>MEAN Stack</strong></li><li><strong>StackOverflow</strong></li><li><strong>Google</strong></li><li><strong>And the rest of the geek stuff on earth</strong></li></ol>',
+			dateCreated: 'Dec 21, 2016',			
 			colorClass: $scope.colorClasses[5],
 			isArchived: false,
 			isTrashed: false
@@ -55,6 +80,7 @@ app.controller('notesController', function($scope) {
 		{
 			title: 'Greeting Cards',
 			content: '<p><img src="http://slodive.com/wp-content/uploads/2013/01/christmas-card-ideas/serus-christmas-card.jpg" style="width: 322px; height: 322px;" class="fr-fic fr-dib"></p> <p><span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f604.svg);">&nbsp;</span><span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f60d.svg);">&nbsp;</span>&nbsp; <br>The custom of sending greeting cards can be traced back to the ancient Chinese, who exchanged messages of good will to celebrate the New Year, and to the early Egyptians, who conveyed their greetings on papyrus scrolls. <br> <br>- Wikipedia</p>',
+			dateCreated: 'Nov 3, 2016',
 			colorClass: $scope.colorClasses[6],
 			isArchived: false,
 			isTrashed: false
@@ -62,6 +88,7 @@ app.controller('notesController', function($scope) {
 		{
 			title: '',
 			content: '&ldquo;It is good to have big dreams. <br />Even if the dreams are shattered, the shattered pieces are still big.&rdquo;',
+			dateCreated: 'Oct 26, 2016',
 			colorClass: $scope.colorClasses[7],
 			isArchived: false,
 			isTrashed: false
@@ -69,6 +96,7 @@ app.controller('notesController', function($scope) {
 		{
 			title: 'Elephant in the field',
 			content: '<p><img src="https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg" class="fr-fil fr-dib"></p>',
+			dateCreated: 'Sep 15, 2016',
 			colorClass: $scope.colorClasses[4],
 			isArchived: false,
 			isTrashed: false
@@ -76,6 +104,7 @@ app.controller('notesController', function($scope) {
 		{
 			title: 'My First Note with really long heading',
 			content: 'Some readme Some readme Some readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readme',
+			dateCreated: 'Aug 11, 2016',
 			colorClass: $scope.colorClasses[2],
 			isArchived: false,
 			isTrashed: false
@@ -83,6 +112,7 @@ app.controller('notesController', function($scope) {
 		{
 			title: 'My First Note',
 			content: '<img src="https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg"/>',
+			dateCreated: 'Jul 3, 2016',
 			colorClass: $scope.colorClasses[0],
 			isArchived: false,
 			isTrashed: false
@@ -90,6 +120,7 @@ app.controller('notesController', function($scope) {
 		{
 			title: 'A1 My First Note',
 			content: '<img src="https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg"/>',
+			dateCreated: 'Jun 3, 2016',
 			colorClass: $scope.colorClasses[0],
 			isArchived: true,
 			isTrashed: false
@@ -97,6 +128,7 @@ app.controller('notesController', function($scope) {
 		{
 			title: 'A2 My First Note',
 			content: '<img src="https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg"/>',
+			dateCreated: 'May 3, 2016',
 			colorClass: $scope.colorClasses[0],
 			isArchived: true,
 			isTrashed: false
@@ -108,6 +140,7 @@ app.controller('notesController', function($scope) {
 	$scope.note = {
 		title: '',
 		content: '',
+		dateCreated: '',
 		colorClass: '',
 		isArchived: false,
 		isTrashed: false
@@ -148,6 +181,7 @@ app.controller('notesController', function($scope) {
 
 		newNote.title = $scope.notes[index].title;
 		newNote.content = $scope.notes[index].content;
+		newNote.dateCreated = getCurrentDate();
 		newNote.colorClass = $scope.notes[index].colorClass;
 		newNote.isArchived = $scope.notes[index].isArchived;
 		newNote.isTrashed = $scope.notes[index].isTrashed;
@@ -288,6 +322,7 @@ app.controller('notesController', function($scope) {
 
 		newNote.title = 'My new note';
 		newNote.content = '';
+		newNote.dateCreated = getCurrentDate();
 		newNote.colorClass = $scope.colorClasses[8];
 		newNote.isArchived = false;
 		newNote.isTrashed = false;
@@ -487,3 +522,78 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			templateUrl: 'pages/trash.html'
 		})
 });
+
+
+/* Filter for prettfying the note */
+app.filter('notePrettify', function() {
+
+	return function(content) {
+
+		var res = content;
+
+		var dummyElem = document.createElement('span');
+		dummyElem.innerHTML = res;
+		var textLength = $(dummyElem).text().length;
+
+		if(textLength < 40) {
+
+			var beg = '<span style = "font-size: 24px; font-weight: 300;">';
+			var end = '</span>';
+			res = beg + res + end;
+		}
+		else if(textLength < 60) {
+
+			var beg = '<span style = "font-size: 22px; font-weight: 300;">';
+			var end = '</span>';
+			res = beg + res + end;
+		}
+		else if(textLength < 120) {
+
+			var beg = '<span style = "font-size: 20px; font-weight: 300;">';
+			var end = '</span>';
+			res = beg + res + end;
+		}
+		else if(textLength < 140) {
+
+			var beg = '<span style = "font-size: 18px; font-weight: 300;">';
+			var end = '</span>';
+			res = beg + res + end;
+		}
+		else if(textLength < 160) {
+
+			var beg = '<span style = "font-size: 16px; font-weight: 300;">';
+			var end = '</span>';
+			res = beg + res + end;
+		}
+
+		if(textLength > 400) {
+			res = res.substring(0, 400) + '...';			
+		}
+
+		return res;
+	};
+});
+
+
+
+
+
+
+app.run(function($rootScope){
+
+    $rootScope
+        .$on('$stateChangeStart', 
+            function(event, toState, toParams, fromState, fromParams){ 
+                $(".page-loading").removeClass("hidden");
+                console.log('START');
+        });
+
+    $rootScope
+        .$on('$stateChangeSuccess',
+            function(event, toState, toParams, fromState, fromParams){ 
+                $(".page-loading").addClass("hidden");
+                console.log('STOP');
+        });
+
+});
+
