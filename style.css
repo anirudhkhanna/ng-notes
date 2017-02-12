@@ -902,7 +902,7 @@ body.modal-open {
 	height: 50px;
 	width: 50px;
 	background: #d02f21;
-	border-radius: 100%;
+	border-radius: 100px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, .35);
 
 	/* for ripple effect */
@@ -918,7 +918,7 @@ body.modal-open {
 	display: block;
 	height: 50px;
 	width: 50px;
-	border-radius: 100%;
+	border-radius: 100px;
 	border: 0;
 	outline: 0;
 	color: #fff;
@@ -929,7 +929,6 @@ body.modal-open {
 
 	/* for ripple effect */
 	position: relative;	/* relatively positioned to bring it above the ripple (static positioned elements appear behind absolutely positioned siblings, i.e. the ripple element added via JS) */
-	border: 0px solid;
 }
 
 /*.add-note-modal .modal-content {
