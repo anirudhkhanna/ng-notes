@@ -11,7 +11,7 @@
 			<!-- Note-main (has note title and content, opens the corresponding note-view-modals) -->
 			<div class="note-main" data-toggle="modal" data-target="#note-view-modal-{{$index}}">
 				<h3 class="note-title">{{ note.title }}</h3>
-				<p class="note-content" froala-view="note.content"></p>
+				<p class="note-content" froala-view="note.content | notePrettify"></p>
 			</div>
 
 			<!-- Note-opt (has note options) -->
@@ -71,6 +71,12 @@
 
 				<!-- Modal footer -->
 				<div class="modal-footer">
+					<!-- Date -->
+					<div class="note-modal-date">
+						<span title="Created {{note.dateCreated}}" class="opt-tooltip date">{{ note.dateCreated }}</span>
+					</div>
+
+					<!-- Options -->
 					<div class="note-modal-opt">
 						<a title="Speech input" class="opt-tooltip opt-icon-lg icon-mic speech-input" ng-click="speechInput($index)"></a>
 
@@ -109,7 +115,7 @@
 			<!-- Modal header -->
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h3 class="note-title">{{note.title}}</h3>
+				<h3 class="note-title">{{ note.title }}</h3>
 			</div>
 
 			<!-- Modal body -->
@@ -119,6 +125,12 @@
 
 			<!-- Modal footer -->
 			<div class="modal-footer">
+				<!-- Date -->
+				<div class="note-modal-date">
+					<span title="Created {{note.dateCreated}}" class="opt-tooltip date">{{ note.dateCreated }}</span>
+				</div>
+
+				<!-- Options -->
 				<div class="note-modal-opt">
 					<a title="Edit" class="opt-tooltip opt-icon-lg icon-pencil" data-toggle="modal" ng-click="openEditModalViaViewModal($index)"></a>
 
@@ -134,7 +146,6 @@
 
 					<a title="All done" class="opt-tooltip opt-icon-lg icon-check" data-dismiss="modal"></a>
 				</div>
-
 			</div>
 		
 		</div> <!-- /.Modal content -->

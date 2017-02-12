@@ -23,8 +23,8 @@ $(document).ready(function() {
 });
 
 
-/* Swipe to close the sidebar on small devices */
-/* ******************************************* */
+/* Swipe/click to open and close the sidebar on small devices */
+/* ********************************************************** */
 $(document).ready(function() {
 
 	var isMobile = window.matchMedia('only screen and (max-width: 800px)');
@@ -66,6 +66,13 @@ $(document).ready(function() {
 				}
 			}
 		});
+
+		// add click on links in the sidebar (automatically close the sidebar when user selects a link)
+		$('.sidebar-container a').on('click', function() {
+			$('.sidebar-container').removeClass('sidebar-toggled');
+			$('.swipe-listener').removeClass('swipe-toggled');
+		});
+
 	} // if over
 });
 
@@ -134,6 +141,17 @@ $(document).ready(function() {
 		elem.css({top: y + 'px', left: x + 'px'}).addClass('animate');
 	});
 });
+
+
+/* Return current date in specific format as a string */
+/* ************************************************** */
+function getCurrentDate() {
+
+	var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+	var d = new Date();
+
+	return months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+}
 
 
 /* Auto resizer for note title textareas */

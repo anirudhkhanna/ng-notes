@@ -31,7 +31,7 @@
 	<script src="assets/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<!-- Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab|Roboto+Condensed|Noto+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,500|Roboto+Slab:300,400|Roboto+Condensed|Noto+Sans" rel="stylesheet">
 
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -142,26 +142,14 @@
 			</ul>
 
 			<ul class="sidebar-nav">
-				<li>
-					<a href="#" class="ripple">Events 2</a>
-				</li>
-				<li>
-					<a href="#" class="ripple">Events 2</a>
-				</li>
-				<li>
-					<a href="#" class="ripple">Events 2</a>
-				</li>
-				<li>
-					<a href="#" class="ripple">Events 2</a>
-				</li>
-				<li>
-					<a href="#" class="ripple">Events 2</a>
-				</li>
-				<li>
-					<a href="#" class="ripple">Events 2</a>
-				</li>
-				<li>
-					<a href="#" class="ripple">Events 2</a>
+				<!-- Labels -->
+				<div class="list-header">
+					<div class="list-title">Labels</div>
+					<a class="list-edit-btn"><span class="ripple">EDIT</span></a>
+				</div>
+
+				<li class="" ng-repeat="label in labels" ng-click="">
+					<a href="#" class="ripple"><span class="side-icon icon-tag"></span> {{ label }}</a>
 				</li>
 			</ul>
 
@@ -180,10 +168,21 @@
 	<!-- /.Header -->
 
 
+	<style type="text/css">
+	.hidden {
+		display: none !important;
+		visibility: hidden !important;
+	}
+	</style>
+
 	<!-- UI view (loads the content selected from the menu) -->
-		<div ui-view>
-		</div>
+		<div ui-view id="ui-view"></div>
 	<!-- /.UI view -->
+
+	
+	<!-- Loading message -->
+	<div class="page-loading" style="position:relative; left:55%; top:50%; font-size:24px;">Loading...</div>
+	<!-- /.Loading message -->
 
 
 	<!-- Add New Note -->

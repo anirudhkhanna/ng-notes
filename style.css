@@ -1,7 +1,10 @@
+
 body {
-	overflow-x: hidden;
 	background: #f0f0f0;
 	font-family: 'Roboto Slab', sans-serif;
+	
+	/* For removing horizontal scroll */
+	overflow-x: hidden;
 }
 
 
@@ -418,7 +421,7 @@ body.modal-open {
 }
 
 .sidebar-nav li a:hover, .sidebar-nav li a:active {
-	background: rgba(0, 0, 0, 0.05);
+	background: rgba(0, 0, 0, 0.09);
 }
 
 .side-icon {
@@ -434,6 +437,46 @@ body.modal-open {
 	float: left;
 	vertical-align: middle;
 	margin: 8px 35px 0 2px;
+}
+
+.sidebar-nav .list-header {
+	display: block;
+	padding: 0 10px 0 20px;
+	margin-bottom: 10px;
+	font-family: 'Roboto', sans-serif;
+}
+
+.sidebar-nav .list-header .list-title {
+	display: inline;
+	font-size: 0.9em;
+	font-weight: 500;
+}
+
+.sidebar-nav .list-header .list-edit-btn {
+	position: absolute;
+	left: 200px;
+	right: auto;
+	border: 0;
+	outline: 0;
+	color: inherit;
+	text-decoration: none;
+	border-radius: 3px;
+	margin-top: -1px;
+	background: transparent;
+	font-family: 'Roboto', sans-serif;
+	font-size: 0.9em;
+	letter-spacing: 1px;
+	font-weight: 500;
+}
+
+.sidebar-nav .list-header .list-edit-btn span {
+	display: inline-block;
+	padding: 4px 12px 3px 12px;
+}
+
+.sidebar-nav .list-header .list-edit-btn:hover {
+	background: rgba(0, 0, 0, 0.1);
+	cursor: pointer;
 }
 
 
@@ -702,6 +745,18 @@ body.modal-open {
 	margin: 10px auto;
 }
 
+/* Note modal date section */
+.note-modal-date {
+	display: inline-block;
+	float: left;
+	margin-top: 3px;
+	margin-left: 7px;
+	font-family: Roboto, sans-serif;
+	font-style: italic;
+	font-size: 12px;
+	color: #303030;
+}
+
 /* Note modal options section */
 .note-modal-opt {
 	display: inline-block;
@@ -828,6 +883,7 @@ body.modal-open {
 /* Note view modals */
 .note-view-modal .note-content {
 	min-height: 300px;
+	max-height: 450px;
 }
 
 
@@ -1039,6 +1095,10 @@ body.modal-open {
 
 .icon-trash {
 	background-image: url('icons/trash.svg');
+}
+
+.icon-tag {
+	background-image: url('icons/tag.svg');
 }
 
 .icon-delete {
