@@ -8,12 +8,17 @@
 	<script src="assets/jquery/3.1.1/jquery.min.js"></script>
 
 	<!-- AngularJS -->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>-->
 <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.js"></script>-->
 
 	<!-- UI-Router -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
-	
+
+	<!-- Angular Loading Bar -->
+	<script src="https://chieffancypants.github.io/angular-loading-bar/src/loading-bar.js"></script>
+	<link rel="stylesheet" href="https://chieffancypants.github.io/angular-loading-bar/src/loading-bar.css">
+
 	<!-- Autosize -->
 	<script src="assets/autosize/autosize.js"></script>
 
@@ -101,9 +106,7 @@
 <body id="mynotes" ng-app="notesApp" ng-controller="notesController">
 
 	<!-- Swipe listener for small devices -->
-	<div class="swipe-listener">
-		l
-	</div>
+	<div class="swipe-listener"></div>
 	<!-- /.Swipe listener for small devices -->
 
 
@@ -149,7 +152,7 @@
 				</div>
 
 				<li class="" ng-repeat="label in labels" ng-click="">
-					<a href="#" class="ripple"><span class="side-icon icon-tag"></span> {{ label }}</a>
+					<a href="#" class="ripple"><span class="side-icon icon-tag"></span> <span ng-bind="label">Loading...</span></a>
 				</li>
 			</ul>
 
@@ -176,12 +179,12 @@
 	</style>
 
 	<!-- UI view (loads the content selected from the menu) -->
-		<div ui-view id="ui-view"></div>
+		<div ui-view id="ui-view">
+		</div>
 	<!-- /.UI view -->
-
 	
 	<!-- Loading message -->
-	<div class="page-loading" style="position:relative; left:55%; top:50%; font-size:24px;">Loading...</div>
+	<div style="position:absolute; left:50%; top:50%; font-size:24px; font-family:'Roboto'; color:rgba(51,51,51,0.4);" class="page-loading">Loading...</div>
 	<!-- /.Loading message -->
 
 
