@@ -1,9 +1,15 @@
 
+/* Loading bar element */
+var cfpLoadingBarElem = null;
+
 /* Notes app */
-var app = angular.module('notesApp', ['froala', 'ui.router']);
+var app = angular.module('notesApp', ['froala', 'ui.router', 'chieffancypants.loadingBar' /* , 'angular-loading-bar'*/ ]);
 
 /* Notes conrtroller */
-app.controller('notesController', function($scope) {
+app.controller('notesController', function($scope, cfpLoadingBar) {
+
+	/* Assign the loading bar element for use outside the controller */
+	cfpLoadingBarElem = cfpLoadingBar;
 
 	/* Color classes for notes */
 	$scope.colorClasses = [
@@ -12,7 +18,7 @@ app.controller('notesController', function($scope) {
 
 	/* Labels for notes */
 	$scope.labels = [
-		'Inspiration', 'Work'
+		'Inspiration', 'Personal', 'Work'
 	];
 
 	/* Max length of note title */
@@ -134,7 +140,6 @@ app.controller('notesController', function($scope) {
 			isTrashed: false
 		},
 	];
-
 
 	/* Dummy note object */
 	$scope.note = {
@@ -583,17 +588,28 @@ app.run(function($rootScope){
 
     $rootScope
         .$on('$stateChangeStart', 
+
             function(event, toState, toParams, fromState, fromParams){ 
+				cfpLoadingBarElem.start();
+				cfpLoadingBarElem.inc();
+                $("#ui-view").addClass("hidden");
                 $(".page-loading").removeClass("hidden");
-                console.log('START');
         });
 
     $rootScope
         .$on('$stateChangeSuccess',
+
             function(event, toState, toParams, fromState, fromParams){ 
+
+				setTimeout(foo, 750);
+				cfpLoadingBarElem.inc();
+
+				function foo(){cfpLoadingBarElem.complete();}
+
+                $("#ui-view").removeClass("hidden");
                 $(".page-loading").addClass("hidden");
-                console.log('STOP');
         });
 
 });
+
 
