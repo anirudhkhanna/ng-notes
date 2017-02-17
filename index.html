@@ -134,13 +134,13 @@
 		<div class="sidebar-container">
 			<ul class="sidebar-nav">
 				<li>
-					<a ui-sref="state-notes" class="ripple"><span class="side-icon icon-paperclip"></span> Notes</a>
+					<a ui-sref="state-notes" class="ripple" onclick="cfpLoadingBarElem.start();"><span class="side-icon icon-paperclip"></span> Notes</a>
 				</li>
 				<li>
-					<a ui-sref="state-archive" class="ripple"><span class="side-icon icon-archive"></span> Archive</a>
+					<a ui-sref="state-archive" class="ripple" onclick="cfpLoadingBarElem.start();"><span class="side-icon icon-archive"></span> Archive</a>
 				</li>
 				<li>
-					<a ui-sref="state-trash" class="ripple"><span class="side-icon icon-trash"></span> Trash</a>
+					<a ui-sref="state-trash" class="ripple" onclick="cfpLoadingBarElem.start();"><span class="side-icon icon-trash"></span> Trash</a>
 				</li>
 			</ul>
 
@@ -151,8 +151,8 @@
 					<a class="list-edit-btn"><span class="ripple">EDIT</span></a>
 				</div>
 
-				<li class="" ng-repeat="label in labels" ng-click="">
-					<a href="#" class="ripple"><span class="side-icon icon-tag"></span> <span ng-bind="label">Loading...</span></a>
+				<li class="" ng-repeat="label in labels">
+					<a ui-sref="state-labels" class="ripple" ng-click="setSelectedLabels([label])"><span class="side-icon icon-tag"></span> <span ng-bind="label">Loading...</span></a>
 				</li>
 			</ul>
 
@@ -171,20 +171,16 @@
 	<!-- /.Header -->
 
 
-	<style type="text/css">
-	.hidden {
-		display: none !important;
-		visibility: hidden !important;
-	}
-	</style>
-
 	<!-- UI view (loads the content selected from the menu) -->
 		<div ui-view id="ui-view">
 		</div>
 	<!-- /.UI view -->
-	
+
 	<!-- Loading message -->
-	<div style="position:absolute; left:50%; top:50%; font-size:24px; font-family:'Roboto'; color:rgba(51,51,51,0.4);" class="page-loading">Loading...</div>
+	<div class="page-message page-loading">
+		<span class="fa fa-paperclip page-message-icon"></span>
+		<p class="page-message-text">Loading your notes...</p>
+	</div>
 	<!-- /.Loading message -->
 
 
@@ -193,7 +189,7 @@
 	<div class="add-note-btn">
 		<div title="Add a new note" class="opt-tooltip add-div"><button class="add-btn ripple-light" ng-click="createNote();">+</button></div>
 <!--
- 		<div title="Add a new note" class="opt-tooltip add-div"><button class="add-btn ripple-light" data-toggle="modal" data-target="#addNoteModal">+</button></div>
+		<div title="Add a new note" class="opt-tooltip add-div"><button class="add-btn ripple-light" data-toggle="modal" data-target="#addNoteModal">+</button></div>
 -->
 	</div>
 

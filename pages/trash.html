@@ -6,7 +6,7 @@
 
 		<!-- Note tile -->
 		<div class="masonry-item note" ng-class="note.colorClass" 
-		ng-repeat="note in (notes | ngRepeatFinish:this) | filter:{isTrashed:true} | searchFor:searchString">
+		ng-repeat="note in filteredNotes = ((notes | ngRepeatFinish:this) | filter:{isTrashed:true} | searchFor:searchString)">
 
 			<!-- Note-main (has note title and content, opens the corresponding note-view-modals) -->
 			<div class="note-main" data-toggle="modal" data-target="#note-view-modal-{{$index}}">
@@ -14,19 +14,17 @@
 				<p class="note-content" froala-view="note.content | notePrettify"></p>
 			</div>
 
+			<!-- Note-labels (has note labels) -->
+			<div class="note-labels">
+				<ul>
+					<li ng-repeat="label in note.labels" ui-sref="state-labels" ng-click="setSelectedLabels([label])">
+						{{label}}
+					</li>
+				</ul>
+			</div>
+
 			<!-- Note-opt (has note options) -->
 			<div class="note-opt">
-<!--
-				<a title="Edit" class="opt-tooltip opt-icon icon-pencil" data-toggle="modal" data-target="#note-edit-modal-{{$index}}"></a>
-
-				<a title="Change color" class="opt-tooltip opt-icon icon-palette colors-popup">
-					<ul>
-						<li class="color-btn" ng-class="colorClass" ng-repeat="colorClass in colorClasses" ng-click="setNoteColor(note, colorClass)"></li>
-					</ul>
-				</a>
-
-				<a title="Archive" class="opt-tooltip opt-icon icon-archive" ng-click="archiveNote(note)"></a>
--->
 				<a class="opt-icon icon-dots menu-popup">
 					<ul>
 						<li ng-click="untrashNote(note)">Restore</li>
@@ -34,8 +32,15 @@
 					</ul>
 				</a>
 			</div>
-		</div>		
+		</div>
 		<!-- /.Note tile -->
+
+		<!-- Not found message -->
+		<div class="container-message" ng-show="filteredNotes.length === 0">
+			<span class="glyphicon glyphicon-trash container-message-icon"></span>
+			<p class="container-message-text">No notes found here</p>
+		</div>
+		<!-- /.Not found message -->
 
 	</div>
 	<!-- /.Note tiles container -->
@@ -68,6 +73,13 @@
 
 			<!-- Modal footer -->
 			<div class="modal-footer">
+				<!-- Labels -->
+				<div class="note-modal-labels">
+					<ul>
+						<li ng-repeat="label in note.labels">{{label}}</li>
+					</ul>
+				</div>
+
 				<!-- Date -->
 				<div class="note-modal-date">
 					<span title="Created {{note.dateCreated}}" class="opt-tooltip date">{{ note.dateCreated }}</span>
