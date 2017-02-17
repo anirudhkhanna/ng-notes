@@ -1,17 +1,3 @@
-/*
- * override the default CSS as an example
- */
-
-#loading-bar .bar {
-  background: rgba(0, 0, 0, 0.39);
-}
-#loading-bar-spinner .spinner-icon {
-  border-top-color:  rgba(0, 0, 0, 0.5);
-  border-top-color:  rgba(0, 0, 0, 0.5);
-  border-left-color: rgba(0, 0, 0, 0.5);
-  display: none;
-}
-
 
 body {
 	background: #f0f0f0;
@@ -41,6 +27,75 @@ body.modal-open {
 
 ::-webkit-scrollbar-thumb {
 	background-color: rgba(0, 0, 0, 0.65);
+}
+
+
+/* Angular loading bar styles */
+#loading-bar .bar {
+	background: rgba(0, 0, 0, 0.39);
+}
+
+#loading-bar-spinner .spinner-icon {
+	display: none;
+}
+
+
+/* Page and container message styles */
+.hidden {
+	display: none !important;
+	visibility: hidden !important;
+}
+
+.page-message {
+	position: absolute;
+	left: 52%;
+	top: 40%;
+	font-size: 24px;
+	font-family: 'Roboto', sans-serif;
+	color: rgba(51,51,51,0.4);
+}
+
+.page-message .page-message-icon {
+	display: block;
+	text-align: center;
+	font-size: 50px;
+}
+
+.page-message .page-message-text {
+	display: block;
+	text-align: center;
+}
+
+.container-message {
+	display: block;
+	margin: 0 auto;
+	margin-top: 20vh;
+	margin-left: -15%;
+	text-align: center;
+	font-size: 24px;
+	font-family: 'Roboto', sans-serif;
+	color: rgba(51,51,51,0.4);
+	border: 0px solid;
+}
+
+.container-message .container-message-icon {
+	display: block;
+	text-align: center;
+	font-size: 50px;
+}
+
+.container-message .container-message-text {
+	display: block;
+	text-align: center;
+}
+
+/* Page and container message responsive styles */
+@media screen and (max-width: 800px) {
+	.page-message {
+		position: static;
+		margin: 0 auto;
+		margin-top: 40%;
+	}
 }
 
 
@@ -677,6 +732,37 @@ body.modal-open {
 	overflow-x: hidden;
 }
 
+/* Note tile labels section */
+.note .note-labels {
+	display: block;
+	margin-left: 12px;
+	margin-right: 12px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	font-family: Roboto, sans-serif;
+	font-size: 11px;
+	text-align: left;
+}
+
+.note-labels ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.note-labels ul li {
+	display: inline-block;
+	margin: 0 2px 2px;
+	padding: 2px 5px;
+	background: rgba(0, 0, 0, 0.125);
+	border-radius: 2px;
+	cursor: pointer;
+}
+
+.note-labels ul li:hover {
+	background: rgba(0, 0, 0, 0.195);
+}
+
 /* Note tile options section */
 .note .note-opt {
 	text-align: right;
@@ -780,6 +866,31 @@ body.modal-open {
 	display: block;
 	max-width: 100%;
 	margin: 10px auto;
+}
+
+/* Note modal labels section */
+.note-modal-labels {
+	display: block;
+	margin-left: 7px;
+	margin-right: 7px;
+	margin-bottom: 3px;
+	font-family: Roboto, sans-serif;
+	font-size: 12px;
+	text-align: left;
+}
+
+.note-modal-labels ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.note-modal-labels ul li {
+	display: inline-block;
+	margin: 0 2px 2px;
+	padding: 2px 5px;
+	background: rgba(0, 0, 0, 0.125);
+	border-radius: 2px;
 }
 
 /* Note modal date section */

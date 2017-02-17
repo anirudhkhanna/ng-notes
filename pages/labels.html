@@ -1,12 +1,12 @@
 
-<!-- Notes view -->
+<!-- Labels view -->
 
 	<!-- Note tiles container -->
 	<div class="container notes-container" ng-cloak>
 
 		<!-- Note tile -->
 		<div class="masonry-item note" ng-class="note.colorClass" 
-		ng-repeat="note in filteredNotes = ((notes | ngRepeatFinish:this) | filter:{isArchived:false} | filter:{isTrashed:false} | searchFor:searchString)">
+		ng-repeat="note in filteredNotes = ((notes | ngRepeatFinish:this) | filter:{isArchived:false} | filter:{isTrashed:false} | searchFor:searchString | filterLabels:selectedLabels)">
 
 			<!-- Note-main (has note title and content, opens the corresponding note-view-modals) -->
 			<div class="note-main" data-toggle="modal" data-target="#note-view-modal-{{$index}}">
@@ -58,7 +58,8 @@
 
 	<!-- Note edit modals -->
 	<div class="modal fade-pop note-modal note-edit-modal" 
-	ng-repeat="note in notes | filter:{isArchived:false} | filter:{isTrashed:false} | searchFor:searchString" id="note-edit-modal-{{$index}}" role="dialog" edit-modals-loaded-directive>
+	ng-repeat="note in notes | filter:{isArchived:false} | filter:{isTrashed:false} | searchFor:searchString | filterLabels:selectedLabels" 
+	id="note-edit-modal-{{$index}}" role="dialog" edit-modals-loaded-directive>
 
 		<div class="modal-dialog">
 
@@ -128,7 +129,8 @@
 
 	<!-- Note view modals -->
 	<div class="modal fade-pop note-modal note-view-modal" 
-	ng-repeat="note in notes | filter:{isArchived:false} | filter:{isTrashed:false} | searchFor:searchString" id="note-view-modal-{{$index}}" role="dialog" view-modals-loaded-directive>
+	ng-repeat="note in notes | filter:{isArchived:false} | filter:{isTrashed:false} | searchFor:searchString | filterLabels:selectedLabels" 
+	id="note-view-modal-{{$index}}" role="dialog" view-modals-loaded-directive>
 
 		<div class="modal-dialog">
 
@@ -185,4 +187,4 @@
 	</div>
 	<!-- /.Note view modals -->
 
-<!-- /.Notes view -->
+<!-- /.Labels view -->

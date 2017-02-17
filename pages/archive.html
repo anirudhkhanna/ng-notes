@@ -6,12 +6,21 @@
 
 		<!-- Note tile -->
 		<div class="masonry-item note" ng-class="note.colorClass" 
-		ng-repeat="note in (notes | ngRepeatFinish:this) | filter:{isArchived:true} | filter:{isTrashed:false} | searchFor:searchString">
+		ng-repeat="note in filteredNotes = ((notes | ngRepeatFinish:this) | filter:{isArchived:true} | filter:{isTrashed:false} | searchFor:searchString)">
 
 			<!-- Note-main (has note title and content, opens the corresponding note-view-modals) -->
 			<div class="note-main" data-toggle="modal" data-target="#note-view-modal-{{$index}}">
 				<h3 class="note-title">{{ note.title }}</h3>
 				<p class="note-content" froala-view="note.content | notePrettify"></p>
+			</div>
+
+			<!-- Note-labels (has note labels) -->
+			<div class="note-labels">
+				<ul>
+					<li ng-repeat="label in note.labels" ui-sref="state-labels" ng-click="setSelectedLabels([label])">
+						{{label}}
+					</li>
+				</ul>
 			</div>
 
 			<!-- Note-opt (has note options) -->
@@ -33,8 +42,15 @@
 					</ul>
 				</a>
 			</div>
-		</div>		
+		</div>
 		<!-- /.Note tile -->
+
+		<!-- Not found message -->
+		<div class="container-message" ng-show="filteredNotes.length === 0">
+			<span class="glyphicon glyphicon-inbox container-message-icon"></span>
+			<p class="container-message-text">No notes found here</p>
+		</div>
+		<!-- /.Not found message -->
 
 	</div>
 	<!-- /.Note tiles container -->
@@ -71,6 +87,13 @@
 
 				<!-- Modal footer -->
 				<div class="modal-footer">
+					<!-- Labels -->
+					<div class="note-modal-labels">
+						<ul>
+							<li ng-repeat="label in note.labels">{{label}}</li>
+						</ul>
+					</div>
+
 					<!-- Date -->
 					<div class="note-modal-date">
 						<span title="Created {{note.dateCreated}}" class="opt-tooltip date">{{ note.dateCreated }}</span>
@@ -125,6 +148,13 @@
 
 			<!-- Modal footer -->
 			<div class="modal-footer">
+				<!-- Labels -->
+				<div class="note-modal-labels">
+					<ul>
+						<li ng-repeat="label in note.labels">{{label}}</li>
+					</ul>
+				</div>
+
 				<!-- Date -->
 				<div class="note-modal-date">
 					<span title="Created {{note.dateCreated}}" class="opt-tooltip date">{{ note.dateCreated }}</span>

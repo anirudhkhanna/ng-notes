@@ -18,7 +18,12 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 
 	/* Labels for notes */
 	$scope.labels = [
-		'Inspiration', 'Personal', 'Work'
+		'Inspiration', 'Personal', 'Work', 'Miscellaneous'
+	];
+
+	/* Selected labels (notes with these labels are shown) */
+	$scope.selectedLabels = [
+		// initially empty (all notes are shown)
 	];
 
 	/* Max length of note title */
@@ -26,19 +31,13 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 
 	/* Notes data */
 	$scope.notes = [
-	/*	{
-			title: '',
-			content: '<p>हिंदी में भी नोट लिखें।</p> <p>- सारंग</p>',
-			dateCreated: 'Feb 12, 2017',
-			colorClass: $scope.colorClasses[8],
-			isArchived: false,
-			isTrashed: false
-		},
-	*/
 		{
 			title: 'My new note!',
 			content: '<p>Event binding:</p><pre><code>setTimeout(function() {</code><code>&nbsp; &nbsp; textareaAutoResizer();</code><code>}, 50);&nbsp;</code></pre>',
 			dateCreated: 'Feb 11, 2017',
+			labels: [
+						$scope.labels[2]
+					],
 			colorClass: $scope.colorClasses[8],
 			isArchived: false,
 			isTrashed: true
@@ -47,6 +46,9 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 			title: 'Happy Birthday!',
 			content: '<span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f604.svg);">&nbsp;</span> <span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f600.svg);">&nbsp;</span><p>Happy birthday, Anirudh Khanna.</p>',
 			dateCreated: 'Feb 3, 2017',
+			labels: [
+						$scope.labels[1]
+					],
 			colorClass: $scope.colorClasses[0],
 			isArchived: false,
 			isTrashed: false
@@ -56,6 +58,10 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 			content: '<p>Quick reference:</p> <ul> <li><em>git checkout master</em></li> <li><em>git add -A</em></li> <li><em>git commit -m &#39;Awesome new commit!&#39;</em></li> <li><em>git push origin master</em></li> <li><em>git checkout gh-pages</em></li> <li><em>git merge master</em></li> <li><em>git push origin gh-pages</em></li> </ul>',
 			dateCreated: 'Feb 3, 2017',
 			colorClass: $scope.colorClasses[1],
+			labels: [
+						$scope.labels[2],
+						$scope.labels[3]
+					],
 			isArchived: false,
 			isTrashed: false
 		},
@@ -63,6 +69,8 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 			title: '',
 			content: '<p>&quot;ng-notes&quot; is made in AngularJS.</p><p>See the AngularJS tutorial on <a href="https://docs.angularjs.org/tutorial" target="_blank">https://docs.angularjs.org/tutorial</p>',
 			dateCreated: 'Jan 31, 2017',
+			labels: [
+					],
 			colorClass: $scope.colorClasses[8],
 			isArchived: false,
 			isTrashed: false
@@ -78,7 +86,11 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 		{
 			title: 'A Note With a Really Long Title Because We Like Long Titles. They Are Fun!',
 			content: '<p>Some other things we like:</p><ol><li><strong>Chocolates</strong></li><li><strong>ng-notes</strong></li><li><strong>Linux</strong></li><li><strong>Git</strong></li><li><strong>GitHub</strong></li><li><strong>OpenSource</strong></li><li><strong>C</strong></li><li><strong>Java</strong></li><li><strong>HTML, CSS, JS</strong></li><li><strong>MEAN Stack</strong></li><li><strong>StackOverflow</strong></li><li><strong>Google</strong></li><li><strong>And the rest of the geek stuff on earth</strong></li></ol>',
-			dateCreated: 'Dec 21, 2016',			
+			dateCreated: 'Dec 21, 2016',
+			labels: [
+						$scope.labels[0],
+						$scope.labels[1]
+					],
 			colorClass: $scope.colorClasses[5],
 			isArchived: false,
 			isTrashed: false
@@ -87,6 +99,9 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 			title: 'Greeting Cards',
 			content: '<p><img src="http://slodive.com/wp-content/uploads/2013/01/christmas-card-ideas/serus-christmas-card.jpg" style="width: 322px; height: 322px;" class="fr-fic fr-dib"></p> <p><span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f604.svg);">&nbsp;</span><span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f60d.svg);">&nbsp;</span>&nbsp; <br>The custom of sending greeting cards can be traced back to the ancient Chinese, who exchanged messages of good will to celebrate the New Year, and to the early Egyptians, who conveyed their greetings on papyrus scrolls. <br> <br>- Wikipedia</p>',
 			dateCreated: 'Nov 3, 2016',
+			labels: [
+						$scope.labels[3]
+					],
 			colorClass: $scope.colorClasses[6],
 			isArchived: false,
 			isTrashed: false
@@ -95,6 +110,9 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 			title: '',
 			content: '&ldquo;It is good to have big dreams. <br />Even if the dreams are shattered, the shattered pieces are still big.&rdquo;',
 			dateCreated: 'Oct 26, 2016',
+			labels: [
+						$scope.labels[0]
+					],
 			colorClass: $scope.colorClasses[7],
 			isArchived: false,
 			isTrashed: false
@@ -119,6 +137,9 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 			title: 'My First Note',
 			content: '<img src="https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg"/>',
 			dateCreated: 'Jul 3, 2016',
+			labels: [
+						"Miscellaneous"
+					],
 			colorClass: $scope.colorClasses[0],
 			isArchived: false,
 			isTrashed: false
@@ -127,6 +148,9 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 			title: 'A1 My First Note',
 			content: '<img src="https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg"/>',
 			dateCreated: 'Jun 3, 2016',
+			labels: [
+						"Miscellaneous"
+					],
 			colorClass: $scope.colorClasses[0],
 			isArchived: true,
 			isTrashed: false
@@ -146,6 +170,7 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 		title: '',
 		content: '',
 		dateCreated: '',
+		labels: [],
 		colorClass: '',
 		isArchived: false,
 		isTrashed: false
@@ -179,17 +204,16 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 		if(note === null || typeof note !== 'object')
 			return;
 
-		var index = $scope.notes.indexOf(note);
-
 		// Make a new note object as the copy
 		var newNote = {};
 
-		newNote.title = $scope.notes[index].title;
-		newNote.content = $scope.notes[index].content;
+		newNote.title = note.title;
+		newNote.content = note.content;
 		newNote.dateCreated = getCurrentDate();
-		newNote.colorClass = $scope.notes[index].colorClass;
-		newNote.isArchived = $scope.notes[index].isArchived;
-		newNote.isTrashed = $scope.notes[index].isTrashed;
+		newNote.labels = note.labels.slice();	// make a copy of the labels array, not just a reference to the same one
+		newNote.colorClass = note.colorClass;
+		newNote.isArchived = note.isArchived;
+		newNote.isTrashed = note.isTrashed;
 
 		// Prepend the new note in the notes array
 		$scope.notes.unshift(newNote);
@@ -325,9 +349,10 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 		// Make a new note
 		var newNote = {};
 
-		newNote.title = 'My new note';
+		newNote.title = '';
 		newNote.content = '';
 		newNote.dateCreated = getCurrentDate();
+		newNote.labels = [];
 		newNote.colorClass = $scope.colorClasses[8];
 		newNote.isArchived = false;
 		newNote.isTrashed = false;
@@ -338,47 +363,8 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 		// Open the edit modal for the new note
 		setTimeout(function() {
 			$('#note-edit-modal-0').modal('show');
-		}, 500);
+		}, 300);
 	}
-
-/*
-	$scope.addNote = function() {
-
-		// Override close functionality of the modal
-		var submitBtn = document.getElementById('submit-btn');
-		submitBtn.removeAttribute('data-dismiss');
-
-		// Fail if the note is empty
-		if(!$scope.note.content && !$scope.note.title) {
-			return;
-		}
-
-		// Make a new note
-		var newNote = {};
-
-		newNote.title = $scope.note.title;
-		newNote.content = $scope.note.content;
-
-		// Prepend newNote in the notes array
-		$scope.notes.unshift(newNote);
-
-		// Reset the values back to empty
-		document.getElementById('newtitle').value = '';
-		document.getElementById('newcontent').value = '';
-		$scope.note = {
-			title: '',
-			content: '',
-			colorClass: ''
-		};
-
-		setTimeout(function() {
-			textareaAutoResizer();
-		}, 50);
-
-		// Close the modal when note saved successfully
-		submitBtn.setAttribute('data-dismiss', 'modal');
-	}
-*/
 
 
 	/* Set the color of a note */
@@ -389,6 +375,13 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 
 		var index = $scope.notes.indexOf(note);
 		$scope.notes[index].colorClass = colorClass;
+	}
+
+
+	/* Set selected labels */
+	$scope.setSelectedLabels = function(arr) {
+
+		$scope.selectedLabels = arr;
 	}
 
 
@@ -413,6 +406,7 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 	/* On ng-repeat finished event (implemented via a filter hack) */
 	$scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
 
+		console.log('ngRepeatFinished');
 		textareaAutoResizer();
 		setBackButtonToModalClose();
 		setLayout(5);
@@ -448,6 +442,28 @@ app.filter('searchFor', function() {
 		});
 
 		return result;
+	};
+});
+
+
+/* Filter for labels */
+app.filter('filterLabels', function() {
+
+	return function(notes, selectedLabels) {
+
+		if(!selectedLabels || selectedLabels.length === 0) {
+			return notes;
+		}
+
+		return notes.filter(function(note) {
+
+			for(var i in note.labels) {
+				if(selectedLabels.indexOf(note.labels[i]) != -1)
+					return true;
+			}
+
+			return false;
+		});
 	};
 });
 
@@ -526,6 +542,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/trash',
 			templateUrl: 'pages/trash.html'
 		})
+
+		.state('state-labels', {
+			url: '/labels',
+			templateUrl: 'pages/labels.html'
+		})
 });
 
 
@@ -580,36 +601,26 @@ app.filter('notePrettify', function() {
 });
 
 
+/* Handle state changes done by UI-Router */
+app.run(function($rootScope) {
 
+	$rootScope
+		.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
 
-
-
-app.run(function($rootScope){
-
-    $rootScope
-        .$on('$stateChangeStart', 
-
-            function(event, toState, toParams, fromState, fromParams){ 
+				console.log('stateChangeStart');
+				$("#ui-view").addClass("hidden");
+				$(".page-loading").removeClass("hidden");
 				cfpLoadingBarElem.start();
 				cfpLoadingBarElem.inc();
-                $("#ui-view").addClass("hidden");
-                $(".page-loading").removeClass("hidden");
-        });
+		});
 
-    $rootScope
-        .$on('$stateChangeSuccess',
+	$rootScope
+		.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
 
-            function(event, toState, toParams, fromState, fromParams){ 
-
-				setTimeout(foo, 750);
+				console.log('stateChangeSuccess');
+				$("#ui-view").removeClass("hidden");
+				$(".page-loading").addClass("hidden");
+				setTimeout(cfpLoadingBarElem.complete, 700);
 				cfpLoadingBarElem.inc();
-
-				function foo(){cfpLoadingBarElem.complete();}
-
-                $("#ui-view").removeClass("hidden");
-                $(".page-loading").addClass("hidden");
-        });
-
+		});
 });
-
-
