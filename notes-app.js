@@ -76,9 +76,11 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 			isTrashed: false
 		},
 		{
-			title: 'The problems of being too intelligent',
+			title: 'TPoBTI', /* 'The problems of being too intelligent', */
 			content: '<p>1. You can&#39;t stand normal people talking. You feel like 90% of their communication is obvious, banal and time-wasting. And things that interest you like science, philosophy and other stuff are boring for other people.</p><p><br><span>2. You have a pressure to speak only when you got something brilliant, so mostly you say nothing.</span></p><p><br>3. You strive for everything that is new and unknown. So your job after a while becomes not-good enough, because you know it all.</p><p><br><span>4. You spend too much time thinking about something rather than doing it.</span></p><p><br>5. You waste your life on accumulating useless knowledge, just for fun.</p><p><br><span>6. It&#39;s hard to be spontaneous.</span></p>',
 			dateCreated: 'Dec 29, 2016',
+			labels: [
+					],
 			colorClass: $scope.colorClasses[5],
 			isArchived: false,
 			isTrashed: false
@@ -121,6 +123,8 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 			title: 'Elephant in the field',
 			content: '<p><img src="https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg" class="fr-fil fr-dib"></p>',
 			dateCreated: 'Sep 15, 2016',
+			labels: [
+					],
 			colorClass: $scope.colorClasses[4],
 			isArchived: false,
 			isTrashed: false
@@ -129,6 +133,8 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 			title: 'My First Note with really long heading',
 			content: 'Some readme Some readme Some readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readme',
 			dateCreated: 'Aug 11, 2016',
+			labels: [
+					],
 			colorClass: $scope.colorClasses[2],
 			isArchived: false,
 			isTrashed: false
@@ -159,6 +165,8 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 			title: 'A2 My First Note',
 			content: '<img src="https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg"/>',
 			dateCreated: 'May 3, 2016',
+			labels: [
+					],
 			colorClass: $scope.colorClasses[0],
 			isArchived: true,
 			isTrashed: false
@@ -200,7 +208,7 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 
 	/* Make copy of a note */
 	$scope.copyNote = function(note) {
-		
+
 		if(note === null || typeof note !== 'object')
 			return;
 
@@ -378,7 +386,42 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 	}
 
 
-	/* Set selected labels */
+	/* Add a new label to labels */
+	$scope.addLabel = function(newLabel) {
+
+		$('#add-label-form input').val('');	// reset the input box
+
+		if(newLabel === null || typeof newLabel !== 'string')
+			return;
+
+		for(var i = 0; i < $scope.labels.length; i++) {
+			if(newLabel.toLowerCase() == $scope.labels[i].toLowerCase())	// label already exists
+				return;
+		}
+
+		$scope.labels.push(newLabel);
+	}
+
+	/* Remove a label from labels and from the notes that have it */
+	$scope.removeLabel = function(label) {
+
+		if(label === null || typeof label !== 'string')
+			return;
+
+		for(var i = 0; i < $scope.notes.length; i++) {
+			if(typeof $scope.notes[i].labels === 'undefined')
+				continue;
+
+			var index = $scope.notes[i].labels.indexOf(label);
+			if(index != -1)
+				$scope.notes[i].labels.splice(index, 1);
+		}
+
+		var index = $scope.labels.indexOf(label);
+		$scope.labels.splice(index, 1);
+	}
+
+	/* Set selected labels (notes with these labels will be shown) */
 	$scope.setSelectedLabels = function(arr) {
 
 		$scope.selectedLabels = arr;
@@ -400,6 +443,13 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 		var editboxSelector = modalId + ' ' + '[contenteditable=true]';
 
 		startDictation(event, editboxSelector);
+	}
+
+
+	/* Log all notes */
+	$scope.log = function() {
+
+		console.log($scope.notes);
 	}
 
 
