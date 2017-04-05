@@ -1257,3 +1257,88 @@ body.modal-open {
 .icon-dots {
 	background-image: url('icons/dots.svg');
 }
+
+.icon-cog {
+	background-image: url('icons/cog.svg');
+}
+
+.icon-info {
+	background-image: url('icons/info.svg');
+}
+
+.icon-github {
+	background-image: url('icons/github.svg');
+}
+
+.icon-terminal {
+	background-image: url('icons/terminal.svg');
+}
+
+
+
+#labels-edit-modal .modal-dialog {
+	width: 400px;
+}
+
+#labels-edit-modal .modal-header {
+	border: 0;
+	padding-left: 30px;
+}
+
+#labels-edit-modal .modal-header .note-title {
+	font-size: 18px;
+	font-weight: 500;
+	font-family: Roboto;
+}
+
+#labels-edit-modal .modal-body {
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-top: 3px;
+	padding-bottom: 25px;
+}
+
+#labels-edit-modal ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	font-family: Roboto;
+}
+
+#labels-edit-modal ul li {
+	margin-bottom: 10px;
+}
+
+#labels-edit-modal a.opt-icon {
+	float: right;
+}
+
+#labels-edit-modal a.opt-icon:hover {
+	opacity: 1;
+	cursor: pointer;
+}
+
+#labels-edit-modal #add-label-form {
+	margin-bottom: 20px;
+	width: 100%;
+}
+
+#labels-edit-modal #add-label-form span {
+	font-family: Roboto;
+	color: #aaa;
+	font-size: 18px;
+	margin-left: -3px;
+	margin-right: 3px;
+}
+
+#labels-edit-modal #add-label-form input {
+	width: 90%;
+	border: 0;
+	outline: 0;
+	border-bottom: 1px solid transparent;
+	font-family: Roboto;
+}
+
+#labels-edit-modal #add-label-form input:focus {
+	border-bottom: 1px solid #aaa;
+}
