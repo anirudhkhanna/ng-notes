@@ -6,7 +6,7 @@ var cfpLoadingBarElem = null;
 var app = angular.module('notesApp', ['froala', 'ui.router', 'chieffancypants.loadingBar' /* , 'angular-loading-bar'*/ ]);
 
 /* Notes conrtroller */
-app.controller('notesController', function($scope, cfpLoadingBar) {
+app.controller('notesController', function($scope, $state, cfpLoadingBar) {
 
 	/* Assign the loading bar element for use outside the controller */
 	cfpLoadingBarElem = cfpLoadingBar;
@@ -234,8 +234,7 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 		if(note === null || typeof note !== 'object')
 			return;
 
-		var index = $scope.notes.indexOf(note);
-		$scope.notes[index].isArchived = true;
+		note.isArchived = true;
 	}
 
 	/* Archive a note via a modal - only after the modal has closed */
@@ -258,8 +257,7 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 		if(note === null || typeof note !== 'object')
 			return;
 
-		var index = $scope.notes.indexOf(note);
-		$scope.notes[index].isArchived = false;
+		note.isArchived = false;
 	}
 
 	/* Unarchive a note via a modal - only after the modal has closed */
@@ -283,8 +281,7 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 		if(note === null || typeof note !== 'object')
 			return;
 
-		var index = $scope.notes.indexOf(note);
-		$scope.notes[index].isTrashed = true;
+		note.isTrashed = true;
 	}
 
 	/* Trash a note via a modal - only after the modal has closed */
@@ -307,8 +304,7 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 		if(note === null || typeof note !== 'object')
 			return;
 
-		var index = $scope.notes.indexOf(note);
-		$scope.notes[index].isTrashed = false;
+		note.isTrashed = false;
 	}
 
 	/* Untrash a note via a modal - only after the modal has closed */
@@ -338,7 +334,7 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 
 	/* Permanently remove a note via a modal - only after the modal has closed */
 	$scope.permanentlyRemoveNoteViaModal = function(note, $index) {
-		
+
 		$('#note-view-modal-' + $index).on('hidden.bs.modal', function() {
 			$scope.permanentlyRemoveNote(note);
 			$scope.$apply();
@@ -353,6 +349,10 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 
 	/* Create a new note and add to notes */
 	$scope.createNote = function() {
+
+		// Clear the search string and reset the state to main notes state
+		$scope.searchString = '';
+		$state.go('state-notes');
 
 		// Make a new note
 		var newNote = {};
@@ -381,8 +381,49 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 		if(note === null || colorClass === null || typeof note !== 'object' || typeof colorClass !== 'string')
 			return;
 
-		var index = $scope.notes.indexOf(note);
-		$scope.notes[index].colorClass = colorClass;
+		note.colorClass = colorClass;
+	}
+
+
+	/* Check for a label in the given note */
+	$scope.checkNoteLabel = function(note, label) {
+
+		return note.labels.indexOf(label) != -1;
+	}
+
+	/* Change note label - add or remove the given label */
+	$scope.changeNoteLabel = function(note, label) {
+
+		if(note === null || label === null || typeof note !== 'object' || typeof label !== 'string')
+			return;
+
+		var index = note.labels.indexOf(label);
+		if(index == -1)
+			note.labels.push(label);
+		else
+			note.labels.splice(index, 1);
+	}
+
+	/* Change note label via labels page - close the modal first if the current label is being removed */
+	$scope.changeNoteLabelViaLabelsPage = function(note, label, $index) {
+
+		if(note === null || label === null || typeof note !== 'object' || typeof label !== 'string')
+			return;
+
+		var index = note.labels.indexOf(label);
+		if(index == -1)
+			note.labels.push(label);
+		else {
+			if($scope.selectedLabels.indexOf(label) == -1)
+				note.labels.splice(index, 1);
+			else {
+				$('#note-edit-modal-' + $index).on('hidden.bs.modal', function() {
+					note.labels.splice(index, 1);
+					$scope.$apply();
+				});
+				$('#note-edit-modal-' + $index).modal('hide');
+			}
+		}
 	}
 
 
@@ -421,7 +462,8 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 		$scope.labels.splice(index, 1);
 	}
 
-	/* Set selected labels (notes with these labels will be shown) */
+
+	/* Set selected labels (notes with these labels are shown) */
 	$scope.setSelectedLabels = function(arr) {
 
 		$scope.selectedLabels = arr;
@@ -447,7 +489,7 @@ app.controller('notesController', function($scope, cfpLoadingBar) {
 
 
 	/* Log all notes */
-	$scope.log = function() {
+	$scope.logNotes = function() {
 
 		console.log($scope.notes);
 	}
@@ -643,7 +685,7 @@ app.filter('notePrettify', function() {
 		}
 
 		if(textLength > 400) {
-			res = res.substring(0, 400) + '...';			
+			res = res.substring(0, 400) + '...';
 		}
 
 		return res;
@@ -658,8 +700,8 @@ app.run(function($rootScope) {
 		.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
 
 				console.log('stateChangeStart');
-				$("#ui-view").addClass("hidden");
-				$(".page-loading").removeClass("hidden");
+				$('#ui-view').addClass('hidden');
+				$('.page-loading').removeClass('hidden');
 				cfpLoadingBarElem.start();
 				cfpLoadingBarElem.inc();
 		});
@@ -668,8 +710,8 @@ app.run(function($rootScope) {
 		.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
 
 				console.log('stateChangeSuccess');
-				$("#ui-view").removeClass("hidden");
-				$(".page-loading").addClass("hidden");
+				$('#ui-view').removeClass('hidden');
+				$('.page-loading').addClass('hidden');
 				setTimeout(cfpLoadingBarElem.complete, 700);
 				cfpLoadingBarElem.inc();
 		});

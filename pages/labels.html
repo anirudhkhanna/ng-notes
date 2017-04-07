@@ -110,6 +110,14 @@
 							</ul>
 						</a>
 
+						<a title="Change labels" class="opt-tooltip opt-icon-lg icon-tag labels-popup">
+							<ul>
+								<li ng-repeat="label in labels">
+									<label ng-click="$event.stopPropagation();"><input type="checkbox" ng-checked="checkNoteLabel(note, label)" ng-click="changeNoteLabelViaLabelsPage(note, label, $parent.$index)" /> {{label}}</label>
+								</li>
+							</ul>
+						</a>
+
 						<a title="Archive" class="opt-tooltip opt-icon-lg icon-archive" ng-click="archiveNoteViaModal(note, $index)" data-dismiss="modal"></a>
 
 						<a title="Delete" class="opt-tooltip opt-icon-lg icon-trash" ng-click="trashNoteViaModal(note, $index)" data-dismiss="modal"></a>
