@@ -51,7 +51,7 @@ body.modal-open {
 	left: 52%;
 	top: 40%;
 	font-size: 24px;
-	font-family: 'Roboto', sans-serif;
+	font-family: Roboto, sans-serif;
 	color: rgba(51,51,51,0.4);
 }
 
@@ -73,7 +73,7 @@ body.modal-open {
 	margin-left: -15%;
 	text-align: center;
 	font-size: 24px;
-	font-family: 'Roboto', sans-serif;
+	font-family: Roboto, sans-serif;
 	color: rgba(51,51,51,0.4);
 	border: 0px solid;
 }
@@ -321,7 +321,7 @@ body.modal-open {
 	line-height: 165%;
 	font-size: 1.9em;
 	font-weight: bold;
-	font-family: 'Noto Sans', 'Roboto', sans-serif;
+	font-family: 'Noto Sans', Roboto, sans-serif;
 	color: #111;
 }
 
@@ -470,7 +470,7 @@ body.modal-open {
 
 .sidebar-nav li {
 	display: block;
-	font-family: 'Roboto', sans-serif;
+	font-family: Roboto, sans-serif;
 	font-size: 0.9em;
 	line-height: 40px;
 
@@ -512,7 +512,7 @@ body.modal-open {
 	display: block;
 	padding: 0 10px 0 20px;
 	margin-bottom: 10px;
-	font-family: 'Roboto', sans-serif;
+	font-family: Roboto, sans-serif;
 }
 
 .sidebar-nav .list-header .list-title {
@@ -532,7 +532,7 @@ body.modal-open {
 	border-radius: 3px;
 	margin-top: -1px;
 	background: transparent;
-	font-family: 'Roboto', sans-serif;
+	font-family: Roboto, sans-serif;
 	font-size: 0.9em;
 	letter-spacing: 1px;
 	font-weight: 500;
@@ -779,7 +779,7 @@ body.modal-open {
 
 .note-opt::after {	/* Clearfix */
 	clear: both;
-	content: " ";
+	content: ' ';
 	display: block;
 	height: 0;
 }
@@ -914,7 +914,7 @@ body.modal-open {
 
 .note-modal-opt::after {	/* Clearfix */
 	clear: both;
-	content: " ";
+	content: ' ';
 	display: block;
 	height: 0;
 }
@@ -1152,6 +1152,58 @@ body.modal-open {
 }
 
 
+/* Note labels popup */
+.labels-popup {
+	position: relative;
+}
+
+.labels-popup ul {
+	list-style-type: none;
+	position: absolute;
+	width: 150px;
+	bottom: 110%;
+	left: -50px;
+	margin: 0px;
+	padding: 5px 2px 4px 7px;
+	border-radius: 2px;
+	box-sizing: border-box;
+	background: #fff;
+	text-align: left;
+	cursor: auto;
+	visibility: hidden;
+	opacity: 0;
+	transition: .7s;
+	-webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+	-o-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+	box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.5);
+	z-index: 99999;
+}
+
+.labels-popup:hover ul {
+	visibility: visible;
+	opacity: 1;
+	transition: .6s;
+}
+
+.labels-popup ul li {
+	display: block;
+	margin: 0;
+	padding: 1px 5px 1px 10px;
+	width: 100%;
+	font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+	font-size: 13px;
+}
+
+.labels-popup ul li label {
+	font-weight: normal;
+}
+
+.labels-popup ul li label:hover {
+	cursor: pointer;
+}
+
+
 /* Add a new note */
 .add-note-btn {
 	display: block;
@@ -1194,6 +1246,113 @@ body.modal-open {
 
 	/* for ripple effect */
 	position: relative;	/* relatively positioned to bring it above the ripple (static positioned elements appear behind absolutely positioned siblings, i.e. the ripple element added via JS) */
+}
+
+
+/* Labels edit modal */
+#labels-edit-modal {
+	word-wrap: break-word;
+	overflow-y: scroll;
+}
+
+#labels-edit-modal .modal-dialog {
+	max-width: 400px;
+}
+
+#labels-edit-modal .modal-header {
+	border: 0;
+	padding-left: 30px;
+}
+
+#labels-edit-modal .modal-header .modal-header-title {
+	font-family: Roboto, sans-serif;
+	font-size: 18px;
+	font-weight: 500;
+}
+
+#labels-edit-modal .modal-body {
+	padding: 3px 30px 25px;
+}
+
+#labels-edit-modal #add-label-form {
+	margin-bottom: 20px;
+	width: 100%;
+}
+
+#labels-edit-modal #add-label-form span {
+	margin-left: -3px;
+	margin-right: 3px;
+	font-family: Roboto, sans-serif;
+	font-size: 18px;
+	color: #aaa;
+}
+
+#labels-edit-modal #add-label-form input {
+	width: 90%;
+	border: 0;
+	outline: 0;
+	border-bottom: 1px solid transparent;
+	font-family: Roboto, sans-serif;
+}
+
+#labels-edit-modal #add-label-form input:focus {
+	border-bottom: 1px solid #aaa;
+}
+
+#labels-edit-modal ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#labels-edit-modal ul li {
+	margin-bottom: 10px;
+	font-family: Roboto, sans-serif;
+}
+
+#labels-edit-modal a.opt-icon {
+	float: right;
+}
+
+#labels-edit-modal a.opt-icon:hover {
+	opacity: 1;
+	cursor: pointer;
+}
+
+
+/* About modal */
+#about-modal {
+	word-wrap: break-word;
+	overflow-y: scroll;
+	margin-top: 7%;
+}
+
+#about-modal .modal-dialog {
+	max-width: 500px;
+}
+
+#about-modal .modal-content {
+	border-radius: 0;
+	background: #f4c832;
+}
+
+#about-modal .modal-header {
+	border: 0;
+	padding-left: 30px;
+}
+
+#about-modal .modal-header .modal-header-title {
+	font-family: 'Noto Sans', Roboto, sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+#about-modal .modal-body {
+	padding: 3px 30px 25px;
+}
+
+#about-modal .modal-body p {
+	font-family: Roboto, sans-serif;
 }
 
 
@@ -1272,73 +1431,4 @@ body.modal-open {
 
 .icon-terminal {
 	background-image: url('icons/terminal.svg');
-}
-
-
-
-#labels-edit-modal .modal-dialog {
-	width: 400px;
-}
-
-#labels-edit-modal .modal-header {
-	border: 0;
-	padding-left: 30px;
-}
-
-#labels-edit-modal .modal-header .note-title {
-	font-size: 18px;
-	font-weight: 500;
-	font-family: Roboto;
-}
-
-#labels-edit-modal .modal-body {
-	padding-left: 30px;
-	padding-right: 30px;
-	padding-top: 3px;
-	padding-bottom: 25px;
-}
-
-#labels-edit-modal ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	font-family: Roboto;
-}
-
-#labels-edit-modal ul li {
-	margin-bottom: 10px;
-}
-
-#labels-edit-modal a.opt-icon {
-	float: right;
-}
-
-#labels-edit-modal a.opt-icon:hover {
-	opacity: 1;
-	cursor: pointer;
-}
-
-#labels-edit-modal #add-label-form {
-	margin-bottom: 20px;
-	width: 100%;
-}
-
-#labels-edit-modal #add-label-form span {
-	font-family: Roboto;
-	color: #aaa;
-	font-size: 18px;
-	margin-left: -3px;
-	margin-right: 3px;
-}
-
-#labels-edit-modal #add-label-form input {
-	width: 90%;
-	border: 0;
-	outline: 0;
-	border-bottom: 1px solid transparent;
-	font-family: Roboto;
-}
-
-#labels-edit-modal #add-label-form input:focus {
-	border-bottom: 1px solid #aaa;
 }

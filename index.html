@@ -9,15 +9,15 @@
 
 	<!-- AngularJS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
-<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>-->
 <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.js"></script>-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>-->
 
 	<!-- UI-Router -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
 
 	<!-- Angular Loading Bar -->
-	<script src="https://chieffancypants.github.io/angular-loading-bar/src/loading-bar.js"></script>
-	<link rel="stylesheet" href="https://chieffancypants.github.io/angular-loading-bar/src/loading-bar.css">
+	<link rel="stylesheet" href="assets/angular-loading-bar/build/loading-bar.min.css">
+	<script src="assets/angular-loading-bar/build/loading-bar.min.js"></script>
 
 	<!-- Autosize -->
 	<script src="assets/autosize/autosize.js"></script>
@@ -39,7 +39,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,500|Roboto+Slab:300,400|Roboto+Condensed|Noto+Sans" rel="stylesheet">
 
 	<!-- Font Awesome -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<!-- Froala Editor styles -->
 	<link rel="stylesheet" href="assets/froala/css/froala_editor.min.css" />
@@ -103,7 +103,7 @@
 
 </head>
 
-<body id="mynotes" ng-app="notesApp" ng-controller="notesController">
+<body id="notes-app" ng-app="notesApp" ng-controller="notesController">
 
 	<!-- Swipe listener for small devices -->
 	<div class="swipe-listener"></div>
@@ -134,13 +134,13 @@
 		<div class="sidebar-container">
 			<ul class="sidebar-nav">
 				<li>
-					<a ui-sref="state-notes" class="ripple" onclick="cfpLoadingBarElem.start();"><span class="side-icon icon-paperclip"></span> Notes</a>
+					<a ui-sref="state-notes" class="ripple"><span class="side-icon icon-paperclip"></span> Notes</a>
 				</li>
 				<li>
-					<a ui-sref="state-archive" class="ripple" onclick="cfpLoadingBarElem.start();"><span class="side-icon icon-archive"></span> Archive</a>
+					<a ui-sref="state-archive" class="ripple"><span class="side-icon icon-archive"></span> Archive</a>
 				</li>
 				<li>
-					<a ui-sref="state-trash" class="ripple" onclick="cfpLoadingBarElem.start();"><span class="side-icon icon-trash"></span> Trash</a>
+					<a ui-sref="state-trash" class="ripple"><span class="side-icon icon-trash"></span> Trash</a>
 				</li>
 			</ul>
 
@@ -160,17 +160,17 @@
 
 			<ul class="sidebar-nav">
 			<!--<li>
-					<a href="#" class="ripple"><span class="side-icon icon-cog"></span> Settings</a>
+					<a href="" class="ripple"><span class="side-icon icon-cog"></span> Settings</a>
 				</li>
 			-->
 				<li>
-					<a href="#" class="ripple"><span class="side-icon icon-info"></span> About ng-notes</a>
+					<a href="" class="ripple" data-toggle="modal" data-target="#about-modal"><span class="side-icon icon-info"></span> About ng-notes</a>
 				</li>
 				<li>
 					<a href="https://github.com/anirudhkhanna/ng-notes" target="_blank" class="ripple"><span class="side-icon icon-github"></span> GitHub repo</a>
 				</li>
 			<!--<li>
-					<a href="" ng-click="log()" class="ripple"><span class="side-icon icon-terminal"></span> Log notes</a>
+					<a href="" class="ripple" ng-click="logNotes()"><span class="side-icon icon-terminal"></span> Log notes</a>
 				</li>
 			-->
 			</ul>
@@ -213,7 +213,7 @@
 			<!-- Modal header -->
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h3 class="note-title">Edit labels</h3>
+				<h3 class="modal-header-title">Edit labels</h3>
 			</div>
 
 			<!-- Modal body -->
@@ -235,6 +235,36 @@
 
 	</div>
 	<!-- /.Edit all labels -->
+
+
+	<!-- About ng-notes -->
+	<!-- About modal -->
+	<div class="modal fade-pop" id="about-modal">
+
+		<div class="modal-dialog">
+
+		<!-- Modal content -->
+		<div class="modal-content">
+			<!-- Modal header -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h3 class="modal-header-title"><span class="fa fa-paperclip"></span> ng-notes</h3>
+			</div>
+
+			<!-- Modal body -->
+			<div class="modal-body">
+				<p>A simple note-taking app to quickly record what is on your mind - ideas, pictures, lists and more. Built with MEAN stack (MongoDB, Express, AngularJS and Node.js). The UX has been largely based on AngularJS - hence the name ng-notes. &#9786;</p>
+
+				<p align="center" style="margin: 22px 0; font-weight: 500;">&copy; 2017 ng-notes &nbsp;&bull;&nbsp; Inspired by Google Keep</p>
+
+				<p align="center" style="font-size: 11px;">This is just a front-end demo of the app. The back-end systems are taking a nap. This means that you won't be able to sign-up or permanently save any notes here. Apologies!</p>
+			</div>
+		</div> <!-- /.Modal content -->
+
+		</div>
+
+	</div>
+	<!-- /.About ng-notes -->
 
 </body>
 </html>
