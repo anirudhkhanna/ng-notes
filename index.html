@@ -9,7 +9,7 @@
 
 	<!-- AngularJS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
-<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.js"></script>-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>-->
 <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>-->
 
 	<!-- UI-Router -->
@@ -36,15 +36,15 @@
 	<script src="assets/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<!-- Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,500|Roboto+Slab:300,400|Roboto+Condensed|Noto+Sans" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500|Roboto+Slab:300,400|Roboto+Condensed|Noto+Sans">
 
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="assets/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<!-- Froala Editor styles -->
-	<link rel="stylesheet" href="assets/froala/css/froala_editor.min.css" />
-	<link rel="stylesheet" href="assets/froala/css/froala_style.min.css" />
-	<link rel="stylesheet" href="assets/froala/css/themes/gray-modified.css" />
+	<link rel="stylesheet" href="assets/froala/css/froala_editor.min.css">
+	<link rel="stylesheet" href="assets/froala/css/froala_style.min.css">
+	<link rel="stylesheet" href="assets/froala/css/themes/gray-modified.css">
 
 	<!-- Froala Editor Plugin styles -->
 <!--<link rel="stylesheet" href="assets/froala/css/plugins/char_counter.css">-->
@@ -91,15 +91,15 @@
 	<script src="assets/froala/angular-froala/angular-froala.js"></script>
 
 	<!-- Tooltipster -->
-	<link rel="stylesheet" type="text/css" href="assets/tooltipster/css/tooltipster.bundle.min.css" />
-	<link rel="stylesheet" type="text/css" href="assets/tooltipster/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-borderless.min.css" />
-	<script type="text/javascript" src="assets/tooltipster/js/tooltipster.bundle.min.js"></script>
+	<link rel="stylesheet" href="assets/tooltipster/css/tooltipster.bundle.min.css">
+	<link rel="stylesheet" href="assets/tooltipster/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-borderless.min.css">
+	<script src="assets/tooltipster/js/tooltipster.bundle.min.js"></script>
 
 	<!-- Custom CSS and JS -->
-	<link rel="stylesheet" href="note-style.css">
-	<link rel="stylesheet" href="style.css">
-	<script src="notes-app.js"></script>
-	<script src="script.js"></script>
+	<link rel="stylesheet" href="css/note-style.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/notes-app.js"></script>
+	<script src="js/script.js"></script>
 
 </head>
 
@@ -219,7 +219,7 @@
 			<!-- Modal body -->
 			<div class="modal-body">
 				<form id="add-label-form" ng-submit="addLabel(newLabel)">
-					<span>+</span> <input type="text" placeholder="Create new label" ng-model="newLabel" />
+					<span>+</span> <input type="text" placeholder="Create new label" ng-model="newLabel" maxlength="{{labelMaxLength}}" />
 				</form>
 
 				<ul>
@@ -253,7 +253,7 @@
 
 			<!-- Modal body -->
 			<div class="modal-body">
-				<p>A simple note-taking app to quickly record what is on your mind - ideas, pictures, lists and more. Built with MEAN stack (MongoDB, Express, AngularJS and Node.js). The UX is largely based on AngularJS - hence the name ng-notes. &#9786;</p>
+				<p>A simple note-taking app to quickly capture what is on your mind - ideas, pictures, lists and more. Built with MEAN stack (MongoDB, Express, AngularJS and Node.js). The UX is largely based on AngularJS - hence the name ng-notes. &#9786;</p>
 
 				<p align="center" style="margin: 22px 0; font-weight: 500;">&copy; 2017 ng-notes &nbsp;&bull;&nbsp; Inspired by Google Keep</p>
 

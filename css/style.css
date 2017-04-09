@@ -2,9 +2,7 @@
 body {
 	background: #f0f0f0;
 	font-family: 'Roboto Slab', sans-serif;
-	
-	/* For removing horizontal scroll */
-	overflow-x: hidden;
+	overflow-x: hidden;	/* For removing horizontal scroll */
 }
 
 
@@ -122,7 +120,7 @@ body.modal-open {
 .ripple-effect {
 	display: block;
 	position: absolute;
-	background: rgba(11, 11, 11, .1);	/* ripple color */
+	background: rgba(11, 11, 11, .1);	/* Ripple color */
 	border-radius: 100%;
 	-webkit-transform: scale(0);
 	-moz-transform: scale(0);
@@ -140,7 +138,7 @@ body.modal-open {
 
 @-webkit-keyframes ripple-effect {
 
-	/* scale the element to 250% to safely cover the entire area and fade it out */
+	/* Scale the element to 250% to safely cover the entire area and fade it out */
 	100% {
 		opacity: 0;
 		-webkit-transform: scale(2.5);
@@ -152,7 +150,7 @@ body.modal-open {
 
 @-moz-keyframes ripple-effect {
 
-	/* scale the element to 250% to safely cover the entire area and fade it out */
+	/* Scale the element to 250% to safely cover the entire area and fade it out */
 	100% {
 		opacity: 0;
 		-webkit-transform: scale(2.5);
@@ -164,7 +162,7 @@ body.modal-open {
 
 @-o-keyframes ripple-effect {
 
-	/* scale the element to 250% to safely cover the entire area and fade it out */
+	/* Scale the element to 250% to safely cover the entire area and fade it out */
 	100% {
 		opacity: 0;
 		-webkit-transform: scale(2.5);
@@ -176,7 +174,7 @@ body.modal-open {
 
 @keyframes ripple-effect {
 
-	/* scale the element to 250% to safely cover the entire area and fade it out */
+	/* Scale the element to 250% to safely cover the entire area and fade it out */
 	100% {
 		opacity: 0;
 		-webkit-transform: scale(2.5);
@@ -193,7 +191,7 @@ body.modal-open {
 .ripple-effect-light {
 	display: block;
 	position: absolute;
-	background: rgba(255, 255, 255, .5);	/* ripple color */
+	background: rgba(255, 255, 255, .5);	/* Ripple color */
 	border-radius: 100%;
 	-webkit-transform: scale(0);
 	-moz-transform: scale(0);
@@ -211,7 +209,7 @@ body.modal-open {
 
 @-webkit-keyframes ripple-effect-light {
 
-	/* scale the element to 250% to safely cover the entire area and fade it out */
+	/* Scale the element to 250% to safely cover the entire area and fade it out */
 	100% {
 		opacity: 0;
 		-webkit-transform: scale(2.5);
@@ -223,7 +221,7 @@ body.modal-open {
 
 @-moz-keyframes ripple-effect-light {
 
-	/* scale the element to 250% to safely cover the entire area and fade it out */
+	/* Scale the element to 250% to safely cover the entire area and fade it out */
 	100% {
 		opacity: 0;
 		-webkit-transform: scale(2.5);
@@ -235,7 +233,7 @@ body.modal-open {
 
 @-o-keyframes ripple-effect-light {
 
-	/* scale the element to 250% to safely cover the entire area and fade it out */
+	/* Scale the element to 250% to safely cover the entire area and fade it out */
 	100% {
 		opacity: 0;
 		-webkit-transform: scale(2.5);
@@ -247,7 +245,7 @@ body.modal-open {
 
 @keyframes ripple-effect-light {
 
-	/* scale the element to 250% to safely cover the entire area and fade it out */
+	/* Scale the element to 250% to safely cover the entire area and fade it out */
 	100% {
 		opacity: 0;
 		-webkit-transform: scale(2.5);
@@ -260,7 +258,7 @@ body.modal-open {
 
 /* Swipe listener */
 .swipe-listener {
-	display: none;	/* not shown normally, only available on small devices */
+	display: none;	/* Not shown normally, only available on small devices */
 }
 
 
@@ -301,7 +299,7 @@ body.modal-open {
 	display: block;
 	height: 22px;
 	width: 22px;
-	background: url('icons/nav.svg');
+	background: url('../icons/nav.svg');
 	background-position: center;
 	background-repeat: no-repeat;
 	border: 1px solid transparent;
@@ -453,7 +451,7 @@ body.modal-open {
 
 /* Used on menu toggle */
 .sidebar-container.sidebar-toggled {
-	left: -275px !important;	/* hide the sidebar to the left on menu toggle */
+	left: -275px !important;	/* Hide the sidebar to the left on menu toggle */
 }
 
 /* Sidebar nav styles */
@@ -474,7 +472,7 @@ body.modal-open {
 	font-size: 0.9em;
 	line-height: 40px;
 
-	/* for ripple effect */
+	/* For ripple effect */
 	position: relative;
 	overflow: hidden;
 }
@@ -485,7 +483,7 @@ body.modal-open {
 	padding: 5px 10px 5px 20px;
 	color: #666;
 
-	/* for ripple effect */
+	/* For ripple effect */
 	position: relative;
 }
 
@@ -577,19 +575,19 @@ body.modal-open {
 		box-shadow: 0px 10px 15px -4px rgba(0, 0, 0, 0.75);
 		margin-top: 0;
 		overflow-y: auto;	/* Always show the scrollbar */
-		left: -275px;	/* by default, hide the sidebar to the left on small devices */
+		left: -275px;	/* By default, hide the sidebar to the left on small devices */
 	}
 
 	.sidebar-container.sidebar-toggled {
-		left: 0px !important;	/* make the sidebar become visible */
+		left: 0px !important;	/* Make the sidebar become visible */
 	}
 
 	.notes-container {
-		left: 0 !important;	/* notes-container is not shifted away from left on small devices */
+		left: 0 !important;	/* The notes-container is not shifted away from left on small devices */
 	}
 
 	.notes-container.notes-toggled {
-		left: 0 !important;	/* don't bring any changes to notes-container position on menu toggle */
+		left: 0 !important;	/* Don't bring any changes to notes-container position on menu toggle */
 	}
 
 	.swipe-listener {
@@ -619,7 +617,7 @@ body.modal-open {
 /* Note tiles */
 .note {
 	padding: 0;
-	background: #fdfdfd;	/* default note color */
+	background: #fdfdfd;	/* Default note color */
 	border-radius: 2px;
 	word-wrap: break-word;
 	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 
@@ -714,7 +712,7 @@ body.modal-open {
 .note .note-main {
 	padding: 0.75em 1.5em 0.85em 1.5em;
 
-	/* to moderate the height of a note tile if it grows too large even after the prettifying filter */
+	/* To moderate the height of a note tile if it grows too large even after the prettifying filter */
 	max-height: 550px;
 	overflow-y: hidden;
 }
@@ -1132,10 +1130,10 @@ body.modal-open {
 	-moz-transform: translateY(0%);
 	-o-transform: translateY(0%);
 	transform: translateY(0%);
-	-webkit-transition-delay: .3s, 0s, 0.3s;	/* this removes the transition delay so the menu will be visible while the other styles transition */
-	-moz-transition-delay: .3s, 0s, 0.3s;	/* this removes the transition delay so the menu will be visible while the other styles transition */
-	-o-transition-delay: .3s, 0s, 0.3s;	/* this removes the transition delay so the menu will be visible while the other styles transition */
-	transition-delay: .3s, 0s, 0.3s;	/* this removes the transition delay so the menu will be visible while the other styles transition */
+	-webkit-transition-delay: .3s, 0s, 0.3s;	/* This removes the transition delay so the menu will be visible while the other styles transition */
+	-moz-transition-delay: .3s, 0s, 0.3s;	/* This removes the transition delay so the menu will be visible while the other styles transition */
+	-o-transition-delay: .3s, 0s, 0.3s;	/* This removes the transition delay so the menu will be visible while the other styles transition */
+	transition-delay: .3s, 0s, 0.3s;	/* This removes the transition delay so the menu will be visible while the other styles transition */
 }
 
 .menu-popup ul li {
@@ -1222,7 +1220,7 @@ body.modal-open {
 	border-radius: 100px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, .35);
 
-	/* for ripple effect */
+	/* For ripple effect */
 	position: relative;
 	overflow: hidden;
 }
@@ -1244,8 +1242,8 @@ body.modal-open {
 	line-height: 155%;
 	background: transparent;
 
-	/* for ripple effect */
-	position: relative;	/* relatively positioned to bring it above the ripple (static positioned elements appear behind absolutely positioned siblings, i.e. the ripple element added via JS) */
+	/* For ripple effect */
+	position: relative;	/* Relatively positioned to bring it above the ripple (static positioned elements appear behind absolutely positioned siblings, i.e. the ripple element added via JS) */
 }
 
 
@@ -1358,77 +1356,77 @@ body.modal-open {
 
 /* Icons */
 .icon-archive {
-	background-image: url('icons/archive.svg');
+	background-image: url('../icons/archive.svg');
 }
 
 .icon-unarchive {
-	background-image: url('icons/unarchive.svg');
+	background-image: url('../icons/unarchive.svg');
 }
 
 .icon-trash {
-	background-image: url('icons/trash.svg');
+	background-image: url('../icons/trash.svg');
 }
 
 .icon-tag {
-	background-image: url('icons/tag.svg');
+	background-image: url('../icons/tag.svg');
 }
 
 .icon-delete {
-	background-image: url('icons/delete.svg');
+	background-image: url('../icons/delete.svg');
 }
 
 .icon-restore {
-	background-image: url('icons/restore.svg');
+	background-image: url('../icons/restore.svg');
 }
 
 .icon-palette {
-	background-image: url('icons/palette.svg');
+	background-image: url('../icons/palette.svg');
 }
 
 .icon-pencil {
-	background-image: url('icons/pencil.svg');
+	background-image: url('../icons/pencil.svg');
 }
 
 .icon-mic {
-	background-image: url('icons/mic.svg');
+	background-image: url('../icons/mic.svg');
 }
 
 .icon-mic-active {
-	background-image: url('icons/mic-active.svg');
+	background-image: url('../icons/mic-active.svg');
 }
 
 .icon-mic-slash {
-	background-image: url('icons/mic-slash.svg');
+	background-image: url('../icons/mic-slash.svg');
 }
 
 .icon-speaker {
-	background-image: url('icons/speaker.svg');
+	background-image: url('../icons/speaker.svg');
 }
 
 .icon-check {
-	background-image: url('icons/check.svg');
+	background-image: url('../icons/check.svg');
 }
 
 .icon-paperclip {
-	background-image: url('icons/paperclip.svg');
+	background-image: url('../icons/paperclip.svg');
 }
 
 .icon-dots {
-	background-image: url('icons/dots.svg');
+	background-image: url('../icons/dots.svg');
 }
 
 .icon-cog {
-	background-image: url('icons/cog.svg');
+	background-image: url('../icons/cog.svg');
 }
 
 .icon-info {
-	background-image: url('icons/info.svg');
+	background-image: url('../icons/info.svg');
 }
 
 .icon-github {
-	background-image: url('icons/github.svg');
+	background-image: url('../icons/github.svg');
 }
 
 .icon-terminal {
-	background-image: url('icons/terminal.svg');
+	background-image: url('../icons/terminal.svg');
 }

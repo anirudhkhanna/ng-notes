@@ -26,42 +26,43 @@ app.controller('notesController', function($scope, $state, cfpLoadingBar) {
 		// initially empty (all notes are shown)
 	];
 
+	/* Max length of label name */
+	$scope.labelMaxLength = 20;
+
 	/* Max length of note title */
 	$scope.titleMaxLength = 100;
 
 	/* Notes data */
 	$scope.notes = [
 		{
-			title: 'My new note!',
-			content: '<p>Event binding:</p><pre><code>setTimeout(function() {</code><code>&nbsp; &nbsp; textareaAutoResizer();</code><code>}, 50);&nbsp;</code></pre>',
-			dateCreated: 'Feb 11, 2017',
-			labels: [
-						$scope.labels[2]
-					],
-			colorClass: $scope.colorClasses[8],
-			isArchived: false,
-			isTrashed: true
-		},
-		{
-			title: 'Happy Birthday!',
-			content: '<span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f604.svg);">&nbsp;</span> <span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f600.svg);">&nbsp;</span><p>Happy birthday, Anirudh Khanna.</p>',
+			title: '',
+			content: '<span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f604.svg);">&nbsp;</span> <span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f600.svg);">&nbsp;</span><p>Wish Anirudh a happy birthday.</p>',
 			dateCreated: 'Feb 3, 2017',
 			labels: [
 						$scope.labels[1]
+					],
+			colorClass: $scope.colorClasses[7],
+			isArchived: false,
+			isTrashed: false
+		},
+		{
+			title: '',
+			content: '<p>Go to the store later.</p>',
+			dateCreated: 'Feb 2, 2017',
+			labels: [
 					],
 			colorClass: $scope.colorClasses[0],
 			isArchived: false,
 			isTrashed: false
 		},
 		{
-			title: 'Some useful Git commands',
-			content: '<p>Quick reference:</p> <ul> <li><em>git checkout master</em></li> <li><em>git add -A</em></li> <li><em>git commit -m &#39;Awesome new commit!&#39;</em></li> <li><em>git push origin master</em></li> <li><em>git checkout gh-pages</em></li> <li><em>git merge master</em></li> <li><em>git push origin gh-pages</em></li> </ul>',
-			dateCreated: 'Feb 3, 2017',
-			colorClass: $scope.colorClasses[1],
+			title: 'Beautiful bag with fox design',
+			content: '<p><img src="img/fox-bag-design.jpg" class="fr-fil fr-dib"></p>',
+			dateCreated: 'Feb 2, 2017',
 			labels: [
-						$scope.labels[2],
 						$scope.labels[3]
 					],
+			colorClass: $scope.colorClasses[1],
 			isArchived: false,
 			isTrashed: false
 		},
@@ -76,30 +77,39 @@ app.controller('notesController', function($scope, $state, cfpLoadingBar) {
 			isTrashed: false
 		},
 		{
-			title: 'TPoBTI', /* 'The problems of being too intelligent', */
-			content: '<p>1. You can&#39;t stand normal people talking. You feel like 90% of their communication is obvious, banal and time-wasting. And things that interest you like science, philosophy and other stuff are boring for other people.</p><p><br><span>2. You have a pressure to speak only when you got something brilliant, so mostly you say nothing.</span></p><p><br>3. You strive for everything that is new and unknown. So your job after a while becomes not-good enough, because you know it all.</p><p><br><span>4. You spend too much time thinking about something rather than doing it.</span></p><p><br>5. You waste your life on accumulating useless knowledge, just for fun.</p><p><br><span>6. It&#39;s hard to be spontaneous.</span></p>',
+			title: 'Finding Inspiration in Nature',
+			content: '<p>1. Go for a walk in nature, practice mindfulness, and lose track of time for a while.</p><p>2. Meditate or practice yoga in a nearby park.</p><p>3. Watch children playing at the park then make a point to carry their spirit with you throughout the day.</p><p>4. Watch your cat or dog in nature and try to emulate your pet&rsquo;s mindfulness and playfulness.</p><p>5. Take a camera outside and photograph everything that looks beautiful to you.</p><p>6. Practice deep breathing while listening to nature sounds.</p><p>7. Draw or paint a scene outside your window.</p><p><br></p><p>- from <a href="http://tinybuddha.com/blog/50-ways-to-find-inspiration-create-explore-expand/" rel="noopener noreferrer" target="_blank"><em>50 Ways to Find Inspiration (Tiny Buddha)</em></a></p>',
 			dateCreated: 'Dec 29, 2016',
 			labels: [
+						$scope.labels[0],
 					],
 			colorClass: $scope.colorClasses[5],
 			isArchived: false,
 			isTrashed: false
 		},
 		{
-			title: 'A Note With a Really Long Title Because We Like Long Titles. They Are Fun!',
-			content: '<p>Some other things we like:</p><ol><li><strong>Chocolates</strong></li><li><strong>ng-notes</strong></li><li><strong>Linux</strong></li><li><strong>Git</strong></li><li><strong>GitHub</strong></li><li><strong>OpenSource</strong></li><li><strong>C</strong></li><li><strong>Java</strong></li><li><strong>HTML, CSS, JS</strong></li><li><strong>MEAN Stack</strong></li><li><strong>StackOverflow</strong></li><li><strong>Google</strong></li><li><strong>And the rest of the geek stuff on earth</strong></li></ol>',
+			title: '',
+			content: '<p>Do the dishes tonight.</p>',
+			dateCreated: 'Dec 22, 2016',
+			labels: [
+					],
+			colorClass: $scope.colorClasses[0],
+			isArchived: false,
+			isTrashed: true
+		},
+		{
+			title: 'A note with a really long title because we like long titles. They are fun!',
+			content: '<p>Some other things we like:</p><ol><li><strong>Chocolates</strong></li><li><strong>ng-notes</strong></li><li><strong>Open source</strong><ol><li><em><u>Linux</u></em></li><li><em><u>Git</u></em></li></ol></li><li><strong>Programming</strong><ol><li><strong><em>C, C++</em></strong></li><li><strong><em>Java</em></strong></li></ol></li><li><strong>Web development</strong><ol><li>HTML, CSS, JS</li><li>MEAN</li></ol></li><li><strong>StackOverflow</strong></li><li><strong>Google &amp; all its cool projects</strong></li><li><strong>The rest of the geeky stuff on earth</strong></li></ol>',
 			dateCreated: 'Dec 21, 2016',
 			labels: [
-						$scope.labels[0],
-						$scope.labels[1]
 					],
-			colorClass: $scope.colorClasses[5],
+			colorClass: $scope.colorClasses[3],
 			isArchived: false,
 			isTrashed: false
 		},
 		{
-			title: 'Greeting Cards',
-			content: '<p><img src="http://slodive.com/wp-content/uploads/2013/01/christmas-card-ideas/serus-christmas-card.jpg" style="width: 322px; height: 322px;" class="fr-fic fr-dib"></p> <p><span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f604.svg);">&nbsp;</span><span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f60d.svg);">&nbsp;</span>&nbsp; <br>The custom of sending greeting cards can be traced back to the ancient Chinese, who exchanged messages of good will to celebrate the New Year, and to the early Egyptians, who conveyed their greetings on papyrus scrolls. <br> <br>- Wikipedia</p>',
+			title: 'About Greeting Cards',
+			content: '<p><img src="img/christmas-greeting-card.jpg" style="width: 311px; height: 262.362px;" class="fr-fic fr-dib"></p> <p><span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f604.svg);">&nbsp;</span><span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f60d.svg);">&nbsp;</span>&nbsp; <br>The custom of sending greeting cards can be traced back to the ancient Chinese, who exchanged messages of good will to celebrate the New Year, and to the early Egyptians, who conveyed their greetings on papyrus scrolls. <br> <br>- Wikipedia</p>',
 			dateCreated: 'Nov 3, 2016',
 			labels: [
 						$scope.labels[3]
@@ -120,18 +130,51 @@ app.controller('notesController', function($scope, $state, cfpLoadingBar) {
 			isTrashed: false
 		},
 		{
-			title: 'Elephant in the field',
-			content: '<p><img src="https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg" class="fr-fil fr-dib"></p>',
+			title: 'Little snippet',
+			content: '<p>Event binding in JQuery:</p><pre><code>$<span>(</span>&#39;#anchor&#39;<span>).</span>click<span>(</span>function<span>() {</span></code><br /><code>&nbsp; &nbsp; console<span>.</span>log<span>(</span>&#39;Hi&#39;<span>);</span><br /><span>}</span></code><code><span>);</span></code></pre>',
+			dateCreated: 'Oct 11, 2016',
+			labels: [
+						$scope.labels[2]
+					],
+			colorClass: $scope.colorClasses[8],
+			isArchived: false,
+			isTrashed: true
+		},
+		{
+			title: 'Useful Git commands',
+			content: '<p>Quick reference:</p> <ul> <li><em>git checkout master</em></li> <li><em>git add -A</em></li> <li><em>git commit -m &#39;Awesome new commit!&#39;</em></li> <li><em>git push origin master</em></li> <li><em>git checkout gh-pages</em></li> <li><em>git merge master</em></li> <li><em>git push origin gh-pages</em></li> </ul>',
 			dateCreated: 'Sep 15, 2016',
 			labels: [
+						$scope.labels[2],
+						$scope.labels[3]
 					],
 			colorClass: $scope.colorClasses[4],
 			isArchived: false,
 			isTrashed: false
 		},
 		{
-			title: 'My First Note with really long heading',
-			content: 'Some readme Some readme Some readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readmeSome readme',
+			title: 'A painting of The Eiffel Tower',
+			content: '<p><img src="img/eiffel-painting.jpg" class="fr-dib"></p>',
+			dateCreated: 'Sep 10, 2016',
+			labels: [
+					],
+			colorClass: $scope.colorClasses[8],
+			isArchived: false,
+			isTrashed: false
+		},
+		{
+			title: '"A Curious Cat" by Carl Zeno',
+			content: '<p><img src="img/a-curious-cat-by-carl-zeno.jpg" class="fr-dib"></p>',
+			dateCreated: 'Sep 8, 2016',
+			labels: [
+					],
+			colorClass: $scope.colorClasses[8],
+			isArchived: true,
+			isTrashed: false
+		},
+		{
+			title: 'Interview tips from Monster',
+			content: '<p>It&#39;s about demonstrating confidence: standing straight, making eye contact and connecting with a firm handshake. That first nonverbal impression can be a great beginning - or quick ending - to your interview.</p><p>Part of knowing how to interview is being ready to ask questions that demonstrate an interest in what goes on in the company.</p>',
 			dateCreated: 'Aug 11, 2016',
 			labels: [
 					],
@@ -140,37 +183,49 @@ app.controller('notesController', function($scope, $state, cfpLoadingBar) {
 			isTrashed: false
 		},
 		{
-			title: 'My First Note',
-			content: '<img src="https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg"/>',
+			title: 'Elephant in the field',
+			content: '<p><img src="img/elephant-in-the-field.jpg" class="fr-fil fr-dib"></p>',
 			dateCreated: 'Jul 3, 2016',
 			labels: [
-						"Miscellaneous"
+						$scope.labels[3]
+					],
+			colorClass: $scope.colorClasses[7],
+			isArchived: true,
+			isTrashed: false
+		},
+		{
+			title: '',
+			content: '<p><img src="img/dog-lights.jpg" class="fr-fil fr-dib"></p>',
+			dateCreated: 'Jul 3, 2016',
+			labels: [
+						$scope.labels[3]
 					],
 			colorClass: $scope.colorClasses[0],
 			isArchived: false,
 			isTrashed: false
 		},
 		{
-			title: 'A1 My First Note',
-			content: '<img src="https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg"/>',
-			dateCreated: 'Jun 3, 2016',
+			title: 'Groceries',
+			content: '<ol><li style="">Ice cream</li><li style="">Cheese</li><li style="">Bread</li><li style="">Milk</li><li style="">Juice</li></ol>',
+			dateCreated: 'Jul 2, 2016',
 			labels: [
-						"Miscellaneous"
+						$scope.labels[1]
 					],
-			colorClass: $scope.colorClasses[0],
+			colorClass: $scope.colorClasses[5],
 			isArchived: true,
 			isTrashed: false
 		},
 		{
-			title: 'A2 My First Note',
-			content: '<img src="https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg"/>',
-			dateCreated: 'May 3, 2016',
+			title: '',
+			content: '<p><img src="img/chocolate-cake.jpg" class="fr-fic fr-dib"></p><p>Get a cake.</p>',
+			dateCreated: 'Jul 1, 2016',
 			labels: [
+						$scope.labels[1]
 					],
-			colorClass: $scope.colorClasses[0],
+			colorClass: $scope.colorClasses[2],
 			isArchived: true,
 			isTrashed: false
-		},
+		}
 	];
 
 	/* Dummy note object */
@@ -441,6 +496,16 @@ app.controller('notesController', function($scope, $state, cfpLoadingBar) {
 		}
 
 		$scope.labels.push(newLabel);
+
+		var isMobile = window.matchMedia('only screen and (max-width: 800px)');	// rebind the event to automatically close the sidebar when user selects a sidebar link on small devices
+		if(isMobile.matches) {
+			setTimeout(function() {
+				$('.sidebar-container a').on('click', function() {
+					$('.sidebar-container').removeClass('sidebar-toggled');
+					$('.swipe-listener').removeClass('swipe-toggled');
+				});
+			}, 1000);
+		}
 	}
 
 	/* Remove a label from labels and from the notes that have it */
