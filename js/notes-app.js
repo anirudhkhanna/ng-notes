@@ -5,7 +5,7 @@ var cfpLoadingBarElem = null;
 /* Notes app */
 var app = angular.module('notesApp', ['froala', 'ui.router', 'chieffancypants.loadingBar' /* , 'angular-loading-bar'*/ ]);
 
-/* Notes conrtroller */
+/* Notes controller */
 app.controller('notesController', function($scope, $state, cfpLoadingBar) {
 
 	/* Assign the loading bar element for use outside the controller */
