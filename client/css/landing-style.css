@@ -1,0 +1,506 @@
+
+body {
+	font-family: 'Roboto Slab', sans-serif;
+	background: #fff;
+}
+
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+	width: 7px;
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-track {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.65);
+}
+
+
+/* Header, brand etc. styles */
+
+/* Header */
+.header {
+	width: 100%;
+	background: #fac832;
+	padding: 8px 0 10px 0;
+	position: fixed;
+	top: 0;
+	z-index: 999;
+	transition: .5s;
+}
+
+.header-scrolled {
+	box-shadow: none;
+}
+
+/* Brand logo */
+.brand {
+	float: left;
+	padding: 0;
+	margin-left: 35px;
+	line-height: 165%;
+	font-size: 1.9em;
+	font-weight: bold;
+	font-family: 'Noto Sans', Roboto, sans-serif;
+	color: #111;
+}
+
+.brand a {
+	text-decoration: none;
+	outline: 0;
+	color: #111;
+	transition: .3s;
+}
+
+/* Header, brand etc. responsive styles */
+@media screen and (max-width: 450px) {
+
+	.brand {
+		font-size: 1.8em;
+	}
+}
+
+@media screen and (max-width: 250px) {
+
+	.brand {
+		font-size: 1.5em;
+	}
+}
+
+
+/* Intro container, forms etc. styles */
+.intro-container {
+	display: block;
+	width: 100%;
+	padding: 75px 5% 3% 5%;
+	background: #fff;
+}
+
+.intro-text {
+	margin-bottom: 30px;
+	font-family: Montserrat, sans-serif;
+}
+
+.intro-text h3 {
+	padding: 0 10px;
+	font-family: 'Roboto Slab', sans-serif;
+	font-size: 26px;
+}
+
+.product-image {
+	float: right;
+	width: 550px;
+	margin-top: -5px;
+}
+
+.learn-more {
+	margin-top: 30px;
+	font-family: Montserrat, sans-serif;
+}
+
+.learn-more a {
+	text-decoration: none;
+	color: #222;
+}
+
+.learn-more a:hover {
+	color: #23527c;
+}
+
+/* Forms container */
+.forms-container {
+	max-width: 768px;
+	margin: 20px auto;
+	margin-left: 30px;
+	position: relative;
+	-moz-perspective: 2000px;
+	-webkit-perspective: 2000px;
+	perspective: 2000px;
+}
+
+.forms-container form {
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	/* Enabling 3d space for the transforms */
+	-moz-transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+
+	/* When a form is flipped, it will be hidden */
+	-moz-backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+
+	/* Enabling a smooth animated transition */
+	-moz-transition: 0.8s;
+	-webkit-transition: 0.8s;
+	transition: 0.8s;
+
+	/* Configuring a keyframe animation */
+	-moz-animation: pulse 2s infinite;
+	-webkit-animation: pulse 2s infinite;
+	animation: pulse 2s infinite;
+}
+
+#signin-form {
+	z-index: 100;
+}
+
+#register-form {
+	z-index: 1;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	-moz-transform: rotateY(180deg);
+	-webkit-transform: rotateY(180deg);
+	transform: rotateY(180deg);
+}
+
+.forms-container.flipped #signin-form {
+	opacity: 0;
+	filter: alpha(opacity=0);
+	-moz-transform: rotateY(-180deg);
+	-webkit-transform: rotateY(-180deg);
+	transform: rotateY(-180deg);
+}
+
+.forms-container.flipped #register-form {
+	opacity: 1;
+	filter: alpha(opacity=100);
+	-moz-transform: rotateY(0deg);
+	-webkit-transform: rotateY(0deg);
+	transform: rotateY(0deg);
+}
+
+.forms-container h1 {
+	font-family: 'Roboto Condensed', sans-serif;
+	text-transform: uppercase;
+}
+
+.forms-container input {
+	line-height: normal;
+}
+
+.forms-container input[type='text'], .forms-container input[type='email'], .forms-container input[type='password'] {
+	background: none;
+	border: none;
+	border-bottom: solid 1px #474544;
+	color: #474544;
+	font-size: 1.0em;
+	font-weight: 400;
+	letter-spacing: 1px;
+	margin: 0em 0 1.875em 0;
+	padding: 0 0 0.875em 0;
+	width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.forms-container input[type='text']:focus, .forms-container input[type='email']:focus, .forms-container input[type='password']:focus {
+	outline: none;
+}
+
+.signin-email {
+	float: left;
+	width: 99%;
+}
+
+.signin-password {
+	width: 100%;
+}
+
+.register-name {
+	float: left;
+	width: 45%;
+}
+
+.register-email {
+	float: right;
+	width: 45%;
+}
+
+.register-password {
+	width: 100%;
+}
+
+.button {
+	cursor: pointer;
+	display: inline-block;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.875em;
+	font-weight: bold;
+	outline: none;
+	border-radius: 2px;
+	padding: 20px 35px;
+	margin-top: 10px;
+	text-transform: uppercase;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.button-main {
+	border: 1px solid #474544;
+	background: #474544;
+	color: #f2f3eb;
+}
+
+.button-main:hover {
+	background: #121212;
+}
+
+.button-aside {
+	border: 1px solid transparent;
+	background: none;
+}
+
+.button-aside:hover {
+	border: 1px solid #6a6a6a;
+}
+
+::-webkit-input-placeholder {
+	color: #474544;
+}
+
+:-moz-placeholder {
+	color: #474544;
+	opacity: 1;
+}
+
+::-moz-placeholder {
+	color: #474544;
+	opacity: 1;
+}
+
+:-ms-input-placeholder {
+	color: #474544;
+}
+
+/* Intro container, forms etc. responsive styles */
+@media screen and (max-width: 1150px) {
+
+	.product-image {
+		width: 450px;
+		margin-top: 0;
+	}
+}
+
+@media screen and (max-width: 950px) {
+
+	.product-image {
+		width: 350px;
+		margin: 0;
+	}
+
+	.forms-container {
+		margin-top: 0px;
+	}
+}
+
+@media screen and (max-width: 900px) {
+
+	.col-image {
+		width: 100%;
+	}
+
+	.product-image {
+		width: 80%;
+		float: none;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.col-forms {
+		width: 80%;
+		margin-left: 5%;
+	}
+
+	.intro-container #stub {
+		height: 315px;
+		float: left;
+		border: 1px solid black;
+	}
+
+	.learn-more {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 550px) {
+
+	.forms-container h1 {
+		font-size: 26px;
+	}
+
+	.forms-container input[type='text'], .forms-container input[type='email'], .forms-container input[type='password'] {
+		font-size: 0.875em;
+	}
+
+	.button {
+		padding: 15px 10px;
+	}
+}
+
+@media screen and (max-width: 350px) {
+
+	.forms-container input[type='text'], .forms-container input[type='email'], .forms-container input[type='password'] {
+		font-size: 0.75em;
+	}
+
+	.button {
+		padding: 15px 5px;
+	}
+}
+
+
+/* About container styles */
+.about-container {
+	display: block;
+	width: 100%;
+	padding: 40px 50px 60px 50px;
+	background: #fac832;
+}
+
+.about h3 {
+	padding: 0 10px;
+	margin-bottom: 30px;
+	font-size: 26px;
+}
+
+.about p {
+	width: 60%;
+	margin: 0 auto;
+	font-family: Montserrat, sans-serif;
+	font-size: 15px;
+	line-height: 170%;
+}
+
+/* About container responsive styles */
+@media screen and (max-width: 1150px) {
+
+	.about p {
+		width: 80%;
+	}
+}
+
+@media screen and (max-width: 550px) {
+
+	.about p {
+		width: 100%;
+	}
+}
+
+
+/* Details container, features etc. styles */
+.details-container {
+	display: block;
+	width: 100%;
+	padding: 50px 100px;
+	background: #fff;
+}
+
+.feature-image {
+	width: 400px;
+	-webkit-box-shadow: -2px 3px 7px 1px rgba(54, 54, 54, 0.75);
+	-moz-box-shadow: -2px 3px 7px 1px rgba(54, 54, 54, 0.75);
+	box-shadow: -2px 3px 7px 1px rgba(54, 54, 54, 0.75);
+}
+
+.feature-text {
+	margin-top: 40px;
+	padding: 40px;
+}
+
+.feature-text p {
+	font-family: Montserrat, sans-serif;
+	font-size: 16px;
+	line-height: 170%;
+}
+
+.get-started {
+	margin: 100px 0 20px;
+	font-family: Montserrat, sans-serif;
+}
+
+.get-started a {
+	text-decoration: none;
+	padding: 20px 30px;
+	border: 1px solid #c0c0c0;
+	color: #222;
+}
+
+.get-started a:hover {
+	border: 1px solid #90a6ba;
+	color: #23527c;
+}
+
+/* Details container, features etc. responsive styles */
+@media screen and (max-width: 1250px) {
+
+	.feature-text {
+		padding: 20px;
+	}
+}
+
+@media screen and (max-width: 1199px) {
+
+	.feature-image {
+		display: none;
+	}
+
+	.feature-text {
+		padding: 0px;
+	}
+}
+
+@media screen and (max-width: 550px) {
+
+	.details-container {
+		padding: 20px 30px;
+	}
+
+	.get-started a {
+		padding: 20px 10px;
+	}
+}
+
+
+/* Footer styles */
+.footer {
+	width: 100%;
+	padding: 35px 0 0 0;
+	background: #eee;
+	border-top: 1px solid #e0e0e0;
+}
+
+.footer p {
+	font-family: Roboto, sans-serif;
+	color: #7a7a7a;
+}
+
+.footer p.icon {
+	font-size: 20px;
+}
+
+.footer a {
+	color: #5a5a5a;
+}

@@ -1,0 +1,18 @@
+/*! Watnotif v1 | MIT License | github.io/watnotif*/
+/*
+ * ===== HOW-TO USE THIS LESS FILE ========
+ * 
+ * You should only compile the LESS files in "prepared" folder. To explain how they work:
+ *		- they define two variables: @vertical-position, @horizontal-position,
+ *		- they then import this file and the effect file they need.
+ * 		- and ... That's it!
+ */
+#watnotif-wrapper {
+  font-family: 'Noto Sans', sans-serif !important;
+}
+#watnotif-wrapper > .notif > p {
+  line-height: 27px !important;
+}
+#watnotif-wrapper > .notif.success {
+  background: linear-gradient(135deg, #72cf55 0px, #52c92d 100%) !important;
+}

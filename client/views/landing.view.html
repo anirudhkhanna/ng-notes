@@ -1,0 +1,187 @@
+
+<!-- Header (top bar) -->
+<header class="header">
+	<div class="container">
+		<div class="row">
+			<div class="brand">
+				<a href="#"><span class="fa fa-paperclip"></span> ng-notes</a>
+			</div>
+		</div>
+	</div>
+</header>
+<!-- /.Header (top bar) -->
+
+
+<!-- Intro container -->
+<div class="container intro-container" id="intro">
+
+	<div class="row text-center intro-text">
+		<h3>Because ideas are priceless.</h3>
+		<h5>Inspiration strikes anywhere. Now capture your ideas on the fly with ng-notes.</h5>
+	</div>
+
+	<div class="row intro-items">
+		<div class="col-xs-6 col-image">
+			<img src="assets/images/ng-notes.png" class="product-image" />
+		</div>
+
+		<div class="col-xs-6 col-forms">
+			<div class="forms-container">
+
+				<!-- Signin form -->
+				<form id="signin-form" ng-submit="vm.signin()">
+					<h1>Sign in</h1>
+					<div class="signin-email">
+						<label for="email"></label>
+						<input type="email" placeholder="My email" ng-model="vm.signinCredentials.email" />
+					</div>
+					<div class="signin-password">
+						<label for="password"></label>
+						<input type="password" placeholder="My super-secret password" ng-model="vm.signinCredentials.password" />
+					</div>
+					<div class="signin-buttons">
+						<input type="submit" value="Sign in" class="button button-main" />
+						<input type="button" value="Create new account" class="button button-aside flip" />
+					</div>
+				</form>
+
+				<!-- Register form -->
+				<form id="register-form" ng-submit="vm.register()">
+					<h1>Get an account</h1>
+					<div class="register-name">
+						<label for="name"></label>
+						<input type="text" placeholder="My name is" ng-model="vm.registerCredentials.name" />
+					</div>
+					<div class="register-email">
+						<label for="email"></label>
+						<input type="email" placeholder="My email is" ng-model="vm.registerCredentials.email" />
+					</div>
+					<div class="register-password">
+						<label for="password"></label>
+						<input type="password" placeholder="My super-secret password is" ng-model="vm.registerCredentials.password" />
+					</div>
+					<div class="register-buttons">
+						<input type="submit" value="Register now" class="button button-main" />
+						<input type="button" value="Already have an account?" class="button button-aside flip" />
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+	<div id="stub">
+	</div>
+
+	<div class="row text-center learn-more">
+		<h5><a class="scroll" href="#about">Learn more &nbsp;<span class="fa fa-chevron-down"></span></a></h5>
+	</div>
+
+</div>
+<!-- /.Intro container -->
+
+
+<!-- About container -->
+<div class="container about-container" id="about">
+	<div class="row text-center about">
+		<h3>What this is?</h3>
+		<p>
+			A simple note-taking app to quickly capture what is on your mind - ideas, pictures, lists and more.
+			Built with MEAN stack (MongoDB, Express, AngularJS and Node.js).
+			The UX is largely based on A<strong>ng</strong>ularJS - hence the name ng-notes. ☺
+			<br /><br />
+			(Inspired by <a href="https://en.wikipedia.org/wiki/Google_Keep" target="_blank" title="Google Keep - Wikipedia">Google Keep</a>)
+		</p>
+	</div>
+</div>
+<!-- /.About container -->
+
+
+<!-- Details container -->
+<div class="container details-container" id="details">
+
+	<div class="row feature">
+		<div class="col-lg-5">
+			<img src="assets/images/ngn-feature-1.png" class="feature-image" />
+		</div>
+		<div class="col-lg-7 feature-text">
+			<h3>Crisp, user-friendly design</h3>
+			<p>
+				The welcoming, clutter-free interface keeps you focussed on your work. In a minimal and vibrant space, nothing but productivity flows in.
+			</p>
+		</div>
+	</div>
+
+	<div class="row feature">
+		<div class="col-lg-7 feature-text">
+			<h3>Perfect for all devices</h3>
+			<p>
+				This app is friends with all your devices. Capture a note once, and access it from any device - be it your laptop, tablet or smartphone.
+			</p>
+		</div>
+		<div class="col-lg-5">
+			<img src="assets/images/ngn-feature-2.png" class="feature-image" />
+		</div>
+	</div>
+
+	<div class="row feature">
+		<div class="col-lg-5">
+			<img src="assets/images/ngn-feature-3.png" class="feature-image" />
+		</div>
+		<div class="col-lg-7 feature-text">
+			<h3>Multitude of features</h3>
+			<p>
+				Loaded with all the features you crave. Attach images and files, format text, dictate notes and insert emojis on the click of a button.
+			</p>
+		</div>
+	</div>
+
+	<div class="row feature">
+		<div class="col-lg-7 feature-text">
+			<h3>Navigate your way</h3>
+			<p>
+				Classify your notes with labels and colors to quickly find them. Or just search and get to that one, special note you need.
+			</p>
+		</div>
+		<div class="col-lg-5">
+			<img src="assets/images/ngn-feature-4.png" class="feature-image" />
+		</div>
+	</div>
+
+	<div class="row text-center get-started">
+		<a class="scroll" href="#intro">Get started now</a>
+	</div>
+
+</div>
+<!-- /.Details container -->
+
+
+<!-- Footer -->
+<footer class="footer">
+	<div class="container">
+		<div class="row text-center">
+			<p>
+				&copy; <span id="copyright-years">2017</span> ng-notes &nbsp;&bull;&nbsp; View code <a href="https://github.com/anirudhkhanna/ng-notes" target="_blank">on GitHub</a>
+			</p>
+
+			<script>
+				var currYear = new Date().getFullYear();
+				if(currYear != '2017')
+					document.getElementById('copyright-years').appendChild(document.createTextNode(' - ' + currYear));
+			</script>
+
+			<p class="icon"><span class="fa fa-paperclip"></span></p>
+		</div>
+	</div>
+</footer>
+<!-- /.Footer -->
+
+
+<!-- Landing page JS -->
+<script src="js/landing-script.js"></script>
+
+<!-- Load landing page CSS dynamically -->
+<script>
+	var cssFileHref = 'css/landing-style.css';
+	loadCSSFile(cssFileHref);
+</script>

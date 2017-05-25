@@ -1,0 +1,199 @@
+/*! Watnotif v1 | MIT License | github.io/watnotif*/
+/*
+ * ===== HOW-TO USE THIS LESS FILE ========
+ * 
+ * You should only compile the LESS files in "prepared" folder. To explain how they work:
+ *		- they define two variables: @vertical-position, @horizontal-position,
+ *		- they then import this file and the effect file they need.
+ * 		- and ... That's it!
+ */
+#watnotif-wrapper {
+  box-sizing: border-box;
+  position: fixed;
+  display: block;
+  width: 100%;
+  max-width: 450px;
+  height: 0;
+  overflow: visible;
+  z-index: 9999;
+  bottom: 20px;
+  transform: rotate(180deg);
+  right: 20px;
+}
+#watnotif-wrapper *,
+#watnotif-wrapper *:before,
+#watnotif-wrapper *:after {
+  box-sizing: border-box;
+}
+@media (max-width: 520px) {
+  #watnotif-wrapper {
+    bottom: 0;
+  }
+}
+@media (max-width: 520px) {
+  #watnotif-wrapper {
+    right: 0;
+  }
+}
+#watnotif-wrapper,
+#watnotif-wrapper > .notif {
+  transform: matrix(1, 0, 0, -1, 0, 0);
+}
+#watnotif-wrapper > .notif {
+  right: -50px;
+  margin: 0 0 20px -50px;
+  border-radius: 0;
+  transition-property: top, margin, width, right, border-radius;
+  transition-duration: 0.15s;
+  transition-delay: 0s, 0s, 0.5s, 0.5s, 0.5s;
+  transition-timing-function: ease-out;
+  /* Mobile view */
+}
+#watnotif-wrapper > .notif.inactive {
+  right: -100%;
+  width: 50px;
+  height: 50px;
+  margin: 0 0 20px 0;
+  border-radius: 25px;
+}
+#watnotif-wrapper > .notif.inactive.going-out {
+  width: 100%;
+  opacity: 0;
+  border-radius: 0;
+  transition-property: margin, opacity;
+  transition-duration: 0.15s;
+  transition-delay: 0s;
+  transition-timing-function: ease-out;
+}
+@media (max-width: 520px) {
+  #watnotif-wrapper > .notif {
+    margin: 0;
+  }
+  #watnotif-wrapper > .notif > .close-notif {
+    opacity: .4;
+    transition-property: opacity;
+    transition-duration: 0.15s;
+    transition-delay: 0.5s;
+  }
+  #watnotif-wrapper > .notif.inactive > .close-notif {
+    opacity: 0;
+  }
+}
+#watnotif-wrapper > .notif {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 50px;
+  height: auto;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: #fff;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.9);
+  overflow: hidden;
+  opacity: 1;
+  /* Customisation of the background color of the notifications depending on their type */
+}
+#watnotif-wrapper > .notif:before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin-top: -25px;
+  padding: 10px;
+  text-align: center;
+  line-height: 30px;
+  font-family: initial, sans-serif;
+}
+#watnotif-wrapper > .notif > .close-notif {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  z-index: 2;
+  display: block;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background: transparent none;
+  border: none;
+  opacity: 0;
+  outline: none;
+  font-size: 30px;
+  font-weight: normal;
+  line-height: 30px;
+  transition: opacity 0.1s ease-out;
+}
+#watnotif-wrapper > .notif:hover > .close-notif {
+  opacity: .4;
+}
+#watnotif-wrapper > .notif:hover > .close-notif:hover {
+  opacity: 1;
+}
+#watnotif-wrapper > .notif > p {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0 12px 0 50px;
+  margin: 0;
+  opacity: 1;
+  transition-property: height, opacity, margin;
+  transition-duration: .15s;
+  transition-delay: .75s;
+}
+#watnotif-wrapper > .notif > p a {
+  color: inherit;
+  text-decoration: underline;
+}
+#watnotif-wrapper > .notif.inactive > p {
+  height: 0;
+  margin: -10px 0 0 0;
+  opacity: 0;
+  overflow: hidden;
+}
+#watnotif-wrapper > .notif.confirmed {
+  background: linear-gradient(135deg, #59caff 0%, #26adec 100%);
+}
+#watnotif-wrapper > .notif.confirmed:before {
+  content: ":)";
+}
+#watnotif-wrapper > .notif.success {
+  background: linear-gradient(135deg, #92db7b 0%, #70cf51 100%);
+}
+#watnotif-wrapper > .notif.success:before {
+  content: ":D";
+}
+#watnotif-wrapper > .notif.error {
+  background: linear-gradient(135deg, #ff6159 0%, #ec3026 100%);
+}
+#watnotif-wrapper > .notif.error:before {
+  content: ":(";
+}
+#watnotif-wrapper > .notif.default {
+  background: linear-gradient(135deg, #dadada 0%, #cbcbcb 100%);
+  color: #333;
+}
+#watnotif-wrapper > .notif.default:before {
+  content: ":|";
+}
+@media (max-width: 520px) {
+  #watnotif-wrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+  #watnotif-wrapper > .notif {
+    margin-bottom: 0;
+  }
+  #watnotif-wrapper > .notif > .close-notif {
+    opacity: .4;
+  }
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  #watnotif-wrapper > .notif {
+    transition: none;
+  }
+  #watnotif-wrapper > .notif > p {
+    transition-delay: 0s;
+  }
+}

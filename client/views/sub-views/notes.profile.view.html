@@ -1,0 +1,152 @@
+
+<!-- Profile view -->
+
+	<!-- Profile container -->
+	<div class="container notes-container" ng-cloak>
+	<div class="profile-container">
+
+		<div class="profile-header">
+			<div class="row">
+				<div class="col-sm-12"><img class="profile-avatar" ng-src="{{vm.currentUser.avatar}}" /></div>
+			</div>
+			<div class="row">
+				<div class="col-sm-9"><h2><span ng-bind="vm.currentUser.name">Loading...</span></h2></div>
+				<div class="col-sm-3 profile-logout"><a href="" ng-click="signout()">Log out</a></div>
+			</div>
+		</div>
+
+		<hr class="profile-hr" />
+
+		<div class="profile-editor">
+			<div class="row">
+				<div class="col-xs-6 profile-label">Name</div>
+				<div class="col-xs-6 profile-value">
+					<span ng-hide="vm.isEditingName">
+						{{vm.currentUser.name}} <a title="Edit" class="opt-tooltip opt-icon icon-pencil" ng-click="vm.isEditingName = true; vm.isEditingEmail = false;"></a>
+					</span>
+					<span ng-show="vm.isEditingName">
+						<form ng-submit="vm.updateUser()">
+							<input type="text" placeholder="My name" ng-model="vm.dummyUser.name" /> <input type="submit" value="" title="Done" class="opt-tooltip opt-icon icon-check" />
+						</form>
+					</span>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-6 profile-label">Email</div>
+				<div class="col-sm-6 profile-value">
+					<span ng-hide="vm.isEditingEmail">
+						{{vm.currentUser.email}} <a title="Edit" class="opt-tooltip opt-icon icon-pencil" ng-click="vm.isEditingEmail = true; vm.isEditingName = false;"></a>
+					</span>
+					<span ng-show="vm.isEditingEmail">
+						<form ng-submit="vm.updateUser()">
+							<input type="email" placeholder="My email address" ng-model="vm.dummyUser.email" /> <input type="submit" value="" title="Done" class="opt-tooltip opt-icon icon-check" />
+						</form>
+					</span>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-6 profile-label">Password</div>
+				<div class="col-sm-6 profile-value"><a class="profile-action-btn" data-toggle="modal" data-target="#change-password-modal">Change password <span class="fa fa-asterisk"></span></a></div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-6 profile-label">Delete account</div>
+				<div class="col-sm-6 profile-value"><a class="profile-action-btn profile-action-btn-danger" data-toggle="modal" data-target="#delete-account-modal">Delete my account <span class="fa fa-exclamation-circle"></span></a></div>
+			</div>
+		</div>
+
+	</div>
+	</div>
+	<!-- /.Profile container -->
+
+
+	<!-- Change password modal -->
+	<div class="modal fade-pop" id="change-password-modal">
+
+		<div class="modal-dialog">
+
+		<!-- Modal content -->
+		<div class="modal-content">
+			<!-- Modal header -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h3 class="modal-header-title">Change password</h3>
+			</div>
+
+			<!-- Modal body -->
+			<div class="modal-body">
+				<form id="change-password-form" ng-submit="vm.changeUserPassword()">
+					<div class="row">
+						<div class="col-sm-6 profile-label">Current password</div>
+						<div class="col-sm-6">
+							<input type="password" placeholder="Your current password" ng-model="vm.changePassword.oldPassword" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6 profile-label">New password</div>
+						<div class="col-sm-6">
+							<input type="password" placeholder="Choose a new password" ng-model="vm.changePassword.newPassword" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6 profile-label">Confirm new password</div>
+						<div class="col-sm-6">
+							<input type="password" placeholder="Retype the new password" ng-model="vm.changePassword.confirmNewPassword" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<input type="submit" class="profile-action-btn profile-action-btn-alt" value="Change password" />
+						</div>
+					</div>
+				</form>
+			</div>
+		</div> <!-- /.Modal content -->
+
+		</div>
+
+	</div>
+	<!-- /.Change password modal -->
+
+
+	<!-- Delete account modal -->
+	<div class="modal fade-pop" id="delete-account-modal">
+
+		<div class="modal-dialog">
+
+		<!-- Modal content -->
+		<div class="modal-content">
+			<!-- Modal header -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h3 class="modal-header-title">Delete my account</h3>
+			</div>
+
+			<!-- Modal body -->
+			<div class="modal-body">
+				<p>If you delete your account, all of your notes, content and information saved here will be removed. There is no going back.</p>
+				<p>Do you want to proceed?<br /><br /></p>
+
+				<form id="delete-account-form" ng-submit="vm.removeUser()">
+					<div class="row">
+						<div class="col-sm-12">
+							<input type="password" placeholder="Enter your password" ng-model="vm.removeUserConfirmation.password" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<input type="submit" class="profile-action-btn profile-action-btn-danger-alt" value="Yes, delete my account" />
+						</div>
+					</div>
+				</form>
+			</div>
+		</div> <!-- /.Modal content -->
+
+		</div>
+
+	</div>
+	<!-- /.Delete account modal -->
+
+<!-- /.Profile view -->

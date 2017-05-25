@@ -1,0 +1,198 @@
+
+<!-- Labels view -->
+
+	<!-- Note tiles container -->
+	<div class="container notes-container" ng-cloak>
+
+		<!-- Note tile -->
+		<div class="masonry-item note" ng-class="note.colorClass" 
+		ng-repeat="note in filteredNotes = ((notes | ngRepeatFinish:this) | filter:{isArchived:false} | filter:{isTrashed:false} | searchFor:searchString | filterLabels:selectedLabels)">
+
+			<!-- Note-main (has note title and content, opens the corresponding note-view-modals) -->
+			<div class="note-main" data-toggle="modal" data-target="#note-view-modal-{{$index}}">
+				<h3 class="note-title">{{ note.title }}</h3>
+				<p class="note-content" froala-view="note.content | noteTilePrettify"></p>
+			</div>
+
+			<!-- Note-labels (has note labels) -->
+			<div class="note-labels">
+				<ul>
+					<li ng-repeat="label in note.labels" ui-sref="notes.state-labels" ng-click="setSelectedLabels([label])">
+						{{label}}
+					</li>
+				</ul>
+			</div>
+
+			<!-- Note-opt (has note options) -->
+			<div class="note-opt">
+				<a title="Edit" class="opt-tooltip opt-icon icon-pencil" data-toggle="modal" data-target="#note-edit-modal-{{$index}}" ng-click="setCurrentNote(note)"></a>
+
+				<a title="Change color" class="opt-tooltip opt-icon icon-palette colors-popup">
+					<ul>
+						<li class="color-btn" ng-class="colorClass" ng-repeat="colorClass in colorClasses" ng-click="setNoteColor(note, colorClass)"></li>
+					</ul>
+				</a>
+
+				<a title="Archive" class="opt-tooltip opt-icon icon-archive" ng-click="archiveNote(note)"></a>
+
+				<a class="opt-icon icon-dots menu-popup">
+					<ul>
+						<li ng-click="copyNote(note)">Make a copy</li>
+						<li ng-click="trashNote(note)">Delete note</li>
+					</ul>
+				</a>
+			</div>
+		</div>
+		<!-- /.Note tile -->
+
+		<!-- Not found message -->
+		<div class="container-message" ng-show="filteredNotes.length === 0">
+			<span class="glyphicon glyphicon-tag container-message-icon"></span>
+			<p class="container-message-text">No notes found here</p>
+		</div>
+		<!-- /.Not found message -->
+
+	</div>
+	<!-- /.Note tiles container -->
+
+
+	<!-- Note edit modals -->
+	<div class="modal fade-pop note-modal note-edit-modal" 
+	ng-repeat="note in notes | filter:{isArchived:false} | filter:{isTrashed:false} | searchFor:searchString | filterLabels:selectedLabels" 
+	id="note-edit-modal-{{$index}}" role="dialog" edit-modals-loaded-directive>
+
+		<div class="modal-dialog">
+
+		<!-- Modal content -->
+		<div class="modal-content" ng-class="note.colorClass">
+
+			<!-- Edit Note Form -->
+			<form class="edit-note-form">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+				<!-- Modal header -->
+				<div class="modal-header">
+					<div class="form-group">
+						<label class="sr-only" for="title">Title: </label>
+						<textarea class="form-control input-title" rows="1" placeholder="Title" ng-model="note.title" maxlength="{{titleMaxLength}}"></textarea>
+					</div>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body">
+					<div class="form-group">
+						<label class="sr-only" for="content">Content: </label>
+						<textarea froala="froalaOptions" ng-model="note.content"></textarea>
+					</div>
+				</div>
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<!-- Labels -->
+					<div class="note-modal-labels">
+						<ul>
+							<li ng-repeat="label in note.labels">{{label}}</li>
+						</ul>
+					</div>
+
+					<!-- Date -->
+					<div class="note-modal-date">
+						<span title="Created {{note.dateCreated}}" class="opt-tooltip date">{{ note.dateCreated }}</span>
+					</div>
+
+					<!-- Options -->
+					<div class="note-modal-opt">
+						<a title="Speech input" class="opt-tooltip opt-icon-lg icon-mic speech-input" ng-click="speechInput($index)"></a>
+
+						<a title="Change color" class="opt-tooltip opt-icon-lg icon-palette colors-popup">
+							<ul>
+								<li ng-class="colorClass" class="color-btn" ng-repeat="colorClass in colorClasses" ng-click="setNoteColor(note, colorClass)"></li>
+							</ul>
+						</a>
+
+						<a title="Change labels" class="opt-tooltip opt-icon-lg icon-tag labels-popup">
+							<ul>
+								<li ng-repeat="label in labels">
+									<label ng-click="$event.stopPropagation();"><input type="checkbox" ng-checked="checkNoteLabel(note, label)" ng-click="changeNoteLabelViaLabelsPage(note, label, $parent.$index)" /> {{label}}</label>
+								</li>
+							</ul>
+						</a>
+
+						<a title="Archive" class="opt-tooltip opt-icon-lg icon-archive" ng-click="archiveNoteViaModal(note, $index)" data-dismiss="modal"></a>
+
+						<a title="Delete" class="opt-tooltip opt-icon-lg icon-trash" ng-click="trashNoteViaModal(note, $index)" data-dismiss="modal"></a>
+
+						<a title="All done" class="opt-tooltip opt-icon-lg icon-check" data-dismiss="modal"></a>
+					</div>
+				</div>
+			</form> <!-- /.Edit Note Form -->
+
+		</div> <!-- /.Modal content -->
+
+		</div>
+
+	</div>
+	<!-- /.Note edit modals -->
+
+
+	<!-- Note view modals -->
+	<div class="modal fade-pop note-modal note-view-modal" 
+	ng-repeat="note in notes | filter:{isArchived:false} | filter:{isTrashed:false} | searchFor:searchString | filterLabels:selectedLabels" 
+	id="note-view-modal-{{$index}}" role="dialog" view-modals-loaded-directive>
+
+		<div class="modal-dialog">
+
+		<!-- Modal content -->
+		<div class="modal-content" ng-class="note.colorClass">
+
+			<!-- Modal header -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h3 class="note-title">{{ note.title }}</h3>
+			</div>
+
+			<!-- Modal body -->
+			<div class="modal-body">
+				<p class="note-content" froala-view="note.content | noteModalPrettify" ng-dblclick="openEditModalViaViewModal(note, $index)"></p>
+			</div>
+
+			<!-- Modal footer -->
+			<div class="modal-footer">
+				<!-- Labels -->
+				<div class="note-modal-labels">
+					<ul>
+						<li ng-repeat="label in note.labels">{{label}}</li>
+					</ul>
+				</div>
+
+				<!-- Date -->
+				<div class="note-modal-date">
+					<span title="Created {{note.dateCreated}}" class="opt-tooltip date">{{ note.dateCreated }}</span>
+				</div>
+
+				<!-- Options -->
+				<div class="note-modal-opt">
+					<a title="Edit" class="opt-tooltip opt-icon-lg icon-pencil" data-toggle="modal" ng-click="openEditModalViaViewModal(note, $index)"></a>
+
+					<a title="Change color" class="opt-tooltip opt-icon-lg icon-palette colors-popup">
+						<ul>
+							<li ng-class="colorClass" class="color-btn" ng-repeat="colorClass in colorClasses" ng-click="setNoteColor(note, colorClass)"></li>
+						</ul>
+					</a>
+
+					<a title="Archive" class="opt-tooltip opt-icon-lg icon-archive" ng-click="archiveNoteViaModal(note, $index)" data-dismiss="modal"></a>
+
+					<a title="Delete" class="opt-tooltip opt-icon-lg icon-trash" ng-click="trashNoteViaModal(note, $index)" data-dismiss="modal"></a>
+
+					<a title="All done" class="opt-tooltip opt-icon-lg icon-check" data-dismiss="modal"></a>
+				</div>
+			</div>
+		
+		</div> <!-- /.Modal content -->
+
+		</div>
+
+	</div>
+	<!-- /.Note view modals -->
+
+<!-- /.Labels view -->
