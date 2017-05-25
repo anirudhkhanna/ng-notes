@@ -8,7 +8,7 @@ Inspired by Google Keep.
 
 ![ng-notes](https://raw.githubusercontent.com/anirudhkhanna/ng-notes/master/client/assets/images/ng-notes.png)
 
-**Fully functional demo on Heroku:** http://ngnotes.herokuapp.com/
+**Fully functional demo on Heroku:** http://ngnotes.herokuapp.com
 
 **Front-end-only demo:** https://anirudhkhanna.github.io/ng-notes
 
