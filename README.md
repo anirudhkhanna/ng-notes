@@ -2,11 +2,11 @@
 
 A comprehensive note-taking web app to quickly capture what is on your mind - ideas, pictures, lists and more.
 
-Built with MEAN stack (MongoDB, Express, AngularJS and Node.js). The UX is largely based on AngularJS - hence the name ng-notes. :)
+Built with MEAN stack (MongoDB, Express, AngularJS and Node.js). The UX is largely based on AngularJS - hence the name ng-notes. ツ
 
 Inspired by Google Keep.
 
-<img src="https://raw.githubusercontent.com/anirudhkhanna/ng-notes/master/client/assets/images/ng-notes.png" alt="ng-notes" />
+![ng-notes](https://raw.githubusercontent.com/anirudhkhanna/ng-notes/master/client/assets/images/ng-notes.png)
 
 **Fully functional demo on Heroku:** http://ngnotes.herokuapp.com/
 
