@@ -10,7 +10,7 @@ Inspired by Google Keep.
 
 **Fully functional demo on Heroku:** http://ngnotes.herokuapp.com/
 
-**Front-end demo:** https://anirudhkhanna.github.io/ng-notes
+**Front-end-only demo:** https://anirudhkhanna.github.io/ng-notes
 
 **To run on local machine:**
 * Download the project and open its directory in the terminal.
