@@ -77,6 +77,8 @@ app.controller('notesController', function($scope, $state, authentication, data)
 		})
 		.error(function(err) {
 			alertToast('An error occurred while loading user details. ' + err.message);
+			if(err.message.indexOf('not found') !== -1)
+				$scope.signout();
 		});
 
 

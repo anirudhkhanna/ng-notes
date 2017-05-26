@@ -199,6 +199,10 @@ var getUser = function(req, res) {
 	User.findById(req.payload._id).exec(function(err, user) {
 		if(err)
 			res.status(401).json(err);
+		else if(user === null)
+			res.status(401).json({
+				message: 'User not found.'
+			});
 		else
 			res.status(200).json({
 				_id: user._id,
