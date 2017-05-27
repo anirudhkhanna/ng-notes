@@ -1,0 +1,93 @@
+
+body {
+	background: #f0f0f0;
+	font-family: 'Roboto Slab', sans-serif;
+}
+
+
+/* App startup styles */
+#app-startup {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	display: -webkit-box;
+	display: -webkit-flex;
+	-webkit-align-items: center;
+	-webkit-justify-content: center;
+	flex-direction: column;
+	-webkit-flex-direction: column;
+	margin-top: -7vh;
+	color: #454545;
+}
+
+#app-startup .spinner {
+	margin: 25px 0;
+	-webkit-animation: rotate 2s linear infinite;
+	animation: rotate 2s linear infinite;
+}
+
+#app-startup .spinner .path {
+	stroke-dasharray: 1, 150;
+	stroke-dashoffset: 0;
+	stroke: #acb9bf;
+	stroke-linecap: round;
+	-webkit-animation: dash 1.5s ease-in-out infinite;
+	animation: dash 1.5s ease-in-out infinite;
+}
+
+/* Rotate animation effect */
+@-webkit-keyframes rotate {
+
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+@keyframes rotate {
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+/* Dash animation effect */
+@-webkit-keyframes dash {
+
+	0% {
+		stroke-dasharray: 1, 150;
+		stroke-dashoffset: 0;
+	}
+
+	50% {
+		stroke-dasharray: 90, 150;
+		stroke-dashoffset: -35;
+	}
+
+	100% {
+		stroke-dasharray: 90, 150;
+		stroke-dashoffset: -124;
+	}
+}
+
+@keyframes dash {
+
+	0% {
+		stroke-dasharray: 1, 150;
+		stroke-dashoffset: 0;
+	}
+
+	50% {
+		stroke-dasharray: 90, 150;
+		stroke-dashoffset: -35;
+	}
+
+	100% {
+		stroke-dasharray: 90, 150;
+		stroke-dashoffset: -124;
+	}
+}

@@ -79,6 +79,7 @@
 	<script src="assets/watnotif/js/watnotif-1.0.min.js" defer></script>
 
 	<!-- Application CSS -->
+	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/landing-style.css">
 	<link rel="stylesheet" href="css/notes-style.css">
 
@@ -98,10 +99,10 @@
 
 <body id="notes-app" ui-view>
 
-	<p align="center">
+	<div id="app-startup">
+		<svg class="spinner" width="50" height="50" viewBox="0 0 44 44"><circle class="path" cx="22" cy="22" r="20" fill="none" stroke-width="4"></circle></svg>
 		Loading, please wait...
-		<img src="assets/images/animation-wait.gif" style="display: block;" />
-	</p>
+	</div>
 
 </body>
 
