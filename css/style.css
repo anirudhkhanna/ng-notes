@@ -991,6 +991,7 @@ body.modal-open {
 	color: #252525;
 }
 
+/*
 .edit-note-form .input-content {
 	min-height: 200px;
 	max-height: 300px;
@@ -1006,6 +1007,7 @@ body.modal-open {
 	background: rgba(255, 255, 255, 0.4);
 	transition: .3s ease-out;
 }
+*/
 
 .edit-note-form input::-webkit-input-placeholder, 
 .edit-note-form textarea::-webkit-input-placeholder {
@@ -1023,6 +1025,11 @@ body.modal-open {
 .edit-note-form textarea::input-placeholder {
 	font-weight: 300;
 	color: #444;
+}
+
+/* Froala notice in Froala editor */
+.fr-box div > a[href*='froala.com/wysiwyg-editor'] {
+	display: none !important;
 }
 
 
