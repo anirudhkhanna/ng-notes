@@ -191,8 +191,8 @@ function setBackButtonToModalClose() {
 
 		// (this is not working with UI-Router because it changes the url)
 	*/
-		history.pushState(null, null, ''); // push state a blank (this is also not working now)
-	//	history.pushState(null, null, window.location.hash); // push state the current hash
+	//	history.pushState(null, null, ''); // push state a blank (this is also not working now)
+		history.pushState(null, null, window.location.hash); // push state the current hash
 	});
 
 	// If a pushState has previously happened and the back button is clicked, hide any open modals

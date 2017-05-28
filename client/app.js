@@ -41,7 +41,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 			controller: 'profileController as vm',
 		});
 
-		$locationProvider.html5Mode(true);
+	//	$locationProvider.html5Mode(true);
 });
 
 
