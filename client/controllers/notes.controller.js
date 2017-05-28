@@ -502,8 +502,8 @@ app.controller('notesController', function($scope, $state, authentication, data)
 	$scope.signout = function() {
 
 		authentication.signout();
-	//	$state.go('landing');
-		location.reload();
+		$state.go('landing');
+	//	location.reload();
 	};
 
 
