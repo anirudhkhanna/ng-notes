@@ -53,13 +53,13 @@ app.controller('landingController', function($state, authentication) {
 					showConfirmButton: false,
 				},
 				function() {
-				//	$state.go('notes.state-notes');
-					location.reload();
+					$state.go('notes.state-notes');
+				//	location.reload();
 				});
 
 				setTimeout(function() {
-				//	$state.go('notes.state-notes');
-					location.reload();
+					$state.go('notes.state-notes');
+				//	location.reload();
 				}, 1000);
 			});
 	};
@@ -91,13 +91,13 @@ app.controller('landingController', function($state, authentication) {
 					showConfirmButton: false,
 				},
 				function() {
-				//	$state.go('notes.state-notes');
-					location.reload();
+					$state.go('notes.state-notes');
+				//	location.reload();
 				});
 
 				setTimeout(function() {
-				//	$state.go('notes.state-notes');
-					location.reload();
+					$state.go('notes.state-notes');
+				//	location.reload();
 				}, 1000);
 			});
 	};
