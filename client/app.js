@@ -2,7 +2,7 @@
 var app = angular.module('notesApp', ['froala', 'ui.router', /* 'chieffancypants.loadingBar' , */ 'angular-loading-bar']);
 
 /* Configuration for UI-Router routes */
-app.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
 	$urlRouterProvider.otherwise('/landing');
 
@@ -40,6 +40,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			templateUrl: 'views/sub-views/notes.profile.view.html',
 			controller: 'profileController as vm',
 		});
+
+		$locationProvider.html5Mode(true);
 });
 
 
