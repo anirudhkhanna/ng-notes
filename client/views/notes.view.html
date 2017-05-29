@@ -187,22 +187,3 @@
 	var cssFileHref = 'css/notes-style.css';
 	loadCSSFile(cssFileHref);
 </script>
-
-<script>
-	/* Load CSS files dynamically */
-	var cssFileHrefs = [
-		/* Froala Editor Plugin styles */
-		'assets/froala/css/plugins/code_view.css',
-		'assets/froala/css/plugins/colors.css',
-		'assets/froala/css/plugins/emoticons.css',
-		'assets/froala/css/plugins/file.css',
-		'assets/froala/css/plugins/image_manager.css',
-		'assets/froala/css/plugins/image.css',
-		'assets/froala/css/plugins/line_breaker.css',
-	];
-
-	$(document).ready(function() {
-		for(var i = 0; i < cssFileHrefs.length; i++)
-			loadCSSFile(cssFileHrefs[i]);
-	});
-</script>
