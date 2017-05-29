@@ -519,7 +519,7 @@ app.controller('notesController', function($scope, $state, authentication, data)
 			ngRepFinCounter = 0;
 		}
 		textareaAutoResizer();
-		setBackButtonToModalClose();
+	//	setBackButtonToModalClose();
 		$scope.setEditModalCloseToResetCurrentNote();
 		setLayout(5);
 	});
