@@ -67,29 +67,28 @@ app.controller('profileController', function($scope, $state, authentication, dat
 			.success(function() {
 				vm.isEditingName = false;
 				vm.isEditingEmail = false;
+				alertToast('Changes saved successfully.', 'success');
+
+				// Reload user details for this controller and the parent controller
+				data.getUser()
+					.success(function(data) {
+						vm.dummyUser._id = data._id;
+						vm.dummyUser.name = data.name;
+						vm.dummyUser.email = data.email;
+						vm.dummyUser.avatar = data.avatar;
+
+						data.avatar = 'assets/images/' + data.avatar;
+						vm.currentUser = data;
+						$scope.$parent.currentUser = data;
+					})
+					.error(function(err) {
+						alertToast('An error occurred while loading user details. ' + err.message);
+					});
 			})
 			.error(function(err) {
 				alertToast(err.message);
 				return;
 			});
-
-		// Reload user details for this controller and the parent controller
-		data.getUser()
-			.success(function(data) {
-				vm.dummyUser._id = data._id;
-				vm.dummyUser.name = data.name;
-				vm.dummyUser.email = data.email;
-				vm.dummyUser.avatar = data.avatar;
-
-				data.avatar = 'assets/images/' + data.avatar;
-				vm.currentUser = data;
-				$scope.$parent.currentUser = data;
-			})
-			.error(function(err) {
-				alertToast('An error occurred while loading user details. ' + err.message);
-			});
-
-		alertToast('Changes saved successfully.', 'success');
 	};
 
 	/* Change the user password */
