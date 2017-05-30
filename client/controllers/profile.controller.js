@@ -67,7 +67,6 @@ app.controller('profileController', function($scope, $state, authentication, dat
 			.success(function() {
 				vm.isEditingName = false;
 				vm.isEditingEmail = false;
-				alertToast('Changes saved successfully.', 'success');
 			})
 			.error(function(err) {
 				alertToast(err.message);
@@ -89,6 +88,8 @@ app.controller('profileController', function($scope, $state, authentication, dat
 			.error(function(err) {
 				alertToast('An error occurred while loading user details. ' + err.message);
 			});
+
+		alertToast('Changes saved successfully.', 'success');
 	};
 
 	/* Change the user password */
