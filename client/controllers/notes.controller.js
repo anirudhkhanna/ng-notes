@@ -514,7 +514,7 @@ app.controller('notesController', function($scope, $state, authentication, data)
 		ngRepFinCounter++;
 		console.log('ngRepeatFinished ' + ngRepFinCounter);
 
-		if($scope.currentNote != null && ngRepFinCounter >= 5) {
+		if($scope.currentNote != null && ngRepFinCounter >= 10 /* 5 */) {
 			data.updateNote($scope.currentNote);
 			ngRepFinCounter = 0;
 		}
