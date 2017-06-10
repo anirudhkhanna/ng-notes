@@ -83,6 +83,15 @@ app.service('data', function($http, authentication) {
 		});
 	};
 
+	var updateNoteContent = function(note) {
+		return $http.put('/api/updatenote', note, {
+			headers: {
+				Authorization: 'Bearer ' + authentication.getToken()
+			},
+			ignoreLoadingBar: true
+		});
+	};
+
 	var removeNote = function(note) {
 		return $http.delete('/api/deletenote/' + note._id, {
 			headers: {
@@ -102,6 +111,7 @@ app.service('data', function($http, authentication) {
 		getNotes: getNotes,
 		addNote: addNote,
 		updateNote: updateNote,
+		updateNoteContent: updateNoteContent,
 		removeNote: removeNote
 	};
 });

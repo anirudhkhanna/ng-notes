@@ -50,14 +50,14 @@
 	<link rel="stylesheet" href="assets/froala/css/themes/gray-modified.css">
 
 	<!-- Froala Editor Plugin styles -->
-	<!-- Loaded dynamically at the end -->
+	<!-- Loaded dynamically in notes view at the end -->
 
 	<!-- Froala Editor -->
 <!--<script src="assets/froala/js/froala_editor.min.js" defer></script>-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/froala_editor.min.js" defer></script>
 
 	<!-- Froala Editor Plugins -->
-	<!-- Loaded at the end -->
+	<!-- Loaded in notes view at the end -->
 
 	<!-- Angular Floara -->
 	<script src="assets/froala/angular-froala/angular-froala.js" defer></script>
@@ -108,25 +108,6 @@
 
 </body>
 
-<script>
-	/* Load CSS files dynamically */
-	var cssFileHrefs = [
-		/* Froala Editor Plugin styles */
-		'https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/css/plugins/code_view.css',
-		'https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/css/plugins/colors.css',
-		'https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/css/plugins/emoticons.css',
-		'https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/css/plugins/file.css',
-		'https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/css/plugins/image_manager.css',
-		'https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/css/plugins/image.css',
-		'https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/css/plugins/line_breaker.css',
-	];
-
-	$(document).ready(function() {
-		for(var i = 0; i < cssFileHrefs.length; i++)
-			loadCSSFile(cssFileHrefs[i]);
-	});
-</script>
-
 <!-- Autosize -->
 <script src="assets/autosize/autosize.js" defer></script>
 
@@ -138,23 +119,5 @@
 
 <!-- Packery -->
 <script src="assets/packery/2.1.1/packery.pkgd.min.js"></script>
-
-<!-- Froala Editor Plugins -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/align.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/code_beautifier.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/code_view.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/colors.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/emoticons.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/entities.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/file.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/image.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/image_manager.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/inline_style.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/line_breaker.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/link.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/lists.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/paragraph_format.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/paragraph_style.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/save.min.js" defer></script>
 
 </html>

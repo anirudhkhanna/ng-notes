@@ -515,7 +515,7 @@ app.controller('notesController', function($scope, $state, authentication, data)
 		console.log('ngRepeatFinished ' + ngRepFinCounter);
 
 		if($scope.currentNote != null && ngRepFinCounter >= 10 /* 5 */) {
-			data.updateNote($scope.currentNote);
+			data.updateNoteContent($scope.currentNote);
 			ngRepFinCounter = 0;
 		}
 		textareaAutoResizer();
