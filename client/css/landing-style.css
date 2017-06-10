@@ -91,6 +91,12 @@ body {
 	font-size: 26px;
 }
 
+.intro-container .stub1 {
+	height: 315px;
+	float: left;
+/*	border: 1px solid black;	*/
+}
+
 .product-image {
 	float: right;
 	width: 550px;
@@ -334,7 +340,12 @@ body {
 		margin-left: 5%;
 	}
 
-	.intro-container #stub {
+	.intro-container .stub1 {
+		height: 0;
+		display: none;
+	}
+
+	.intro-container .stub2 {
 		height: 315px;
 		float: left;
 		border: 1px solid black;
