@@ -6,7 +6,7 @@ Built with MEAN stack (MongoDB, Express, AngularJS and Node.js). The UX is large
 
 Inspired by Google Keep.
 
-![ng-notes](https://raw.githubusercontent.com/anirudhkhanna/ng-notes/master/client/assets/images/ng-notes.png)
+![ng-notes](https://raw.githubusercontent.com/anirudhkhanna/ng-notes/master/client/assets/images/ng-notes-md.png)
 
 **Fully functional demo on Heroku:** http://ngnotes.herokuapp.com
 
