@@ -257,7 +257,7 @@
 
 				<p align="center" style="margin: 22px 0; font-weight: 500;">&copy; 2017 ng-notes &nbsp;&bull;&nbsp; Inspired by Google Keep</p>
 
-				<p align="center" style="font-size: 11px;">This is just a front-end demo of the app. The back-end systems are taking a nap. This means that you won't be able to sign-up or permanently save any notes here. Apologies!</p>
+				<p align="center" style="font-size: 11px;">This is just a front-end demo of the app. The back-end systems are taking a nap. This means that you won't be able to sign-up or permanently save any notes here. <br /><strong>For the complete working app, head over to <a href="http://ngnotes.herokuapp.com/" target="_blank">ngnotes.herokuapp.com</a> now!</strong></p>
 			</div>
 		</div> <!-- /.Modal content -->
 
@@ -265,6 +265,22 @@
 
 	</div>
 	<!-- /.About ng-notes -->
+
+
+	<!-- Demo notice -->
+	<div id="demo-notice">
+		<button id="close-demo-notice">&times;</button>
+		This is just a front-end demo. For the complete working app, head over to <a href="http://ngnotes.herokuapp.com/" target="_blank">ngnotes.herokuapp.com</a> now!
+		<!-- Script to close demo notice -->
+		<script>
+			$(document).ready(function() {
+				$('#close-demo-notice').click(function() {
+					$('#demo-notice').fadeOut();
+				});
+			});
+		</script>
+	</div>
+	<!-- /.Demo notice -->
 
 </body>
 </html>
