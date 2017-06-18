@@ -50,7 +50,7 @@ body.modal-open {
 	top: 40%;
 	font-size: 24px;
 	font-family: Roboto, sans-serif;
-	color: rgba(51,51,51,0.4);
+	color: rgba(51, 51, 51, 0.4);
 }
 
 .page-message .page-message-icon {
@@ -72,7 +72,7 @@ body.modal-open {
 	text-align: center;
 	font-size: 24px;
 	font-family: Roboto, sans-serif;
-	color: rgba(51,51,51,0.4);
+	color: rgba(51, 51, 51, 0.4);
 	border: 0px solid;
 }
 
